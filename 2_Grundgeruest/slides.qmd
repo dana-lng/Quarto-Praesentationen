@@ -1,0 +1,126 @@
+---
+pagetitle: "Vorlesungsfolie - Grundgeruest"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Veranstaltung"
+studiengang: "Studiengang"
+professor: "Prof. Dr. Name"
+---
+
+## Titel der Vorlesung {.title-slide}
+
+Untertitel oder Thema der Sitzung
+
+Prof. Dr. Name  
+Studiengang / Modul  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide}
+
+::: {.agenda}
+::: {.agenda-item}
+**01**
+
+Einstieg und Motivation
+:::
+
+::: {.agenda-item}
+**02**
+
+Grundbegriffe
+:::
+
+::: {.agenda-item}
+**03**
+
+Zentrale Konzepte
+:::
+
+::: {.agenda-item}
+**04**
+
+Beispiele und Anwendung
+:::
+:::
+
+---
+
+## 01 Einstieg und Motivation {.chapter-slide}
+
+Warum ist dieses Thema wichtig?
+
+---
+
+## Motivation {.content-slide}
+
+- Kernaussage oder aktueller Anlass
+- Bezug zur Veranstaltung
+- Kurzes Beispiel zur Einordnung
+
+---
+
+## Lernziele {.two-column-slide}
+
+:::: {.columns}
+::: {.column width="55%"}
+Nach dieser Einheit koennen Sie:
+
+- wichtige Begriffe erklaeren
+- typische Zusammenhaenge einordnen
+- einfache Beispiele analysieren
+:::
+
+::: {.column width="45%"}
+::: {.callout}
+### Merksatz
+
+Ein kurzer, praegnanter Satz fasst die Folie zusammen.
+:::
+:::
+::::
+
+---
+
+## Zentrale Begriffe {.table-slide}
+
+| Begriff | Kurzbeschreibung |
+|---|---|
+| Begriff A | Kurze Erklaerung oder Definition. |
+| Begriff B | Kurze Erklaerung oder Definition. |
+| Begriff C | Kurze Erklaerung oder Definition. |
+
+---
+
+## Beispiel {.two-column-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+### Ausgangssituation
+
+Hier steht ein kurzes Beispiel oder Szenario.
+:::
+
+::: {.column width="50%"}
+### Einordnung
+
+Hier steht die Analyse, Bewertung oder Schlussfolgerung.
+:::
+::::
+
+---
+
+## Bildfolie {.image-slide}
+
+![](images/title-hero.jpg)
+
+---
+
+## Zusammenfassung {.content-slide}
+
+::: {.summary}
+- Wichtigster Punkt der Einheit
+- Zweiter zentraler Gedanke
+- Ausblick auf die naechste Sitzung
+:::
