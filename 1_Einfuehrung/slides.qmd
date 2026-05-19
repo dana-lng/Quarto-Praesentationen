@@ -5,9 +5,10 @@ date-format: "DD.MM.YYYY"
 format:
   revealjs:
     css: stylesheet.css
-    width: "100%"
-    height: "100%"
+    width: 1280
+    height: 720
     margin: 0
+    center: false
 ---
 
 <div class="layout_folie_titel">

@@ -6,8 +6,8 @@ format:
     theme:
       - default
       - styles/theme.scss
-    width: "100%"
-    height: "100%"
+    width: 1280
+    height: 720
     margin: 0
     center: false
     navigation-mode: linear
