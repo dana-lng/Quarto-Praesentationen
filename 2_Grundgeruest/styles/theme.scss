@@ -20,6 +20,7 @@ $link-color: #0065a8;
   --htw-border: #dbe4ec;
 }
 
+
 .reveal {
   font-family: $font-family-sans-serif;
 }
@@ -89,13 +90,16 @@ $link-color: #0065a8;
 
 .reveal .slides section.title-slide {
   position: relative;
-  display: flex !important;
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
   padding: 72px 90px 70px;
-  background: url("../images/title-hero.jpg") right center / cover no-repeat;
+  background: url("../../../../../images/title-hero.jpg") right center / cover no-repeat;
   isolation: isolate;
+}
+
+.reveal .slides section.present.title-slide {
+  display: flex !important;
 }
 
 .reveal .slides section.title-slide::before {
@@ -115,7 +119,7 @@ $link-color: #0065a8;
   left: 4px;
   width: 400px;
   height: 190px;
-  background: url("../logos/htw-logo-large.jpg") left top / contain no-repeat;
+  background: url("../../../../../logos/htw-logo-large.jpg") left top / contain no-repeat;
   z-index: 1;
 }
 
@@ -139,10 +143,13 @@ $link-color: #0065a8;
 }
 
 .reveal .slides section.chapter-slide {
-  display: flex !important;
   flex-direction: column;
   justify-content: center;
   background: linear-gradient(90deg, #ffffff 0%, #ffffff 58%, #edf3f8 58%, #edf3f8 100%);
+}
+
+.reveal .slides section.present.chapter-slide {
+  display: flex !important;
 }
 
 .reveal .slides section.chapter-slide h2 {
