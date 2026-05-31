@@ -19,99 +19,96 @@ Studiengang / Modul
 
 ## Agenda {.content-slide .agenda-slide}
 
-::: {.agenda}
-::: {.agenda-item}
-**01**
-
-Einstieg und Motivation
-:::
-
-::: {.agenda-item}
-**02**
-
-Grundbegriffe
-:::
-
-::: {.agenda-item}
-**03**
-
-Zentrale Konzepte
-:::
-
-::: {.agenda-item}
-**04**
-
-Beispiele und Anwendung
-:::
-
-::: {.agenda-item}
-**05**
-
-Fazit
-:::
-:::
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Folie mit wenig Text</span></li>
+<li class="agenda-item"><strong>02</strong><span>Zweispaltiger Text</span></li>
+<li class="agenda-item"><strong>03</strong><span>Tabelle</span></li>
+<li class="agenda-item"><strong>04</strong><span>Text links, Bild rechts</span></li>
+<li class="agenda-item"><strong>05</strong><span>Bild links, Text rechts</span></li>
+<li class="agenda-item"><strong>06</strong><span>Bildfolie</span></li>
+<li class="agenda-item"><strong>07</strong><span>Zusammenfassung</span></li>
+<li class="agenda-item"><strong>08</strong><span>Zusammenfassung über das Leben eines Menschen</span></li>
+</ul>
 
 ---
 
-## 01 Einstieg und Motivation {.chapter-slide}
+## Beispiel mit wenig Text {.content-slide .low-text-slide}
 
-Warum ist dieses Thema wichtig?
+Erste Listenebene, 18 pt. Bulletpoint weggeclickt, lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.
+
+\- Erste Listenebene, 18 pt
+
+\- At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+
+\- Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+
 
 ---
 
-## Motivation {.content-slide}
-
-- Kernaussage oder aktueller Anlass
-- Bezug zur Veranstaltung
-- Kurzes Beispiel zur Einordnung
-
----
-
-## Lernziele {.two-column-slide}
+## Zweispaltiger Text {.two-column-slide}
 
 :::: {.columns}
-::: {.column width="55%"}
-Nach dieser Einheit koennen Sie:
+::: {.column width="50%"}
+### Einordnung
 
-- wichtige Begriffe erklaeren
-- typische Zusammenhaenge einordnen
-- einfache Beispiele analysieren
+- Erster Gedanke oder Begriff
+- Kurze Erklaerung
+- Relevanz fuer das Thema
 :::
 
-::: {.column width="45%"}
-::: {.callout}
-### Merksatz
+::: {.column width="50%"}
+### Anwendung
 
-Ein kurzer, praegnanter Satz fasst die Folie zusammen.
-:::
+- Zweiter Gedanke oder Vergleich
+- Kurzes Beispiel
+- Konsequenz fuer die Praxis
 :::
 ::::
 
 ---
 
-## Zentrale Begriffe {.table-slide}
+## Tabelle {.table-slide}
 
-| Begriff | Kurzbeschreibung |
-|---|---|
-| Begriff A | Kurze Erklaerung oder Definition. |
-| Begriff B | Kurze Erklaerung oder Definition. |
-| Begriff C | Kurze Erklaerung oder Definition. |
+| Kategorie | Beschreibung | Beispiel |
+|---|---|---|
+| Begriff A | Kurze Erklaerung des ersten Begriffs. | Beispiel 1 |
+| Begriff B | Kurze Erklaerung des zweiten Begriffs. | Beispiel 2 |
+| Begriff C | Kurze Erklaerung des dritten Begriffs. | Beispiel 3 |
+| Begriff D | Kurze Erklaerung des vierten Begriffs. | Beispiel 4 |
 
 ---
 
-## Beispiel {.two-column-slide}
+## Text links, Bild rechts {.two-column-slide .text-image-slide}
 
 :::: {.columns}
 ::: {.column width="50%"}
-### Ausgangssituation
+### Inhaltlicher Fokus
 
-Hier steht ein kurzes Beispiel oder Szenario.
+- Hier steht der erklaerende Text.
+- Die linke Seite bleibt fuer Argumente, Stichpunkte oder Definitionen.
+- Das Bild rechts unterstuetzt die Aussage visuell.
 :::
 
 ::: {.column width="50%"}
-### Einordnung
+![](images/bild1.jpg)
+:::
+::::
 
-Hier steht die Analyse, Bewertung oder Schlussfolgerung.
+---
+
+## Bild links, Text rechts {.two-column-slide .image-text-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/bild1.jpg)
+:::
+
+::: {.column width="50%"}
+### Interpretation
+
+- Das Bild steht links als Einstieg.
+- Rechts folgt die Einordnung.
+- Diese Struktur eignet sich gut fuer Beispiele oder Beobachtungen.
 :::
 ::::
 
@@ -130,3 +127,13 @@ Hier steht die Analyse, Bewertung oder Schlussfolgerung.
 - Zweiter zentraler Gedanke
 - Ausblick auf die naechste Sitzung
 :::
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+Untertitel oder Thema der Sitzung
+
+Prof. Dr. Name   
+Studiengang / Modul  
+{{< meta date >}}

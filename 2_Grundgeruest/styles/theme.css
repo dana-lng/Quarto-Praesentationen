@@ -268,7 +268,8 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.content-slide,
 .reveal .slides section.two-column-slide,
 .reveal .slides section.table-slide,
-.reveal .slides section.image-slide {
+.reveal .slides section.image-slide,
+.reveal .slides section.diagram-slide {
   background: #ffffff;
 }
 
@@ -304,7 +305,8 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.present.chapter-slide,
 .reveal .slides section.present.two-column-slide,
 .reveal .slides section.present.table-slide,
-.reveal .slides section.present.image-slide {
+.reveal .slides section.present.image-slide,
+.reveal .slides section.present.diagram-slide {
   top: 0 !important;
   left: 0 !important;
   margin-top: 0 !important;
@@ -327,39 +329,127 @@ body.hide-footer .reveal .slide-number,
   transform: none !important;
 }
 
+/* Folie mit wenig Text.
+   Aufbau wie im Beispiel-Screenshot: Ueberschrift oben links, darunter ein
+   schmaler Textblock mit kurzen Zeilen und viel freier Flaeche. */
+.reveal .slides section.present.low-text-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.reveal .slides section.low-text-slide > p {
+  max-width: min(70vw, 920px);
+  color: #000000;
+  margin: 0 0 clamp(16px, 2.2vh, 26px);
+  font-size: clamp(20px, 1.6vw, 29px);
+  line-height: 1.28;
+  font-weight: 400;
+}
+
+/* Diagrammfolie.
+   Mermaid/SVG-Diagramme sollen gross, aber mit Rand, auf der Folie stehen. */
+.reveal .slides section.diagram-slide .cell,
+.reveal .slides section.diagram-slide .cell-output-display,
+.reveal .slides section.diagram-slide .mermaid {
+  width: 100%;
+}
+
+.reveal .slides section.diagram-slide svg {
+  max-width: 100%;
+  max-height: calc(100vh - 210px);
+}
+
+/* Zweispaltige Text/Bild-Folien.
+   Diese Regeln ueberschreiben das Quarto-Spaltenlayout fuer die beiden
+   Bild/Text-Varianten und sorgen fuer gleich grosse Spalten. */
+.reveal .slides section.text-image-slide .columns,
+.reveal .slides section.image-text-slide .columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: center;
+  width: 100%;
+}
+
+.reveal .slides section.text-image-slide .column,
+.reveal .slides section.image-text-slide .column {
+  width: auto !important;
+}
+
+.reveal .slides section.text-image-slide img,
+.reveal .slides section.image-text-slide img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 220px);
+  object-fit: cover;
+  margin: 0;
+}
+
 /* Agenda-Container.
    Baut eine einzelne vertikale Liste fuer die Agenda-Kacheln. */
 .agenda {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 18px;
-  margin-top: 42px;
+  grid-auto-rows: minmax(0, 1fr);
+  align-content: stretch;
+  gap: clamp(6px, 1.25vh, 14px);
+  height: calc(100vh - 220px);
+  margin-top: clamp(14px, 3vh, 30px);
+  padding: 0;
+  list-style: none;
   max-width: 58%;
+  overflow: hidden;
 }
 
 /* Einzelner Agenda-Punkt.
    Linke Spalte: Nummer. Rechte Spalte: Beschreibung. */
 .agenda-item {
   display: grid;
-  grid-template-columns: 76px 1fr;
+  grid-template-columns: clamp(42px, 6vw, 76px) 1fr;
   align-items: center;
-  gap: 22px;
-  min-height: 105px;
-  border-left: 8px solid var(--htw-gray-blue);
+  gap: clamp(12px, 2vw, 22px);
+  min-height: 0;
+  margin: 0;
+  border-left: clamp(5px, 0.7vw, 8px) solid var(--htw-gray-blue);
   background: var(--htw-surface);
-  padding: 18px 24px;
+  padding: clamp(6px, 1.35vh, 16px) clamp(14px, 2vw, 24px);
   box-sizing: border-box;
 }
 
 /* Entfernt Standard-Abstaende innerhalb der Agenda-Kacheln. */
-.agenda-item p {
+.agenda-item p,
+.agenda-item span {
   margin: 0;
+  font-size: clamp(16px, min(2.1vw, 4vh), 32px);
+  line-height: 1.15;
 }
 
 /* Grosse Agenda-Zahl. */
 .agenda-item strong {
   color: var(--htw-gray-blue);
-  font-size: 38px;
+  font-size: clamp(18px, min(2.35vw, 4.4vh), 36px);
+}
+
+/* Ab sechs Agenda-Punkten wird die Liste noch kompakter.
+   :has(.agenda-item:nth-child(6)) bedeutet: greift, sobald mindestens
+   sechs Agenda-Punkte vorhanden sind. */
+.agenda:has(.agenda-item:nth-child(6)) {
+  gap: clamp(4px, 0.9vh, 10px);
+}
+
+.agenda:has(.agenda-item:nth-child(6)) .agenda-item {
+  padding-block: clamp(4px, 0.9vh, 10px);
+}
+
+.agenda:has(.agenda-item:nth-child(6)) .agenda-item p,
+.agenda:has(.agenda-item:nth-child(6)) .agenda-item span {
+  font-size: clamp(15px, min(1.8vw, 3.25vh), 28px);
+}
+
+.agenda:has(.agenda-item:nth-child(6)) .agenda-item strong {
+  font-size: clamp(17px, min(2vw, 3.7vh), 32px);
 }
 
 /* Quarto-Spaltenlayout.
