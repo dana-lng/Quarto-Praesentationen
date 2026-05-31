@@ -4,14 +4,14 @@ date: today
 date-format: "DD.MM.YYYY"
 veranstaltung: "Veranstaltung"
 studiengang: "Studiengang"
-professor: "Prof. Dr. Name"
+professor: "Prof. Dr. Name "
 ---
 
 ## Titel der Vorlesung {.title-slide data-state="hide-footer"}
 
 Untertitel oder Thema der Sitzung
 
-Prof. Dr. Name  
+Prof. Dr. Name   
 Studiengang / Modul  
 {{< meta date >}}
 
