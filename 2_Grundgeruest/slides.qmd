@@ -7,7 +7,7 @@ studiengang: "Studiengang"
 professor: "Prof. Dr. Name"
 ---
 
-## Titel der Vorlesung {.title-slide}
+## Titel der Vorlesung {.title-slide data-state="hide-footer"}
 
 Untertitel oder Thema der Sitzung
 
@@ -17,7 +17,7 @@ Studiengang / Modul
 
 ---
 
-## Agenda {.content-slide}
+## Agenda {.content-slide .agenda-slide}
 
 ::: {.agenda}
 ::: {.agenda-item}
@@ -42,6 +42,12 @@ Zentrale Konzepte
 **04**
 
 Beispiele und Anwendung
+:::
+
+::: {.agenda-item}
+**05**
+
+Fazit
 :::
 :::
 

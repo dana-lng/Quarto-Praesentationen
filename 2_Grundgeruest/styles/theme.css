@@ -1,0 +1,430 @@
+/* Normale CSS-Datei.
+   Diese Datei wird direkt von Quarto eingebunden. Deshalb stehen hier keine
+   SCSS-Variablen mit $..., sondern nur CSS, das der Browser sofort versteht. */
+
+/* Eigene Design-Tokens.
+   Diese CSS-Variablen kannst du unten ueberall mit var(...) verwenden.
+   Wenn du spaeter die Farbwelt aendern willst, startest du am besten hier. */
+:root {
+  /* HTW-Blau fuer Links, Akzente oder Hervorhebungen. */
+  --htw-blue: #0065a8;
+
+  /* Dunkles Blau fuer Haupttext und Ueberschriften. */
+  --htw-blue-dark: #102033;
+
+  /* Etwas weicheres Dunkelblau fuer Unterueberschriften. */
+  --htw-blue-soft: #263d55;
+
+  /* Graublau fuer Agenda-Zahlen, Tabellenkopf und linke Akzentlinien. */
+  --htw-gray-blue: rgb(139, 156, 179);
+
+  /* Heller Flaechenhintergrund fuer Boxen wie Agenda-Items oder Callouts. */
+  --htw-surface: #f3f6f9;
+
+  /* Dezente Rahmenfarbe, falls spaeter Linien oder Karten gebraucht werden. */
+  --htw-border: #dbe4ec;
+}
+
+
+/* Reveal-Hauptcontainer.
+   Hier setzen wir die globale Schriftfamilie fuer die komplette Praesentation. */
+.reveal {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--htw-blue-dark);
+}
+
+/* Responsive Vollbild-Buehne.
+   Reveal skaliert normalerweise eine feste 1280x720-Folie in die Fenstermitte.
+   Wenn das Browserfenster breiter als 16:9 ist, entstehen dadurch links/rechts
+   Raender. Diese Regeln lassen die Folienbuehne stattdessen das komplette
+   Browserfenster ausfuellen. */
+.reveal,
+.reveal .slides {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.reveal .slides {
+  inset: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Grundlayout jeder einzelnen Folie.
+   padding: oben rechts unten links. Unten ist mehr Platz, weil dort Logo,
+   Fusszeile und Foliennummer sitzen. */
+.reveal .slides section {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: clamp(28px, 4.4vh, 42px) clamp(44px, 5.5vw, 70px) clamp(76px, 10vh, 96px);
+
+  /* Verhindert, dass Inhalte oder Deko-Elemente aus der Folie herausragen. */
+  overflow: hidden;
+}
+
+/* Gemeinsame Ueberschriften-Optik fuer h2 und h3. */
+.reveal h2,
+.reveal h3 {
+  margin: 0 0 28px;
+  color: var(--htw-blue-dark);
+}
+
+/* Hauptueberschrift einer normalen Folie. */
+.reveal h2 {
+  font-size: clamp(32px, 3.45vw, 52px);
+}
+
+/* Kleinere Zwischenueberschrift. */
+.reveal h3 {
+  font-size: clamp(24px, 2.35vw, 34px);
+  color: var(--htw-blue-soft);
+}
+
+/* Lesbarer Zeilenabstand fuer Fliesstext und Listen. */
+.reveal p,
+.reveal li {
+  line-height: 1.35;
+}
+
+/* Globale Komponenten */
+
+/* Kleines Logo, das Quarto ueber _quarto.yml einbindet:
+   logo: logos/htw-logo-small.jpg
+   Reveal erzeugt daraus automatisch ein Element mit der Klasse .slide-logo. */
+.reveal .slide-logo {
+  bottom: clamp(18px, 2.6vh, 24px) !important;
+  left: clamp(44px, 5.5vw, 70px) !important;
+  max-height: clamp(32px, 4.4vh, 42px) !important;
+  width: auto !important;
+}
+
+/* Globale Fusszeile, ebenfalls aus _quarto.yml:
+   footer: "...".
+   left/right halten Abstand zu Logo und Foliennummer. */
+.reveal .footer {
+  bottom: clamp(44px, 3.1vh, 30px) !important;
+  left: clamp(120px, 10vw, 180px) !important;
+  right: clamp(100px, 10.2vw, 130px) !important;
+  width: auto !important;
+  margin: 0 !important;
+  text-align: left !important;
+  color: var(--htw-blue-dark);
+  font-size: clamp(12px, 1.18vw, 15px);
+  line-height: 1.2;
+
+  /* Lange Footer-Texte bleiben in einer Zeile und werden mit ... gekuerzt. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reveal .footer > * {
+  text-align: left !important;
+}
+
+/* Foliennummer unten rechts. */
+.reveal .slide-number {
+  right: clamp(44px, 5.5vw, 70px) !important;
+  bottom: clamp(22px, 3.1vh, 29px) !important;
+  color: var(--htw-blue-dark);
+  font-size: clamp(12px, 1.18vw, 15px);
+}
+
+/* Auf der Titelfolie werden kleines Logo, Footer und Foliennummer ausgeblendet,
+   weil die Titelfolie ihr eigenes grosses Logo und eigenes Layout hat.
+   In slides.qmd steht dafuer an der Titelfolie:
+   ## Titel der Vorlesung {.title-slide data-state="hide-footer"}
+
+   Reveal setzt diesen State beim Anzeigen der Folie als Klasse. Die mehreren
+   Selektoren decken ab, ob Reveal die Klasse an html, body, viewport oder
+   .reveal selbst haengt. */
+html.hide-footer .reveal .slide-logo,
+html.hide-footer .reveal .footer,
+html.hide-footer .reveal .slide-number,
+body.hide-footer .reveal .slide-logo,
+body.hide-footer .reveal .footer,
+body.hide-footer .reveal .slide-number,
+.reveal-viewport.hide-footer .reveal .slide-logo,
+.reveal-viewport.hide-footer .reveal .footer,
+.reveal-viewport.hide-footer .reveal .slide-number,
+.reveal.hide-footer .slide-logo,
+.reveal.hide-footer .footer,
+.reveal.hide-footer .slide-number {
+  display: none !important;
+}
+
+
+/* Wiederverwendbare Folientypen */
+
+/* Titelfolie.
+   Diese Klasse wird in slides.qmd so benutzt:
+   ## Titel der Vorlesung {.title-slide}
+
+   Das Bild liegt rechts als CSS-Hintergrund. Der Pfad startet bei styles/,
+   deshalb fuehrt ../images in den Bilderordner. */
+.reveal .slides section.title-slide {
+  position: relative;
+
+  /* Wird nur auf der aktiven Titelfolie zu flex, siehe naechste Regel.
+     Dadurch stoeren wir Reveals eigenes Ein-/Ausblenden der anderen Folien nicht. */
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: clamp(48px, 7.5vh, 72px) clamp(58px, 7vw, 90px) clamp(48px, 7.3vh, 70px);
+  background: url("../images/title-hero.jpg") right center / cover no-repeat;
+
+  /* Eigener Stapelkontext, damit ::before/::after sauber hinter bzw. vor
+     dem Titeltext liegen. */
+  isolation: isolate;
+}
+
+/* Nur die aktuell sichtbare Titelfolie bekommt display:flex.
+   Wichtig: nicht global auf .title-slide setzen, sonst kann Reveal-Sichtbarkeit
+   durcheinanderkommen. */
+.reveal .slides section.present.title-slide {
+  display: flex !important;
+}
+
+/* Weisse diagonale Flaeche auf der Titelfolie.
+   clip-path bestimmt die Schräge. Die Punkte sind:
+   oben links, oben rechts, unten rechts/diagonal, unten links. */
+.reveal .slides section.title-slide::before {
+  content: "";
+  position: absolute;
+  inset: -5% auto -20% -5%;
+  width: 100%;
+  background: #ffffff;
+  clip-path: polygon(0 0, 90% 0, 10% 100%, 0 100%);
+  z-index: -1;
+}
+
+/* Grosses Logo auf der Titelfolie.
+   Es wird als Pseudo-Element gesetzt, damit die qmd-Datei sauber bleibt. */
+.reveal .slides section.title-slide::after {
+  content: "";
+  position: absolute;
+  top: clamp(-60px, -6.2vh, -36px);
+  left: clamp(4px, 1vw, 18px);
+  width: clamp(300px, 31vw, 400px);
+  height: clamp(140px, 19vh, 190px);
+  background: url("../logos/htw-logo-large.jpg") left top / contain no-repeat;
+  z-index: 1;
+}
+
+/* Titeltext und Untertitel liegen vor der weissen Diagonale und bleiben links. */
+.reveal .slides section.title-slide h2,
+.reveal .slides section.title-slide p {
+  position: relative;
+  z-index: 2;
+  max-width: min(58vw, 760px);
+}
+
+/* Grosse Titelueberschrift. */
+.reveal .slides section.title-slide h2 {
+  margin-top: clamp(60px, 9.4vh, 90px);
+  margin-bottom: clamp(32px, 5vh, 48px);
+  font-size: clamp(42px, 4.55vw, 68px);
+  line-height: 1.05;
+}
+
+/* Untertitel, Name, Studiengang und Datum auf der Titelfolie. */
+.reveal .slides section.title-slide p {
+  margin: 0 0 16px;
+  font-size: clamp(20px, 1.9vw, 30px);
+}
+
+/* Kapitel- oder Abschnittsfolie.
+   In slides.qmd:
+   ## 01 Einstieg und Motivation {.chapter-slide} */
+.reveal .slides section.chapter-slide {
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+/* Auch hier nur die aktuell sichtbare Kapitel-Folie auf flex setzen. */
+.reveal .slides section.present.chapter-slide {
+  display: flex !important;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Grosse Kapitelueberschrift. */
+.reveal .slides section.chapter-slide h2 {
+  max-width: 780px;
+  font-size: 60px;
+  line-height: 1.05;
+}
+
+/* Kurzer Untertext auf Kapitel-Folien. */
+.reveal .slides section.chapter-slide p {
+  max-width: 720px;
+  font-size: 28px;
+}
+
+/* Standardhintergrund fuer die normalen Folientypen. */
+.reveal .slides section.content-slide,
+.reveal .slides section.two-column-slide,
+.reveal .slides section.table-slide,
+.reveal .slides section.image-slide {
+  background: #ffffff;
+}
+
+/* Agenda-Folie mit Bild rechts.
+   Das Bild wird ueber CSS gesetzt, damit die Agenda in slides.qmd nur Text
+   bleiben kann. Das Bild kannst du hier austauschen. */
+.reveal .slides section.agenda-slide {
+  position: relative;
+}
+
+.reveal .slides section.agenda-slide::after {
+  content: "";
+  position: absolute;
+  top: 130px;
+  right: 70px;
+  bottom: 115px;
+  width: 34%;
+  background: url("../images/bild1.jpg") center / cover no-repeat;
+  z-index: 0;
+}
+
+.reveal .slides section.agenda-slide h2,
+.reveal .slides section.agenda-slide .agenda {
+  position: relative;
+  z-index: 1;
+}
+
+/* Normale Inhaltsfolien wieder nach oben ziehen.
+   Durch die Vollbild-Anpassungen fuer die Titelfolie kann Reveal normale
+   Folien zu tief positionieren. Diese Regel setzt die betroffenen Folientypen
+   wieder an den oberen Rand des sichtbaren Bereichs. */
+.reveal .slides section.present.content-slide,
+.reveal .slides section.present.chapter-slide,
+.reveal .slides section.present.two-column-slide,
+.reveal .slides section.present.table-slide,
+.reveal .slides section.present.image-slide {
+  top: 0 !important;
+  left: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Starker Hochzieh-Fix fuer Folie 2 und 3.
+   Durch die globale Vollbild-Skalierung kann Reveal diese Folien unten aus dem
+   sichtbaren Bereich legen. Fuer die aktuell aktive Agenda- und Kapitel-Folie
+   umgehen wir diese falsche Berechnung und verankern sie direkt im Browserfenster. */
+.reveal .slides section.present.agenda-slide,
+.reveal .slides section.present.chapter-slide {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Agenda-Container.
+   Baut eine einzelne vertikale Liste fuer die Agenda-Kacheln. */
+.agenda {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 42px;
+  max-width: 58%;
+}
+
+/* Einzelner Agenda-Punkt.
+   Linke Spalte: Nummer. Rechte Spalte: Beschreibung. */
+.agenda-item {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  align-items: center;
+  gap: 22px;
+  min-height: 105px;
+  border-left: 8px solid var(--htw-gray-blue);
+  background: var(--htw-surface);
+  padding: 18px 24px;
+  box-sizing: border-box;
+}
+
+/* Entfernt Standard-Abstaende innerhalb der Agenda-Kacheln. */
+.agenda-item p {
+  margin: 0;
+}
+
+/* Grosse Agenda-Zahl. */
+.agenda-item strong {
+  color: var(--htw-gray-blue);
+  font-size: 38px;
+}
+
+/* Quarto-Spaltenlayout.
+   Betrifft Folien mit ::: {.columns} in slides.qmd. */
+.reveal .columns {
+  gap: 46px;
+  align-items: start;
+}
+
+/* Wiederverwendbare Infoboxen.
+   .callout wird fuer Merksaetze genutzt, .summary fuer die Zusammenfassung. */
+.callout,
+.summary {
+  background: var(--htw-surface);
+  border-left: 8px solid var(--htw-gray-blue);
+  padding: 24px 30px;
+  box-sizing: border-box;
+}
+
+/* Weniger Abstand unter Ueberschriften innerhalb einer Callout-Box. */
+.callout h3 {
+  margin-bottom: 12px;
+}
+
+/* Zusammenfassungslisten sollen direkt am Box-Anfang starten. */
+.summary ul {
+  margin: 0;
+}
+
+/* Groessere Listenpunkte fuer die Abschlussfolie. */
+.summary li {
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
+/* Tabellen.
+   display:block und overflow-y:auto sorgen dafuer, dass grosse Tabellen
+   innerhalb der Folie scrollen koennen, statt aus der Folie zu laufen. */
+.reveal table {
+  display: block;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+  font-size: 19px;
+}
+
+/* Tabellenkopf im HTW-Graublau. */
+.reveal table th {
+  background-color: var(--htw-gray-blue);
+  color: #ffffff;
+  font-size: 22px;
+}
+
+/* Innenabstand fuer Tabellenzellen. */
+.reveal table td,
+.reveal table th {
+  padding: 12px 18px;
+}
+
+/* Bildfolien.
+   Das Bild nimmt die Breite der Folie ein und wird bei Bedarf zugeschnitten,
+   damit es nicht ueber Footer oder Folienrand laeuft. */
+.reveal .slides section.image-slide img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 190px);
+  object-fit: cover;
+  margin: 0;
+}

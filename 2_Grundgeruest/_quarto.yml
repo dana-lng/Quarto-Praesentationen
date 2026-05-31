@@ -3,9 +3,8 @@ project:
 
 format:
   revealjs:
-    theme:
-      - default
-      - styles/theme.scss
+    theme: default
+    css: styles/theme.css
     width: 1280
     height: 720
     margin: 0
