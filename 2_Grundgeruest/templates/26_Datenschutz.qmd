@@ -379,16 +379,18 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
-- Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO I Ausdrückliche Einwilligung des Betroffenen, soweit Einwilligung gesetzlich nicht verboten ist Erforderliche Angabe nach Arbeitsrecht, Recht der sozialen Sicherheit bzw. Sozialschutz Zum Schutz lebenswichtiger Interessen des Betroffenen bzw. einer anderen natürlichen Person, wobei der Betroffene aus körperlichen oder rechtlichen Gründen außerstande für Einwilligung sein muss Auf Grundlage einer geeigneten Garantie bei Tendenzschutzbetrieb Vom Betroffenen selbst offensichtlich öffentlich gemachte Daten
+**Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO I**
 
-
----
-
-## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
-
-- Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO II Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen Vorgeschriebener Rechtsakt (EU-weit oder in Mitgliedsstaat)
-- Gesundheitsvorsorge, Arbeitsmedizin, medizinische Diagnostik, Versorgung oder Behandlung im Gesundheits- bzw. Sozialbereich Öffentliche Gesundheit Archivierung im öffentlichen Interesse, wissenschaftliche oder historische Forschung bzw.
-- Statistik (unter Berücksichtigung von Art. 89 EU-DSGVO)
+- Ausdrückliche Einwilligung des Betroffenen, soweit Einwilligung gesetzlich nicht verboten ist 
+- Erforderliche Angabe nach Arbeitsrecht, Recht der sozialen Sicherheit bzw. Sozialschutz 
+- Zum Schutz lebenswichtiger Interessen des Betroffenen bzw. einer anderen natürlichen Person, wobei der Betroffene aus körperlichen oder rechtlichen Gründen außerstande für Einwilligung sein muss 
+- Auf Grundlage einer geeigneten Garantie bei Tendenzschutzbetrieb 
+- Vom Betroffenen selbst offensichtlich öffentlich gemachte Daten  
+- Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen 
+- Vorgeschriebener Rechtsakt (EU-weit oder in Mitgliedsstaat)
+- Gesundheitsvorsorge, Arbeitsmedizin, medizinische Diagnostik, Versorgung oder Behandlung im Gesundheits- bzw. Sozialbereich 
+- Öffentliche Gesundheit 
+- Archivierung im öffentlichen Interesse, wissenschaftliche oder historische Forschung bzw. Statistik (unter Berücksichtigung von Art. 89 EU-DSGVO)
 
 
 ---
@@ -396,7 +398,12 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ## Prinzip der Zweckbindung {.content-slide .pdf-slide}
 
 - Nach Art. 5 Abs. 1 lit. b EU-DSGVO müssen personenbezogene Daten für festgelegte, eindeutige und legitime Zwecke erhoben werden und dürfen nicht in einer mit diesen Zwecken nicht mehr zu vereinbarenden Weise weiterverarbeitet werden!
-- Erfordernis zur Zweckfestlegung (Haupt- und Nebenzwecke) bei der Erhebung Zweck abhängig von geplanter Verwendung Verfahren (= festgelegte Art & Weise, wie Tätigkeit/Prozess im Daten-Life-Cycle auszuführen ist) im Datenschutzrecht kontextsensitiv, d.h. zweckabhängig →zweckbezogen verknüpfte Verarbeitungsschritte Verarbeitungsschritte unterliegen Zweckbindung Zweckänderung nur bei berechtigtem Interesse unter Abwägung (→abhängig vom Schutzgrad; muss mit ursprünglichen Zweck aber vereinbar sein!) teilweise existiert besondere Zweckbindung
+- Erfordernis zur Zweckfestlegung (Haupt- und Nebenzwecke) bei der Erhebung 
+- Zweck abhängig von geplanter Verwendung 
+- Verfahren (= festgelegte Art & Weise, wie Tätigkeit/Prozess im Daten-Life-Cycle auszuführen ist) im Datenschutzrecht kontextsensitiv, d.h. zweckabhängig → zweckbezogen verknüpfte Verarbeitungsschritte 
+- Verarbeitungsschritte unterliegen Zweckbindung 
+- Zweckänderung nur bei berechtigtem Interesse unter Abwägung (→ abhängig vom Schutzgrad; muss mit ursprünglichen Zweck aber vereinbar sein!) 
+- teilweise existiert besondere Zweckbindung
 
 
 ---
@@ -404,7 +411,8 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ## Prinzip der Transparenz {.content-slide .pdf-slide}
 
 - Nach Art. 5 Abs. 1 lit. a EU-DSGVO müssen personenbezogene Daten in einer für die betroffene Person nachvollziehbare Weise verarbeitet werden!
-- Betroffener muss folglich ihn betreffende Verfahren kennen Informationspflicht bei Direkterhebung beim Betroffenen (Art. 13 EU-DSGVO)
+- Betroffener muss folglich ihn betreffende Verfahren kennen 
+- Informationspflicht bei Direkterhebung beim Betroffenen (Art. 13 EU-DSGVO)
 - Benachrichtigungspflicht bei fehlender Direkterhebung, inkl. Angabe, aus welcher Quelle Daten stammen (Art. 14 EU-DSGVO)
 - Auskunftsrecht des Betroffenen (Art. 15 EU-DSGVO)
 - Einwilligung muss von verantwortlicher Stelle nachgewiesen werden (Art. 7 Abs. 1 EU-DSGVO)
@@ -416,34 +424,40 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Verzeichnis von Verarbeitungstätigkeiten {.content-slide .pdf-slide}
 
-- 1. Angaben zur verantwortlichen Stelle und der zugehörigen Kontaktdaten (inkl.
-- Datenschutzbeauftragter)
-- 2. Zwecke der Verarbeitung
-- 3. Kategorien der Betroffenen und personenbezogener Daten
-- 4. Kategorien von Empfänger
-- 5. Angaben zur Übermittlung in Drittländer oder internationalen Organisationen
-- 6. Löschungsfristen je Datenkategorie
-- 7. Allgemeine Beschreibung der technischen und organisatorischen Maßnahmen (nach Art. 32 Abs. 1 EU-DSGVO)
-- 1. bis 6. sind Informationspflichten gegenüber dem betroffenen; 6. im Sinne der geplanten Speicherdauer
+ 1. Angaben zur verantwortlichen Stelle und der zugehörigen Kontaktdaten (inkl. Datenschutzbeauftragter)
+ 2. Zwecke der Verarbeitung
+ 3. Kategorien der Betroffenen und personenbezogener Daten
+ 4. Kategorien von Empfänger
+ 5. Angaben zur Übermittlung in Drittländer oder internationalen Organisationen
+ 6. Löschungsfristen je Datenkategorie
+ 7. Allgemeine Beschreibung der technischen und organisatorischen Maßnahmen (nach Art. 32 Abs. 1 EU-DSGVO)
+
+ → 1\. bis 6. sind Informationspflichten gegenüber dem betroffenen; 6. im Sinne der geplanten Speicherdauer
 
 
 ---
 
 ## Prinzip der Datenminimierung {.content-slide .pdf-slide}
 
-- Nach Art. 5 Abs. 1 lit. c EU-DSGVO müssen personenbezogene Daten dem Zweck angemessen und erheblich sowie auf das für die Zwecke der Verarbeitung notwendige Maß beschränkt sein Anforderung zur Gestaltung der eingesetzten IT-Systeme (maßgeblich für privacy by design)
-- Verbot unnötiger Vorratsdatenhaltung Vermeidung des Personenbezugs, sofern dieser nicht unbedingt (zur Erfüllung des Verwendungszwecks unmittelbar) erforderlich ist Verwendung datenschutzfreundlicher Techniken Ermöglichung anonymer und unbeobachteter Nutzung von Telemedien Betrifft alle Phasen der automatisierten Verarbeitung
+- Nach Art. 5 Abs. 1 lit. c EU-DSGVO müssen personenbezogene Daten dem Zweck angemessen und erheblich sowie auf das für die Zwecke der Verarbeitung notwendige Maß beschränkt sein 
+- Anforderung zur Gestaltung der eingesetzten IT-Systeme (maßgeblich für privacy by design)
+- Verbot unnötiger Vorratsdatenhaltung 
+- Vermeidung des Personenbezugs, sofern dieser nicht unbedingt (zur Erfüllung des Verwendungszwecks unmittelbar) erforderlich ist 
+- Verwendung datenschutzfreundlicher Techniken 
+- Ermöglichung anonymer und unbeobachteter Nutzung von Telemedien 
+- Betrifft alle Phasen der automatisierten Verarbeitung
 
 
 ---
 
 ## Prinzip der begrenzten Speicherung {.content-slide .pdf-slide}
 
-- Nach Art. 5 Abs. 1 lit. e EU-DSGVO müssen personenbezogene Daten in einer Form gespeichert werden, die die Identifikation der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die sie verarbeitet werden, erforderlich ist An vielen Stellen der EU-DSGVO wird daher ausdrücklich eine Pseudonymisierung der Daten eingefordert:
-- Erleichterung bei Zweckänderung (Art. 6 Abs. 4 lit. e)
-- Einschränkung bei Auskunftsrechten (Art. 12 Abs. 2)
-- Umsetzung von Privacy by Design bzw. by Default (Art. 25)
-- Empfohlene Maßnahme zur Sicherheit der Verarbeitung (Art. 32 Abs. 1 lit. a)
+- Nach Art. 5 Abs. 1 lit. e EU-DSGVO müssen personenbezogene Daten in einer Form gespeichert werden, die die Identifikation der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die sie verarbeitet werden, erforderlich ist 
+- An vielen Stellen der EU-DSGVO wird daher ausdrücklich eine Pseudonymisierung der Daten eingefordert:
+    - Erleichterung bei Zweckänderung (Art. 6 Abs. 4 lit. e)
+    - Einschränkung bei Auskunftsrechten (Art. 12 Abs. 2)
+    - Umsetzung von Privacy by Design bzw. by Default (Art. 25)
+    - Empfohlene Maßnahme zur Sicherheit der Verarbeitung (Art. 32 Abs. 1 lit. a)
 - Pseudonyme Daten sind für Empfänger nicht personenbezogen, wenn weder über eigene Mittel noch mittels beschaffbarer Zusatzinformation repersonalisierbar
 
 
@@ -451,8 +465,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Betroffenenrechte {.content-slide .pdf-slide}
 
-### Recht auf Auskunft (Art 15. EU-DSGVO)
-
+- Recht auf Auskunft (Art 15. EU-DSGVO)
 - Recht auf Berichtigung (Art 16. EU-DSGVO)
 - Das Recht auf Löschung / ”Recht auf Vergessenwerden” (Art. 17 EU-DSGVO)
 - Das Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)
@@ -463,14 +476,25 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Aufgaben (Art. 39 EU-DSGVO) {.content-slide .pdf-slide}
 
-- Unterrichtung & Beratung des Verantwortlichen bzw. Auftragsverarbeiters und der Beschäftigten über datenschutzrechtliche Pflichten → Schulung der Beschäftigten, die personenbezogene Daten verarbeiten → Mitwirkung bei Abschluss von Verträgen, Betriebsvereinbarungen, Policies und Dienstanweisungen, sobald personenbezogene Daten betroffen sind Überwachung der Einhaltung datenschutzrechtlicher Vorschriften Beratung zur und Überwachung der Datenschutz-Folgenabschätzung Ansprechpartner für Aufsichtsbehörde Ansprechpartner für Betroffene nach Art. 38 Abs. 4 EU-DSGVO Übernahme weiterer Aufgaben nach Art. 38 Abs. 6 EU-DSGVO, soweit daraus kein Interessenkonflikt resultiert Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
+- Unterrichtung & Beratung des Verantwortlichen bzw. Auftragsverarbeiters und der Beschäftigten über datenschutzrechtliche Pflichten   
+    → Schulung der Beschäftigten, die personenbezogene Daten verarbeiten   
+    → Mitwirkung bei Abschluss von Verträgen, Betriebsvereinbarungen, Policies und Dienstanweisungen, sobald personenbezogene Daten betroffen sind 
+- Überwachung der Einhaltung datenschutzrechtlicher Vorschriften 
+- Beratung zur und Überwachung der Datenschutz-Folgenabschätzung 
+- Ansprechpartner für Aufsichtsbehörde 
+- Ansprechpartner für Betroffene nach Art. 38 Abs. 4 EU-DSGVO 
+- Übernahme weiterer Aufgaben nach Art. 38 Abs. 6 EU-DSGVO, soweit daraus kein Interessenkonflikt resultiert   
+
+Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 
 
 ---
 
 ## Anforderungen {.content-slide .pdf-slide}
 
-- Nach Art. 37 Abs. 5 EU-DSGVO wird der Datenschutzbeauftragte benannt auf der Grundlage seiner beruflichen Qualifikation und seines Fachwissens auf dem Gebiet des Datenschutzrechts und der Datenschutzpraxis Fachkunde: Datenschutzrecht, Datenverarbeitung, betriebliche Organisation, Didaktik, Psychologie [Beschluss des LG Ulm, 1990] nur natürliche Person kann bestellt werden
+- Nach Art. 37 Abs. 5 EU-DSGVO wird der Datenschutzbeauftragte benannt auf der Grundlage seiner beruflichen Qualifikation und seines Fachwissens auf dem Gebiet des Datenschutzrechts und der Datenschutzpraxis 
+- Fachkunde: Datenschutzrecht, Datenverarbeitung, betriebliche Organisation, Didaktik, Psychologie [Beschluss des LG Ulm, 1990] 
+- nur natürliche Person kann bestellt werden
 
 
 ---
@@ -488,58 +512,92 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Typische Tätigkeiten {.content-slide .pdf-slide}
 
-### Recherchen zur aktuellen Rechtslage (Auswertung aktueller Urteile)
-
-- Lesen & Auswerten zahlreicher & umfangreicher Fachartikel & Fachliteratur Vorbereitung von & Teilnahme an & Protokollierung der Meetings (Geschäftsführung, IT-Leitung, Fachverantwortliche)
-- Erstellung von Stellungnahmen & Verzeichnis von Verarbeitungstätigkeiten Durchführung & Dokumentation von Vor-Ort-Kontrollen & Vertragskontrollen Unterstützung bei der Durchführung von Datenschutz-Folgenabschätzungen Erstellung & Begutachtung von Sicherheitskonzepten Planung & Durchführung von Mitarbeiterschulungen Gespräche mit Aufsichtsbehörden
+- Recherchen zur aktuellen Rechtslage (Auswertung aktueller Urteile)
+- Lesen & Auswerten zahlreicher & umfangreicher Fachartikel & Fachliteratur 
+- Vorbereitung von & Teilnahme an & Protokollierung der Meetings (Geschäftsführung, IT-Leitung, Fachverantwortliche)
+- Erstellung von Stellungnahmen & Verzeichnis von Verarbeitungstätigkeiten 
+- Durchführung & Dokumentation von Vor-Ort-Kontrollen & Vertragskontrollen 
+- Unterstützung bei der Durchführung von Datenschutz-Folgenabschätzungen 
+- Erstellung & Begutachtung von Sicherheitskonzepten 
+- Planung & Durchführung von Mitarbeiterschulungen 
+- Gespräche mit Aufsichtsbehörden
 
 
 ---
 
 ## Unerfreuliche Erfahrungen {.content-slide .pdf-slide}
 
-- komplexe Materie erfordert permanente Erneuerung der Informationsbasis verspätete Information (z.B. durch nachzuholende Vorabkontrolle) hat Mehrarbeit & Mehrkosten zur Folge Eigenschaft als Miesmacher gegenüber „schöner neuer Welt“ Abwägungserfordernis führt teilw. zu fehlender Trennschärfe Feststellung von Fehlverhalten wichtiger Mitarbeiter & von strukturellen Defiziten festgestellte Datenschutzverstöße teilweise Kündigungsgrund von Mitarbeitern Durchsicht von Festplatten mit (Kinder-) Pornographie Anrufung mit Ziel der Verhinderung arbeitsrechtlicher Aufklärung
+- komplexe Materie erfordert permanente Erneuerung der Informationsbasis 
+- verspätete Information (z.B. durch nachzuholende Vorabkontrolle) hat Mehrarbeit & Mehrkosten zur Folge 
+- Eigenschaft als Miesmacher gegenüber „schöner neuer Welt“ 
+- Abwägungserfordernis führt teilw. zu fehlender Trennschärfe 
+- Feststellung von Fehlverhalten wichtiger Mitarbeiter & von strukturellen Defiziten 
+- festgestellte Datenschutzverstöße teilweise Kündigungsgrund von Mitarbeitern 
+- Durchsicht von Festplatten mit (Kinder-) Pornographie 
+- Anrufung mit Ziel der Verhinderung arbeitsrechtlicher Aufklärung
 
 
 ---
 
 ## Sanktionen bei Verstößen (Art. 83 EU-DSGVO) {.content-slide .pdf-slide}
 
-- Kategorie 1: Bis 10 Mio. € oder 2% des weltweiten Jahresumsatzes Technische/organisatorische Maßnahmen (Art. 25, 32)
-- Auftragsverarbeitung (Art. 28)
-- Verzeichnis von Verarbeitungstätigkeiten (Art. 30)
-- Kategorie 2: Bis 20 Mio. € oder 4% des weltweiten Jahresumsatzes Grundsätze der Verarbeitung (Art. 5-7)
-- Betroffenenrechte (Art. 12-22)
-- Datenübermittlung in Drittländer (Art. 44-49)
-- Es gilt jeweils der höhere Betrag!
+**Kategorie 1:** Bis 10 Mio. € oder 2% des weltweiten Jahresumsatzes 
+
+- Technische/organisatorische Maßnahmen (Art. 25, 32)  
+- Auftragsverarbeitung (Art. 28)  
+- Verzeichnis von Verarbeitungstätigkeiten (Art. 30)  
+
+**Kategorie 2:** Bis 20 Mio. € oder 4% des weltweiten Jahresumsatzes   
+
+- Grundsätze der Verarbeitung (Art. 5-7)  
+- Betroffenenrechte (Art. 12-22)  
+- Datenübermittlung in Drittländer (Art. 44-49)    
+
+*Es gilt jeweils der höhere Betrag!*
 
 
 ---
 
 ## Bußgeldbeispiele {.content-slide .pdf-slide}
 
-- Unternehmen Bußgeld Verstoß Meta (Irland, 2023) 1,2 Mrd. € Datenübermittlung USA Amazon (Luxemburg, 2021) 746 Mio. € Werbe-Targeting ohne Einwilligung Meta/Instagram (2022) 405 Mio. € Kinder-Datenverarbeitung H&M (Deutschland, 2020) 35 Mio. € Mitarbeiterüberwachung Fazit: Datenschutzverstöße können existenzbedrohend sein!
+**2020** – H&M (35 Mio €)
+- Mitarbeiterüberwachung
 
+**2021** – Amazon (746 Mio €)
+- Werbe-Targeting ohne Einwilligung
+
+**2022** – Meta/Instagram (405 Mio €)
+- Kinder-Datenverarbeitung
+
+**2023** – Meta (1,2 Mrd €)
+- Datenübermittlung USA
+
+**Fazit:** Datenschutzverstöße können existenzbedrohend sein!
 
 ---
 
 ## Zusammenfassung {.content-slide .pdf-slide .pdf-summary}
 
-### ✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG)
+✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG)  
+✓ Informationelles Selbstbestimmungsrecht seit Volkszählungsurteil 1983   
+✓ DSGVO-Prinzipien: Verbot mit Erlaubnisvorbehalt, Zweckbindung, Transparenz, Datenminimierung   
+✓ Verarbeitung nur mit Rechtsgrundlage nach Art. 6 EU-DSGVO   
+✓ Datenschutzbeauftragte: unabhängig, weisungsfrei, Ansprechpartner   
+✓ Bußgelder bis 20 Mio. € oder 4% Jahresumsatz möglich   
 
-- ✓ Informationelles Selbstbestimmungsrecht seit Volkszählungsurteil 1983 ✓ DSGVO-Prinzipien: Verbot mit Erlaubnisvorbehalt, Zweckbindung, Transparenz, Datenminimierung ✓ Verarbeitung nur mit Rechtsgrundlage nach Art. 6 EU-DSGVO ✓ Datenschutzbeauftragte: unabhängig, weisungsfrei, Ansprechpartner ✓ Bußgelder bis 20 Mio. € oder 4% Jahresumsatz möglich Vertiefung im Master: Datenschutz-Folgenabschätzung (Art. 35-36), internationale Datenübermittlung (Kapitel V), Auftragsverarbeitung (Art. 28)
+**Vertiefung im Master:** Datenschutz-Folgenabschätzung (Art. 35-36), internationale Datenübermittlung (Kapitel V), Auftragsverarbeitung (Art. 28)
 
 
 ---
 
 ## Literaturverzeichnis I {.content-slide .pdf-slide}
 
-- [1] BGH. Urteil vom 14.02.1958 - I ZR 151/56. 14. Feb. 1958. URL: https://openjur.de/ u/190815.html.
-- [2] BVerfG. Beschluss vom 16.07.1969 - 1 BvL 19/63. 16. Juli 1969. URL: https://openjur. de/u/183523.html.
-- [3] BVerfG. Beschluss vom 15.01.1970 - 1 BvR 13/68. 15. Jan. 1970. URL: https://openjur. de/u/193589.html.
-- [4] BVerfG. Urteil vom 05.06.1973 - 1 BvR 536/72. 5. Juni 1973. URL: https://openjur. de/u/177284.html.
-- [5] BVerfG. Urteil vom 15.12.1983 - 1 BvR 209/83, 1 BvR 269/83, 1 BvR 362/83, 1 BvR 420/83,
-- 1. BvR 440/83, 1 BvR 484/83. 15. Dez. 1983. URL: https://openjur.de/u/268440. html.
+[1] BGH. Urteil vom 14.02.1958 - I ZR 151/56. 14. Feb. 1958. URL: [https://openjur.de/ u/190815.html](https://openjur.de/u/190815.html).  
+[2] BVerfG. Beschluss vom 16.07.1969 - 1 BvL 19/63. 16. Juli 1969. URL: [https://openjur. de/u/183523.html](https://openjur.de/u/183523.html).  
+[3] BVerfG. Beschluss vom 15.01.1970 - 1 BvR 13/68. 15. Jan. 1970. URL: [https://openjur. de/u/193589.html](https://openjur.de/u/193589.html).  
+[4] BVerfG. Urteil vom 05.06.1973 - 1 BvR 536/72. 5. Juni 1973. URL: [https://openjur. de/u/177284.html](https://openjur.de/u/177284.html).  
+[5] BVerfG. Urteil vom 15.12.1983 - 1 BvR 209/83, 1 BvR 269/83, 1 BvR 362/83, 1 BvR 420/83,
+1 BvR 440/83, 1 BvR 484/83. 15. Dez. 1983. URL: [https://openjur.de/u/268440.html](https://openjur.de/u/268440.html).
 
 ---
 

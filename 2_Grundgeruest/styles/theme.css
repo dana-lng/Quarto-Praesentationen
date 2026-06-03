@@ -271,6 +271,7 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.image-slide,
 .reveal .slides section.diagram-slide {
   background: #ffffff;
+  
 }
 
 /* Agenda-Folie mit Bild rechts.
@@ -310,6 +311,7 @@ body.hide-footer .reveal .slide-number,
   top: 0 !important;
   left: 0 !important;
   margin-top: 0 !important;
+
 }
 
 /* Starker Hochzieh-Fix fuer Folie 2 und 3.
@@ -346,6 +348,56 @@ body.hide-footer .reveal .slide-number,
   font-size: clamp(20px, 1.6vw, 29px);
   line-height: 1.28;
   font-weight: 400;
+}
+/*Zweispaltige Folien*/
+.reveal .slides section.two-column-slide p,
+.reveal .slides section.two-column-slide li {
+  font-size: clamp(20px, 1.6vw, 24px) !important;
+}
+
+
+/* Aus PDF uebernommene Inhaltsfolien.
+   Diese Folien enthalten oft deutlich mehr Text als die Beispiel-Folien im
+   Grundgeruest. Deshalb ist die Schrift kleiner und der Inhaltsbereich darf
+   innerhalb der Folie scrollen, falls eine PDF-Seite sehr voll war. */
+.reveal .slides section.pdf-slide {
+  overflow-y: auto;
+}
+
+.reveal .slides section.pdf-slide h2 {
+  margin-bottom: clamp(16px, 2.6vh, 26px);
+}
+
+.reveal .slides section.pdf-slide h3 {
+  margin: 0 0 clamp(12px, 2vh, 20px);
+  font-size: clamp(20px, 1.9vw, 28px);
+}
+
+.reveal .slides section.pdf-slide p,
+.reveal .slides section.pdf-slide li,
+.reveal .slides section.pdf-slide blockquote {
+  max-width: 1080px;
+  font-size: clamp(16px, 1.35vw, 22px);
+  line-height: 1.40;
+}
+
+.reveal .slides section.pdf-slide ul {
+  margin-top: 0;
+}
+
+.reveal .slides section.pdf-slide li {
+  margin-bottom: clamp(5px, 0.9vh, 10px);
+}
+
+.reveal .slides section.pdf-compact h2 {
+  font-size: clamp(28px, 2.9vw, 42px);
+}
+
+.reveal .slides section.pdf-compact p,
+.reveal .slides section.pdf-compact li,
+.reveal .slides section.pdf-compact blockquote {
+  font-size: clamp(14px, 1.15vw, 19px);
+  line-height: 1.22;
 }
 
 /* Diagrammfolie.
@@ -518,3 +570,4 @@ body.hide-footer .reveal .slide-number,
   object-fit: cover;
   margin: 0;
 }
+
