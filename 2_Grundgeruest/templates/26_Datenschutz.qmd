@@ -1,12 +1,20 @@
 ---
-pagetitle: "Datenschutz - aus PDF"
+pagetitle: "Datenschutz"
 date: today
 date-format: "DD.MM.YYYY"
 veranstaltung: "Datenschutz"
 studiengang: "HTW Dresden"
 professor: "Prof. Dr. Lukas Iffländer"
 ---
+<!-- Titelbild hier aendern:
+     src: Bilddatei
+     --title-image-width: Bild breiter/schmaler machen
+     --title-image-right: negative Werte schieben nach rechts, positive nach links
+     --title-image-top: negative Werte schieben nach oben, positive nach unten
+     --title-image-object-position: Ausschnitt innerhalb der Bildbox verschieben -->
 ## Datenschutz {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
 
 Prof. Dr. Lukas Iffländer   
 HTW Dresden  
@@ -39,6 +47,7 @@ HTW Dresden
  
  **Hinweis**: Vertiefende Themen (DPIA, internationale Datenübermittlung, Auftragsverarbeitung) werden im Master-Studiengang behandelt.
 
+![](../images/bild1.jpg)
 
 ---
 
@@ -97,7 +106,10 @@ Brief-, Post- und Fernmeldegeheimnis:
 
 ---
 
-## Klassische Geschichtsübersicht {.content-slide .pdf-slide}
+## Klassische Geschichtsübersicht {.two-column-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
 
 1. Anfänge (vor 1977)  
     - Persönlichkeitsrecht (Herrenreiter-Urteil) → Privatsphäre   
@@ -109,6 +121,9 @@ Brief-, Post- und Fernmeldegeheimnis:
 3. 2\. BDSG nach Volkszählungsurteil (1990)  
     - Informationelles Selbstbestimmungsrecht (Volkszählungsurteil)
     - Schutz des Einzelnen vor Beeinträchtigung seines Persönlichkeitsrechts beim Umgang mit personenbezogenen Daten
+:::
+
+::: {.column width="50%"}
 
 4. 3\. BDSG nach EU-DSRL (2001)  
     - international vergleichbarer Datenschutz Vorabkontrolle besonders sensibler Datenverarbeitungen
@@ -118,72 +133,106 @@ Brief-, Post- und Fernmeldegeheimnis:
 
 6. EU-DSGVO (2016)   
     - neue EU-weit seit 2018 verbindliche Rechtsgrundlage
-
-
----
-
-## Geschichte nach Schutzzielen {.content-slide .pdf-slide}
-Übersicht
+:::
+::::
 
 ---
 
-## Datenschutz als Abwehrrecht {.content-slide .pdf-slide}
+## Geschichte nach Schutzzielen {.image-slide}
+
+<img src="../images/Geschichte_nach_Schutzzielen.jpg" alt="Geschichte nach Schutzzielen">
+
+---
+
+## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz vor Missbrauch
-
+:::: {.columns}
+::: {.column width="60%"}
 - Datenschutz als Abwehrrecht 
 - Schutz vor Missbrauch personenbezogener Daten (Ende 60er Jahre)
 - Kontrolle durch Datenschutzbeauftragte
+:::
 
-(hier kommt noch Bild)
-
+::: {.column width="40%"}
+<img src="../images/Schutz_vor_Missbrauch.jpg" style="height: 400px; width: 600px">
+:::
+::::
 ---
 
-## Datenschutz als Abwehrrecht {.content-slide .pdf-slide}
+## Datenschutz als Abwehrrecht {.two-column-slide .table-slide}
 
 ### Schutz vor unzulänglichen Wirklichkeitsmodellen
 
+:::: {.columns}
+::: {.column width="60%"}
 - Problem im der Zuge der 1. Rasterfahndung (1970)
 - Schutz vor unzulänglichen Wirklichkeitsmodellen (Ende 70er Jahre)
 - keine automatisierte Einzelentscheidung
+:::
 
+::: {.column width="40%"}
+| Merkmal | Q1 | Q2 | Q3 | Q4 | Q5 |
+|---|---|---|---|---|---|
+| Merkmal 1 | A | B | D | G | H |
+| Merkmal 2 | A | C | D | G | H |
+| Merkmal 3 | B | D | E | F | H |   
+| | | | | | |
+- Person D und H weisen gem. maschinellem Datenabgleich alle drei Merkmale auf
+- Verfahren zur Personermittlung 
 
-(hier kommt noch Bild)
-
+:::
+::::
 
 ---
 
-## Datenschutz als Abwehrrecht {.content-slide .pdf-slide}
+## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz der informationellen Gewaltenteilung
 
+:::: {.columns}
+::: {.column width="60%"}
 - gegen die Datensammelwut des Staates 
 - Schutz der informationellen Gewaltenteilung (Anfang 80er Jahre) 
 - personenbezogene Daten anonymisieren 
+:::
 
-(hier kommt noch Bild)
+::: {.column width="40%"}
+<img src="../images/informationelle_Gewaltenteilung.jpg" style="height: 400px; width: 600px">
 
+Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
+:::
+::::
 ---
 
-## Datenschutz als Abwehrrecht {.content-slide .pdf-slide}
+## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz vor dem Kontextproblem
 
+:::: {.columns}
+::: {.column width="60%"}
 - gegen die Vernachlässigung des „Alterns“ von Daten 
 - Schutz vor dem Kontextproblem (Ende der 80er Jahre)
 - Beachtung von Löschfristen
+:::
 
-(hier kommt noch Bild)
-
+::: {.column width="40%"}
+<img src="../images/Kontextproblem.jpg" style="height: 500px; width: 600px">
+:::
+::::
 
 ---
 
-## Datenschutz als Abwehrrecht {.content-slide .pdf-slide}
+## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz vor verletzlichen Datenverarbeitungssystemen
-
+:::: {.columns}
+::: {.column width="60%"}
 -  gegen den Irrglauben unfehlbarer Software 
 - Schutz vor verletzlichen Datenverarbeitungssystemen (Anfang der 90er Jahre)
 - Regelungen zum Schadensersatz
+:::
 
-(hier kommt noch Bild)
-
+::: {.column width="40%"}
+<img src="../images/Datenverarbeitungssystemen.jpg" style="height: 500px; width: 600px">
+:::
+::::
 
 ---
 
@@ -273,12 +322,12 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 :::: {.columns}
 ::: {.column width="50%"}
 ### Art. 1 Abs. 1 GG
-Die Würde des Menschen ist unantastbar. Sie  zu achten und zu schützen ist Verpflichtung aller staatlichen Gewalt.
+- Die Würde des Menschen ist unantastbar. Sie  zu achten und zu schützen ist Verpflichtung aller staatlichen Gewalt.
 :::
 
 ::: {.column width="50%"}
 ### Art. 2 Abs. 1 GG
-Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, soweit er nicht die Rechte anderer verletzt und nicht gegen die verfassungsmäßige Ordnung oder das Sittengesetz verstößt.
+- Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, soweit er nicht die Rechte anderer verletzt und nicht gegen die verfassungsmäßige Ordnung oder das Sittengesetz verstößt.
 :::
 ::::
     
@@ -377,21 +426,26 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ---
 
-## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
+## Verbot mit Erlaubnisvorbehalt {.two-column-slide}
+### Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO I  
 
-**Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO I**
-
+:::: {.columns}
+::: {.column width="50%"}
 - Ausdrückliche Einwilligung des Betroffenen, soweit Einwilligung gesetzlich nicht verboten ist 
 - Erforderliche Angabe nach Arbeitsrecht, Recht der sozialen Sicherheit bzw. Sozialschutz 
 - Zum Schutz lebenswichtiger Interessen des Betroffenen bzw. einer anderen natürlichen Person, wobei der Betroffene aus körperlichen oder rechtlichen Gründen außerstande für Einwilligung sein muss 
 - Auf Grundlage einer geeigneten Garantie bei Tendenzschutzbetrieb 
-- Vom Betroffenen selbst offensichtlich öffentlich gemachte Daten  
+- Vom Betroffenen selbst offensichtlich öffentlich gemachte Daten
+:::
+
+::: {.column width="50%"}
 - Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen 
 - Vorgeschriebener Rechtsakt (EU-weit oder in Mitgliedsstaat)
 - Gesundheitsvorsorge, Arbeitsmedizin, medizinische Diagnostik, Versorgung oder Behandlung im Gesundheits- bzw. Sozialbereich 
 - Öffentliche Gesundheit 
 - Archivierung im öffentlichen Interesse, wissenschaftliche oder historische Forschung bzw. Statistik (unter Berücksichtigung von Art. 89 EU-DSGVO)
-
+:::
+::::
 
 ---
 
@@ -576,11 +630,11 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 
 ---
 
-## Zusammenfassung {.content-slide .pdf-slide .pdf-summary}
+## Zusammenfassung {.content-slide .pdf-slide}
 
 ✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG)  
 ✓ Informationelles Selbstbestimmungsrecht seit Volkszählungsurteil 1983   
-✓ DSGVO-Prinzipien: Verbot mit Erlaubnisvorbehalt, Zweckbindung, Transparenz, Datenminimierung   
+✓ DSGVO-Prinzipien: Verbot mit Erlaubnisvorbehalt, Zweckbindung, Transparenz Datenminimierung   
 ✓ Verarbeitung nur mit Rechtsgrundlage nach Art. 6 EU-DSGVO   
 ✓ Datenschutzbeauftragte: unabhängig, weisungsfrei, Ansprechpartner   
 ✓ Bußgelder bis 20 Mio. € oder 4% Jahresumsatz möglich   
@@ -601,9 +655,9 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 
 ---
 
-## Vielen Dank! {.title-slide data-state="hide-footer"}
 
-Datenschutz
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
 
 Prof. Dr. Lukas Iffländer   
 HTW Dresden  

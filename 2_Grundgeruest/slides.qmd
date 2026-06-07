@@ -7,7 +7,11 @@ studiengang: "Studiengang"
 professor: "Prof. Dr. Name "
 ---
 
-## Titel der Vorlesung {.title-slide data-state="hide-footer"}
+<!-- Titelbild hier aendern:
+     --title-image: Bilddatei
+     --title-image-size: cover, contain, 80%, 110% ...
+     --title-image-position: right center, center center, 70% center ... -->
+## Titel der Vorlesung {.title-slide data-state="hide-footer" style="--title-image: url('images/title-hero.jpg'); --title-image-size: cover; --title-image-position: right center;"}
 
 Untertitel oder Thema der Sitzung
 
@@ -27,7 +31,7 @@ Studiengang / Modul
 <li class="agenda-item"><strong>05</strong><span>Bild links, Text rechts</span></li>
 <li class="agenda-item"><strong>06</strong><span>Bildfolie</span></li>
 <li class="agenda-item"><strong>07</strong><span>Zusammenfassung</span></li>
-<li class="agenda-item"><strong>08</strong><span>Zusammenfassung über das Leben eines Menschen</span></li>
+<li class="agenda-item"><strong>08</strong><span>Zusammenfassung</span></li>
 </ul>
 
 ---
