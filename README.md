@@ -1,93 +1,374 @@
-# Vorlesungsfolien_html
+# Quarto-Vorlesungsfolien
 
+Dieser Ordner enthaelt ein Reveal.js/Quarto-Grundgeruest fuer Vorlesungsfolien im HTW-Stil.
 
+Es gibt zwei wichtige Praesentationen:
 
-## Getting started
+- `slides.qmd`: allgemeines Grundgeruest mit Beispiel-Folientypen
+- `templates/26_Datenschutz.qmd`: Datenschutz-Vorlesung auf Basis des Grundgeruests
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Die Gestaltung liegt in `styles/theme.css`.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## HTML-Seiten Starten
 
-## Add your files
+### Variante 1: HTML direkt oeffnen
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+Nach dem Rendern kann die HTML-Datei direkt im Browser geoeffnet werden:
 
+- `slides.html`
+- `templates/26_Datenschutz.html`
+
+Wenn Bilder oder CSS nicht aktuell wirken, den Browser hart neu laden:
+
+```powershell
+Strg + F5
 ```
-cd existing_repo
-git remote add origin https://iversion.informatik.htw-dresden.de/s89279/vorlesungsfolien_html.git
-git branch -M main
-git push -uf origin main
+
+### Variante 2: Mit Quarto rendern
+
+Wenn du eine `.qmd`-Datei geaendert hast, muss sie neu gerendert werden.
+
+Fuer das Grundgeruest:
+
+```powershell
+quarto render slides.qmd --no-cache
 ```
 
-## Integrate with your tools
+Fuer die Datenschutz-Folien:
 
-* [Set up project integrations](https://iversion.informatik.htw-dresden.de/s89279/vorlesungsfolien_html/-/settings/integrations)
+```powershell
+quarto render templates\26_Datenschutz.qmd --no-cache
+```
 
-## Collaborate with your team
+Danach die passende HTML-Datei im Browser neu laden.
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+### Variante 3: Mit Quarto Preview
 
-## Test and Deploy
+In VS Code kann man auch die Quarto Preview benutzen. Alternativ im Terminal:
 
-Use the built-in continuous integration in GitLab.
+```powershell
+quarto preview slides.qmd
+```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+oder:
 
-***
+```powershell
+quarto preview templates\26_Datenschutz.qmd
+```
 
-# Editing this README
+## Wichtig: Pfade Zu Bildern
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Der Bildpfad ist immer relativ zur `.qmd`-Datei.
 
-## Suggestions for a good README
+In `slides.qmd`:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```qmd
+![](images/bild1.jpg)
+```
 
-## Name
-Choose a self-explaining name for your project.
+In `templates/26_Datenschutz.qmd`, weil die Datei einen Ordner tiefer liegt:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+```qmd
+![](../images/bild1.jpg)
+```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Wenn ein Bild nicht angezeigt wird, zuerst diese drei Dinge pruefen:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- Liegt die Bilddatei wirklich im Ordner `images/`?
+- Stimmt der relative Pfad?
+- Wurde die passende `.qmd` neu gerendert?
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Ordnerstruktur
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```text
+2_Grundgeruest/
+├─ _quarto.yml
+├─ slides.qmd
+├─ slides.html
+├─ styles/
+│  └─ theme.css
+├─ images/
+│  ├─ bild1.jpg
+│  ├─ datenschutz.jpg
+│  ├─ Geschichte_nach_Schutzzielen.jpg
+│  └─ title-hero.jpg
+├─ logos/
+│  ├─ htw-logo-large.jpg
+│  └─ htw-logo-small.jpg
+├─ templates/
+│  ├─ 26_Datenschutz.qmd
+│  ├─ 26_Datenschutz.html
+│  └─ 26_Datenschutz_files/
+├─ slides_files/
+├─ partials/
+└─ README.md
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### `_quarto.yml`
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Zentrale Quarto-Konfiguration:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- Reveal.js als Ausgabeformat
+- Foliengroesse
+- Footer
+- kleines Logo
+- verwendete CSS-Datei
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### `slides.qmd`
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Beispiel-Praesentation mit den wichtigsten Folientypen.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+### `templates/26_Datenschutz.qmd`
 
-## License
-For open source projects, say how it is licensed.
+Eigene Vorlesungsdatei fuer Datenschutz. Diese Datei benutzt dasselbe Design wie `slides.qmd`.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### `styles/theme.css`
+
+Zentrale CSS-Datei fuer Layout, Farben, Logo, Footer und Folienklassen.
+
+### `images/`
+
+Bilder fuer Folien. Bilder werden normalerweise direkt in der `.qmd` eingebunden.
+
+### `logos/`
+
+HTW-Logos fuer Titelfolie und Inhaltsfolien.
+
+### `*_files/`
+
+Von Quarto erzeugte Hilfsordner. Diese entstehen automatisch beim Rendern.
+
+## Folienklassen
+
+Folienklassen stehen direkt an der Ueberschrift:
+
+```qmd
+## Titel {.content-slide}
+```
+
+Mehrere Klassen sind moeglich:
+
+```qmd
+## Text links, Bild rechts {.two-column-slide .text-image-slide}
+```
+
+## Verwendete Folientypen
+
+### `.title-slide`
+
+Titelfolie mit grossem Logo, diagonaler weisser Flaeche und optionalem Titelbild.
+
+Beispiel:
+
+```qmd
+## Datenschutz {.title-slide data-state="hide-footer"}
+```
+
+Mit `data-state="hide-footer"` werden kleines Logo, Footer und Foliennummer auf dieser Folie ausgeblendet.
+
+In `slides.qmd` wird das Titelbild als CSS-Hintergrund gesetzt:
+
+```qmd
+## Titel {.title-slide data-state="hide-footer" style="--title-image: url('images/title-hero.jpg'); --title-image-size: cover; --title-image-position: right center;"}
+```
+
+In `templates/26_Datenschutz.qmd` wird das Titelbild als echtes Bild gesetzt:
+
+```html
+<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
+```
+
+Wichtige Variablen fuer das echte Titelbild:
+
+- `--title-image-width`: Bildbreite
+- `--title-image-height`: Bildhoehe
+- `--title-image-right`: Bild nach rechts/links schieben
+- `--title-image-top`: Bild nach oben/unten schieben
+- `--title-image-object-position`: Bildausschnitt innerhalb der Bildbox
+
+### `.content-slide`
+
+Normale Inhaltsfolie mit weissem Hintergrund.
+
+Beispiel:
+
+```qmd
+## Lernziele {.content-slide}
+```
+
+Diese Klasse ist die Basis fuer einfache Textfolien.
+
+### `.agenda-slide`
+
+Agenda-Folie. Wird zusammen mit `.content-slide` verwendet.
+
+Beispiel:
+
+```qmd
+## Agenda {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Einleitung</span></li>
+<li class="agenda-item"><strong>02</strong><span>Grundlagen</span></li>
+</ul>
+```
+
+Dazugehoerige Klassen:
+
+- `.agenda`: Container der Agenda
+- `.agenda-item`: einzelner Agenda-Punkt
+
+### `.low-text-slide`
+
+Folie mit wenig Text, viel Weissraum und grosser ruhiger Typografie.
+
+Beispiel:
+
+```qmd
+## Beispiel mit wenig Text {.content-slide .low-text-slide}
+
+Kurzer Text ...
+```
+
+### `.two-column-slide`
+
+Zweispaltige Folie.
+
+Beispiel:
+
+```qmd
+## Zweispaltiger Text {.two-column-slide}
+
+:::: {.columns}
+::: {.column width="50%"}
+### Links
+
+- Punkt 1
+- Punkt 2
+:::
+
+::: {.column width="50%"}
+### Rechts
+
+- Punkt 1
+- Punkt 2
+:::
+::::
+```
+
+Die Klassen `.columns` und `.column` kommen von Quarto.
+
+### `.text-image-slide`
+
+Zweispaltige Folie mit Text links und Bild rechts.
+
+Immer zusammen mit `.two-column-slide` benutzen:
+
+```qmd
+## Text links, Bild rechts {.two-column-slide .text-image-slide}
+```
+
+Beispiel:
+
+```qmd
+:::: {.columns}
+::: {.column width="60%"}
+- Textpunkt
+- Noch ein Punkt
+:::
+
+::: {.column width="40%"}
+<img src="../images/bild1.jpg" alt="Beschreibung">
+:::
+::::
+```
+
+### `.image-text-slide`
+
+Zweispaltige Folie mit Bild links und Text rechts.
+
+Immer zusammen mit `.two-column-slide` benutzen:
+
+```qmd
+## Bild links, Text rechts {.two-column-slide .image-text-slide}
+```
+
+### `.table-slide`
+
+Folie fuer Tabellen.
+
+Beispiel:
+
+```qmd
+## Tabelle {.table-slide}
+
+| Kategorie | Beschreibung |
+|---|---|
+| A | Beispiel |
+```
+
+Tabellen bekommen automatisch passende Zellabstaende und einen farbigen Kopf.
+
+### `.image-slide`
+
+Folie fuer ein grosses Bild.
+
+Beispiel:
+
+```qmd
+## Geschichte nach Schutzzielen {.image-slide}
+
+<img src="../images/Geschichte_nach_Schutzzielen.jpg" alt="Geschichte nach Schutzzielen">
+```
+
+Fuer Bildfolien ist `<img src="...">` oft robuster als Markdown-Bilder, weil Quarto Markdown-Bilder manchmal automatisch mit Reveal-Stretch-Klassen versieht.
+
+### `.pdf-slide`
+
+Inhaltsfolie fuer aus PDF uebernommene Folien. Diese Folien enthalten oft mehr Text als normale Folien.
+
+Beispiel:
+
+```qmd
+## Lernziele {.content-slide .pdf-slide}
+```
+
+Die CSS macht Text etwas kompakter und erlaubt Scrollen, falls eine Folie zu voll wird.
+
+### `.pdf-summary`
+
+Variante fuer die Zusammenfassungsfolie der PDF-Folien.
+
+Beispiel:
+
+```qmd
+## Zusammenfassung {.content-slide .pdf-slide .pdf-summary}
+```
+
+### `.summary`
+
+Box fuer Zusammenfassungen oder hervorgehobene Textbereiche.
+
+Beispiel:
+
+```qmd
+::: {.summary}
+- Wichtigster Punkt
+- Zweiter Punkt
+:::
+```
+
+## Typische Arbeitsweise
+
+1. Inhalt in der passenden `.qmd` aendern.
+2. Bilder in `images/` ablegen.
+3. Bildpfade relativ zur `.qmd` schreiben.
+4. Datei rendern:
+
+```powershell
+quarto render templates\26_Datenschutz.qmd --no-cache
+```
+
+5. HTML im Browser neu laden.
+
+Wenn nur `styles/theme.css` geaendert wurde, reicht oft ein harter Browser-Reload. Wenn sich aber `.qmd` oder `_quarto.yml` geaendert haben, muss neu gerendert werden.
