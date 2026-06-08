@@ -13,7 +13,7 @@ format:
     controls-layout: edges
     controls-tutorial: false
     hash: true
-    transition: none
+    transition: slide 
     background-transition: none
     slide-number: true
     logo: logos/htw-logo-small.jpg

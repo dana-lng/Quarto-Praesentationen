@@ -97,7 +97,7 @@ HTW Dresden
 Brief-, Post- und Fernmeldegeheimnis:
 „Das Briefgeheimnis sowie das Post- und Fernmeldegeheimnis sind unverletzlich.“   
 
-- § 3 Abs 1 TTDSG:  
+- § 3 Abs 1 TTDSG: 
 „Dem Fernmeldegeheimnis unterliegen der Inhalt der Telekommunikation und ihre näheren Umstände, insbesondere die Tatsache, ob jemand an einem Telekommunikationsvorgang beteiligt ist oder war. Das Fernmeldegeheimnis erstreckt sich auch auf die näheren Umstände erfolgloser Verbindungsversuche.“ 
 
 - § 3 Nr. 24 TKG:  
@@ -123,7 +123,7 @@ Brief-, Post- und Fernmeldegeheimnis:
     - Schutz des Einzelnen vor Beeinträchtigung seines Persönlichkeitsrechts beim Umgang mit personenbezogenen Daten
 :::
 
-::: {.column width="50%"}
+::: {.column .fragment width="50%"}
 
 4. 3\. BDSG nach EU-DSRL (2001)  
     - international vergleichbarer Datenschutz Vorabkontrolle besonders sensibler Datenverarbeitungen
@@ -140,7 +140,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 
 ## Geschichte nach Schutzzielen {.image-slide}
 
-<img src="../images/Geschichte_nach_Schutzzielen.jpg" alt="Geschichte nach Schutzzielen">
+<img src="../images/Geschichte_nach_Schutzzielen.jpg">
 
 ---
 
@@ -401,7 +401,6 @@ Nach Art. 5 Abs. 1 lit. a EU-DSGVO müssen personenbezogene Daten auf rechtmäß
 4. Schutz lebenswichtiger Interessen des Betroffenen oder einer anderen natürlichen Person
 5. Wahrnehmung einer öffentlichen Aufgabe, die der verantwortlichen Stelle übertragen wurde
 6. Wahrung berechtigter Interessen der verantwortlichen Stelle oder eines Dritten, sofern nicht die Interessen oder Grundrechte & Grundfreiheiten des Betroffenen zum Schutz personenbezogener Daten überwiegen (→Abwägung nötig! Nicht auswählbar für Behörden)
-
 → Treu und Glauben: Vertrauensschutz (erfüllte gegenseitige Erwartung)
 
 
@@ -632,12 +631,18 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 
 ## Zusammenfassung {.content-slide .pdf-slide}
 
-✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG)  
-✓ Informationelles Selbstbestimmungsrecht seit Volkszählungsurteil 1983   
+✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG) 
+
+✓ Informationelles Selbstbestimmungsrecht seit Volkszählungsurteil 1983     
+
 ✓ DSGVO-Prinzipien: Verbot mit Erlaubnisvorbehalt, Zweckbindung, Transparenz Datenminimierung   
+
 ✓ Verarbeitung nur mit Rechtsgrundlage nach Art. 6 EU-DSGVO   
+
 ✓ Datenschutzbeauftragte: unabhängig, weisungsfrei, Ansprechpartner   
+
 ✓ Bußgelder bis 20 Mio. € oder 4% Jahresumsatz möglich   
+
 
 **Vertiefung im Master:** Datenschutz-Folgenabschätzung (Art. 35-36), internationale Datenübermittlung (Kapitel V), Auftragsverarbeitung (Art. 28)
 
@@ -647,9 +652,13 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ## Literaturverzeichnis I {.content-slide .pdf-slide}
 
 [1] BGH. Urteil vom 14.02.1958 - I ZR 151/56. 14. Feb. 1958. URL: [https://openjur.de/ u/190815.html](https://openjur.de/u/190815.html).  
+
 [2] BVerfG. Beschluss vom 16.07.1969 - 1 BvL 19/63. 16. Juli 1969. URL: [https://openjur. de/u/183523.html](https://openjur.de/u/183523.html).  
+
 [3] BVerfG. Beschluss vom 15.01.1970 - 1 BvR 13/68. 15. Jan. 1970. URL: [https://openjur. de/u/193589.html](https://openjur.de/u/193589.html).  
-[4] BVerfG. Urteil vom 05.06.1973 - 1 BvR 536/72. 5. Juni 1973. URL: [https://openjur. de/u/177284.html](https://openjur.de/u/177284.html).  
+
+[4] BVerfG. Urteil vom 05.06.1973 - 1 BvR 536/72. 5. Juni 1973. URL: [https://openjur. de/u/177284.html](https://openjur.de/u/177284.html). 
+
 [5] BVerfG. Urteil vom 15.12.1983 - 1 BvR 209/83, 1 BvR 269/83, 1 BvR 362/83, 1 BvR 420/83,
 1 BvR 440/83, 1 BvR 484/83. 15. Dez. 1983. URL: [https://openjur.de/u/268440.html](https://openjur.de/u/268440.html).
 

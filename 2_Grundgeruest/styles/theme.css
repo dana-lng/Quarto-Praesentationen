@@ -54,14 +54,14 @@
 
 /* Quarto-Logo, Footer und Foliennummer */
 .reveal .slide-logo {
-  bottom: clamp(18px, 2.6vh, 24px) !important;
+  bottom: clamp(18px, 2.6vh, 30px) !important;
   left: clamp(44px, 5.5vw, 70px) !important;
   max-height: clamp(32px, 4.4vh, 42px) !important;
   width: auto !important;
 }
 
 .reveal .footer {
-  bottom: clamp(44px, 3.1vh, 30px) !important;
+  bottom: clamp(34px, 2.6vh, 42px) !important;
   left: clamp(120px, 10vw, 180px) !important;
   right: clamp(100px, 10.2vw, 130px) !important;
   width: auto !important;
@@ -69,7 +69,7 @@
   text-align: left !important;
   color: var(--htw-blue-dark);
   font-size: clamp(12px, 1.18vw, 15px);
-  line-height: 1.2;
+  line-height: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -249,7 +249,7 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.two-column-slide p,
 .reveal .slides section.two-column-slide li {
   font-size: clamp(20px, 1.6vw, 25px) !important;
-  line-height: 1.5;
+  line-height: 1.3;
   padding-left: 10px;
 }
 
@@ -354,13 +354,16 @@ body.hide-footer .reveal .slide-number,
   overflow-y: auto;
 }
 
-.reveal .slides section.pdf-slide h2 {
-  margin-bottom: clamp(32px, 2.6vh, 48px);
+.reveal .slides section.pdf-slide h2, .reveal .slides section.two-column-slide h2 {
+  margin-bottom: clamp(12px, 1.6vh, 16px);
+  
 }
 
-.reveal .slides section.pdf-slide h3 {
+
+
+.reveal .slides section.pdf-slide h3, .reveal .slides section.two-column-slide h3  {
   margin: 0 0 clamp(12px, 2vh, 20px);
-  font-size: clamp(20px, 1.9vw, 35px);
+  font-size: clamp(20px, 1.9vw, 30px);
 }
 
 .reveal .slides section.pdf-slide p,
@@ -368,7 +371,7 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.pdf-slide blockquote {
   max-width: 2000px;
   font-size: clamp(20px, 1.6vw, 25px);
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
 .reveal .slides section.pdf-slide ul {
@@ -393,6 +396,8 @@ body.hide-footer .reveal .slide-number,
   border-left: 8px solid var(--htw-gray-blue);
   padding: 24px 30px;
   box-sizing: border-box;
+  font-size: 28px;
+  line-height: 1.3;
 }
 
 .summary ul {
@@ -435,6 +440,7 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.image-slide img {
   display: block;
+  position: right;
   width: 100%;
   flex: 1 1 auto;
   min-height: 50px;
