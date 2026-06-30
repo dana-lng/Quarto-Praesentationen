@@ -14,7 +14,7 @@ professor: "Prof. Dr. Lukas Iffländer"
      --title-image-object-position: Ausschnitt innerhalb der Bildbox verschieben -->
 ## Datenschutz {.title-slide data-state="hide-footer"}
 
-<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
+<img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
 
 Prof. Dr. Lukas Iffländer   
 HTW Dresden  
@@ -47,7 +47,7 @@ HTW Dresden
  
  **Hinweis**: Vertiefende Themen (DPIA, internationale Datenübermittlung, Auftragsverarbeitung) werden im Master-Studiengang behandelt.
 
-![](../images/bild1.jpg)
+![](../../images/bild1.jpg)
 
 ---
 
@@ -140,7 +140,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 
 ## Geschichte nach Schutzzielen {.image-slide}
 
-<img src="../images/Geschichte_nach_Schutzzielen.jpg">
+<img src="../../images/Geschichte_nach_Schutzzielen.jpg">
 
 ---
 
@@ -154,7 +154,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 :::
 
 ::: {.column width="40%"}
-<img src="../images/Schutz_vor_Missbrauch.jpg" style="height: 400px; width: 600px">
+<img src="../../images/Schutz_vor_Missbrauch.jpg" style="height: 400px; width: 600px">
 :::
 ::::
 ---
@@ -196,7 +196,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 :::
 
 ::: {.column width="40%"}
-<img src="../images/informationelle_Gewaltenteilung.jpg" style="height: 400px; width: 600px">
+<img src="../../images/informationelle_Gewaltenteilung.jpg" style="height: 400px; width: 600px">
 
 Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
@@ -214,7 +214,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
 
 ::: {.column width="40%"}
-<img src="../images/Kontextproblem.jpg" style="height: 500px; width: 600px">
+<img src="../../images/Kontextproblem.jpg" style="height: 500px; width: 600px">
 :::
 ::::
 
@@ -230,7 +230,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
 
 ::: {.column width="40%"}
-<img src="../images/Datenverarbeitungssystemen.jpg" style="height: 500px; width: 600px">
+<img src="../../images/Datenverarbeitungssystemen.jpg" style="height: 500px; width: 600px">
 :::
 ::::
 
@@ -666,8 +666,9 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 
 
 ## Vielen Dank! {.title-slide data-state="hide-footer"}
-<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
+<img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
 
 Prof. Dr. Lukas Iffländer   
 HTW Dresden  
 {{< meta date >}}
+

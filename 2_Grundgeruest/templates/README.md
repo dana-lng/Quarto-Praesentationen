@@ -1,3 +1,5 @@
 # Templates
 
-Hier koennen spaeter eigene Quarto- oder Pandoc-Templates abgelegt werden.
+Dieser Ordner ist nur fuer spaetere technische Quarto- oder Pandoc-Templates gedacht.
+
+Konkrete Vorlesungsfolien liegen im Ordner `../Vorlesung/`.
