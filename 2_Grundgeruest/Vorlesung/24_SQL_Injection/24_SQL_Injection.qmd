@@ -37,8 +37,9 @@ HTW Dresden
 ---
 
 ## Lernziele {.content-slide .pdf-slide}
+<br>
 
-### Nach dieser Vorlesung können Sie:
+#### Nach dieser Vorlesung können Sie:
 
 1. SQL-Injection-Angriffe erkennen und erklären
 2. verschiedene Arten von SQL Injection unterscheiden
@@ -48,26 +49,31 @@ HTW Dresden
 ---
 
 ## SQL Injection {.content-slide .pdf-slide}
+<br>
 
-### Ziel
-
+::: {.callout-note title="Ziel"}
 - Beliebige Queries auf einer Datenbank über eine verwundbare Anwendung ausführen
 - sensible Daten aus einer Datenbank auslesen
 - Datenbankinhalte modifizieren
 - administrative Funktionen ausführen
-- ggf. Befehle direkt im Betriebssystem ausführen
+- ggf. Befehle direkt im Betriebssystem ausführen.
+:::
+<br>
 
 Wie alle Command Injections ist SQL Injection möglich, wenn eine Anwendung unsichere Nutzereingaben mit SQL-Query-Templates verknüpft.
 
 ---
 
 ## Beispiel: Bank Login {.image-slide .code-slide}
+<br>
 
-<img src="../../images/bankacc.jpg" style="height: 400px; width: 600px">
+<img src="../../images/bankacc.jpg" style="height: 100px; width: 300px">
+
+<br>
 
 #### Code
 
-```js
+```{.javascript code-line-numbers="|1|2|3|5-11"}
 const { username, password } = req.body
 const query = `SELECT * FROM users WHERE username = "${username}"`
 const results = db.all(query)
@@ -85,6 +91,7 @@ if (results.length > 0) {
 
 ## Bank Login  {.content-slide .code-slide}
 ### gutartige Eingabe
+<br>
 
 #### SQL-Template
 
@@ -109,6 +116,7 @@ SELECT * FROM users WHERE username = "ifflaender"
 ## Bank Login  {.content-slide .code-slide}
 
 ### fragwürdige Eingabe I
+<br>
 
 #### SQL-Template
 
@@ -133,6 +141,7 @@ SELECT * FROM users WHERE username = "ifflaender""
 ## Bank Login  {.content-slide .code-slide}
 
 ### fragwürdige Eingabe II
+<br>
 
 #### SQL-Template
 
@@ -156,6 +165,7 @@ SELECT * FROM users WHERE username = "ifflaender"--"
 
 ## Bank Login  {.content-slide .code-slide}
 ### bösartige Eingabe I
+<br>
 
 #### SQL Template
 ```js 
@@ -179,6 +189,7 @@ SELECT * FROM users WHERE username = "ifflaender" OR 1=1 --"
 ## Bank Login {.content-slide .code-slide}
 
 ###  bösartige Eingabe II
+<br>
 
 #### SQL Template
 ```js 
@@ -191,7 +202,7 @@ SELECT * FROM users WHERE username = "${username}"
 { username: '" OR 1=1 --' } // 1=1 is always true
 ```
 
-### Resultierende Query
+#### Resultierende Query
 
 ```sql
 SELECT * FROM users WHERE username = "" OR 1=1 --"
@@ -200,10 +211,12 @@ SELECT * FROM users WHERE username = "" OR 1=1 --"
 ---
 
 ## Bank Login {.content-slide .code-slide}
+<br>
 
-### Bösartige Eingabe: Step-by-Step
 
-```js
+#### Bösartige Eingabe: Step-by-Step
+
+```{.javascript code-line-numbers="|1-2|4-5|7-8|10-12"}
 const { username, password } = req.body
 // { username: '" OR 1=1 --', password: '...' }
 
@@ -223,6 +236,7 @@ if (results.length > 0) {
 ## Bank Login {.content-slide .code-slide}
 
 ### Tabula Rasa
+<br>
 
 #### SQL-Template
 
@@ -247,8 +261,9 @@ SELECT * FROM users WHERE username = ""; drop table users --"
 ## App-Beispiel {.content-slide .code-slide}
 
 ### Verwundbarer Code
+<br>
 
-```js
+```{.javascript code-line-numbers="|1|2-4|6|7-11|12-15"}
 app.post('/login', (req, res) => {
     const { username, password } = req.body
     const query =
@@ -273,6 +288,7 @@ app.post('/login', (req, res) => {
 
 ## App-Beispiel {.content-slide .code-slide}
 ### Verwundbarer Code
+<br>
 
 #### Template
 
@@ -290,6 +306,7 @@ WHERE username = "${username}" AND password = "${password}"
 ---
 
 ## Implementierungsbesonderheiten {.content-slide .code-slide}
+<br>
 
 ```js
 db.exec(`INSERT INTO logs VALUES ("Login attempt from ${username}")`)
@@ -311,41 +328,40 @@ db.exec(`INSERT INTO logs VALUES ("Login attempt from ${username}")`)
 ---
 
 ## Blinde SQL Injection {.content-slide .pdf-slide}
-
 ### Konzept
+<br>
 
 - Wenn die Datenbank keine Daten auf der Webseite ausgibt, muss ein Angreifer Daten durch eine Reihe wahrer oder falscher Fragen stehlen.
 - Die Webanwendung kann allgemeine Fehlermeldungen anzeigen und trotzdem anfällig sein.
 
-### Ziel
-
+::: {.callout-note title="Ziel"}
 - Wahr-oder-falsch-Fragen an die Datenbank stellen und die Antwort anhand der Reaktion der Anwendung erraten.
+:::
 
-- Blinde SQL Injection ist deutlich schwerer auszunutzen, aber nicht unmöglich.
+- Deutlich schwerer auszunutzen aber nicht unmöglich
 
 ---
 
 ## Blinde SQL Injection {.content-slide .code-slide}
 ### Arten
+<br>
 
-#### Inhaltsbasiert
+::: {.callout-note title="Inhaltsbasiert"}
+- Die Anwendung gibt unterschiedliche Antworten basierend auf dem Inhalt der Antwort
+- `if (content == "true") { ... }`
+:::
 
-- Die Anwendung gibt unterschiedliche Antworten basierend auf dem Inhalt der Antwort.
-
-```js
-if (content == "true") { ... }
-```
-
-#### Zeitbasiert
-
-- Die Datenbank kurz warten lassen, wenn eine Bedingung erfüllt ist.
-- Unterschiedliche Antwortzeiten können auf eine erfolgreiche Abfrage hinweisen.
+::: {.callout-note title="Zeitbasiert"}
+- Die datenbank dazu bringen, kurz zu warten, wenn eine Bedingung erfüllt ist
+- Unterschiedliche Antwortzeiten können auf eine erfolgreiche Abfrage hinweisen
+:::
 
 ---
 
 ## Zeitbasierte blinde SQL Injection {.content-slide .code-slide}
 
 ### Was herausfinden?
+<br>
 
 #### SQL Template
 
@@ -371,6 +387,7 @@ WHERE username = "alice" AND SUBSTR(password,1,1) = CHAR(112) --"
 ## Zeitbasierte blinde SQL Injection {.content-slide .pdf-slide}
 
 ### Idee
+<br>
 
 - Erinnerung: Wir können die Antwort der Datenbank nicht direkt sehen und das Verhalten der Anwendung ist nicht sichtbar.
 - Wir brauchen einen Weg, das Verhalten beobachtbar zu machen.
@@ -382,6 +399,7 @@ WHERE username = "alice" AND SUBSTR(password,1,1) = CHAR(112) --"
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Umsetzungsmöglichkeiten
+<br>
 
 - Langsame SQL Query
 
@@ -402,6 +420,7 @@ END
 ---
 
 ## Zeitbasierte Umsetzung {.content-slide .code-slide}
+<br>
 
 #### Bösartige Eingabe
 
@@ -431,6 +450,7 @@ END --"
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Passwort mit Brute-Force erraten
+<br>
 
 ```js
 const got = require('got')
@@ -450,6 +470,7 @@ init()
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Passwort mit Brute-Force erraten
+<br>
 
 ```js
 async function init() {
@@ -469,6 +490,7 @@ async function init() {
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Passwort mit Brute-Force erraten
+<br>
 
 ```js
         const time = await getResultWithTime(() => {
@@ -487,6 +509,7 @@ async function init() {
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Passwort mit Brute-Force erraten
+<br>
 
 ```js
         process.stdout.write(String.fromCharCode(char))
@@ -509,6 +532,7 @@ async function init() {
 ## Zeitbasierte Blinde SQL Injection {.content-slide .code-slide}
 
 ### Passwort mit Brute-Force erraten
+<br>
 
 ```js
 async function getResultWithTime(createPromise) {
@@ -521,6 +545,7 @@ async function getResultWithTime(createPromise) {
 ---
 
 ## Anwendungsrechte {.content-slide .pdf-slide}
+<br>
 
 - Normale Nutzer und Administratoren nutzen die gleichen Pfade und Funktionen, um mit der Datenbank zu interagieren.
 - Der Webserver bearbeitet alle Kontrollentscheidungen.
@@ -531,6 +556,7 @@ async function getResultWithTime(createPromise) {
 ---
 
 ## Remote Code Execution {.content-slide .pdf-slide}
+<br>
 
 - Datenbank-Server ermöglichen oft, beliebige Shell-Befehle auszuführen.
 - Microsoft SQL Server hat den Befehl `xp_cmdshell`, um eine Shell zu öffnen und den übergebenen Befehl auszuführen.
@@ -540,6 +566,7 @@ async function getResultWithTime(createPromise) {
 ---
 
 ## Remote Code Execution mit SQLite {.content-slide .code-slide}
+<br>
 
 - SQLite kann keine Shell-Befehle direkt ausführen, ermöglicht aber das Erstellen neuer Datenbanken.
 
@@ -555,6 +582,7 @@ VALUES ('<system($_GET["cmd"]); >'); --
 ---
 
 ## Schutz {.content-slide .pdf-slide}
+<br>
 
 - **Niemals SQL Queries aus Nutzereingaben mit String-Konkatenation erstellen.**
 - Stattdessen eine der folgenden Methoden nutzen:
@@ -564,26 +592,28 @@ VALUES ('<system($_GET["cmd"]); >'); --
 ---
 
 ## Parameterisiertes SQL {.content-slide .code-slide}
+<br>
 
-#### Verwundbarer Code
-
+::: {.callout-important title="Verwundbarer Code"}
 ```js
-const query = `SELECT * FROM users WHERE username = "${username}"`
-const results = db.all(query)
+    const query = `SELECT * FROM users WHERE username = "${username}"`
+    const results = db.all(query)
 ```
+:::
 
-#### Sicherer Code
-
+::: {.callout-tip title="Sicherer Code"}
 ```js
-const query = 'SELECT * FROM users WHERE username = '
-const results = db.all(query, username)
+    const query = 'SELECT * FROM users WHERE username = '
+    const results = db.all(query, username)
 ```
+:::
 
 - Escapted automatisch nicht vertrauenswürdigen Input
 
 ---
 
 ## Object Relational Mapping {.content-slide .code-slide}
+<br>
 
 - ORMs abstrahieren die Datenbank in Objekte der entsprechenden Programmiersprache 
 - Kümmert sich automatisch um Escaping und ähnliches 
@@ -601,6 +631,7 @@ const user = await User.query()
 ---
 
 ## Zusammenfassung {.content-slide .pdf-slide}
+<br>
 
 ✓ SQL-Injection-Angriffe erkennen und erklären  
 
@@ -610,8 +641,13 @@ const user = await User.query()
 
 ✓ Schutzmaßnahmen anwenden: parameterisiertes SQL und ORM  
 
+<br>
 
-**Kernbotschaft:** Niemals SQL Queries durch String-Konkatenation erstellen. Immer parameterisiertes SQL oder ORMs verwenden.
+::: {.callout-important title="Kernbotschaft"}
+Niemals SQL Queries durch String-Konkatenation erstellen.     
+Immer parameterisiertes SQL oder ORMs verwenden.
+:::
+
 
 ---
 

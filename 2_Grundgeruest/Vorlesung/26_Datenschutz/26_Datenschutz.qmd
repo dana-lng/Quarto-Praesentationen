@@ -23,6 +23,7 @@ HTW Dresden
 ---
 
 ## Agenda {.content-slide .agenda-slide}
+<br>
 
 <ul class="agenda">
 <li class="agenda-item"><strong>01</strong><span>Rechtliche Grundlagen</span></li>
@@ -36,8 +37,9 @@ HTW Dresden
 ---
 
 ## Lernziele {.content-slide .pdf-slide}
+<br>
 
-### Nach dieser Vorlesung können Sie:
+#### Nach dieser Vorlesung können Sie:
 
  1. Die rechtlichen Grundlagen des Datenschutzes (EU-Grundrechtecharta, GG) erläutern
  2. Das informationelle Selbstbestimmungsrecht definieren und seine Herkunft erklären
@@ -52,6 +54,7 @@ HTW Dresden
 ---
 
 ## EU-Grundrechtecharta {.content-slide .pdf-slide}
+<br>
 
 **Art. 7: Achtung des Privat- und Familienlebens:**
 
@@ -73,6 +76,7 @@ HTW Dresden
 ---
 
 ## EU-Grundrechtecharta {.content-slide .pdf-slide}
+<br>
 
 **Art. 8: Schutz personenbezogener Daten**
 
@@ -92,6 +96,7 @@ HTW Dresden
 ---
 
 ## Fernmeldegeheimnis {.content-slide .pdf-slide}
+<br>
 
 - Art. 10 GG:   
 Brief-, Post- und Fernmeldegeheimnis:
@@ -107,6 +112,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 ---
 
 ## Klassische Geschichtsübersicht {.two-column-slide}
+<br>
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -139,6 +145,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 ---
 
 ## Geschichte nach Schutzzielen {.image-slide}
+<br>
 
 <img src="../../images/Geschichte_nach_Schutzzielen.jpg">
 
@@ -157,11 +164,13 @@ Brief-, Post- und Fernmeldegeheimnis:
 <img src="../../images/Schutz_vor_Missbrauch.jpg" style="height: 400px; width: 600px">
 :::
 ::::
+
 ---
 
 ## Datenschutz als Abwehrrecht {.two-column-slide .table-slide}
 
 ### Schutz vor unzulänglichen Wirklichkeitsmodellen
+<br>
 
 :::: {.columns}
 ::: {.column width="60%"}
@@ -187,6 +196,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 
 ## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz der informationellen Gewaltenteilung
+<br>
 
 :::: {.columns}
 ::: {.column width="60%"}
@@ -205,6 +215,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 
 ## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz vor dem Kontextproblem
+<br>
 
 :::: {.columns}
 ::: {.column width="60%"}
@@ -222,6 +233,8 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 
 ## Datenschutz als Abwehrrecht {.two-column-slide}
 ### Schutz vor verletzlichen Datenverarbeitungssystemen
+<br>
+
 :::: {.columns}
 ::: {.column width="60%"}
 -  gegen den Irrglauben unfehlbarer Software 
@@ -237,6 +250,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 ---
 
 ## Datenschutz zur Gestaltung {.two-column-slide}
+<br>
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -261,10 +275,11 @@ Zugang zu Informationen
 ---
 
 ## Urteile {.two-column-slide}
+<br>
 
 :::: {.columns}
 ::: {.column width="50%"}
-### Übersicht
+#### Übersicht
 
 **1958** BGH: Herrenreiterurteil [1]   
     - Schadensersatz für die Verletzung des Persönlichkeitsrechts  
@@ -284,7 +299,7 @@ Zugang zu Informationen
 :::
 
 ::: {.column width="50%"}
-### Gründe für Volkszählungsurteil
+#### Gründe für Volkszählungsurteil
 -  zu viele Daten 
 - keine Anonymisierung 
 - gläsener Bürger 
@@ -299,38 +314,42 @@ Zugang zu Informationen
 
 ## Informationelles Selbstbestimmungsrecht {.content-slide .pdf-slide}
 ### Defintion
+<br>
 
-::: {.summary}
-**Begründung BVerfGE 65,1 [5]**  
-
-Unter den Bedingungen der modernen Datenverarbeitung wird der Schutz des Einzelnen gegen unbegrenzte Erhebung, Speicherung, Verwendung und Weitergabe seiner persönlichen Daten von dem allgemeinen Persönlichkeitsrecht des GG Art 2 Abs. 1 in Verbindung mit GG Art 1 Abs.
-1 umfaßt. Das Grundrecht gewährleistet insoweit die Befugnis des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendung seiner persönlichen Daten zu bestimmen.
+::: {.callout-note title="Begründung BVerfGE 65,1 [5]"}
+Unter den Bedingungen der modernen Datenverarbeitung wird der Schutz des Einzelnen gegen
+unbegrenzte Erhebung, Speicherung, Verwendung und Weitergabe seiner persönlichen Daten
+von dem allgemeinen Persönlichkeitsrecht des GG Art 2 Abs. 1 in Verbindung mit GG Art 1 Abs.
+1 umfaßt. Das Grundrecht gewährleistet insoweit die Befugnis des Einzelnen, grundsätzlich
+selbst über die Preisgabe und Verwendung seiner persönlichen Daten zu bestimmen.
 :::
+<br>
 
-::: {.summary}
-**Informationelles Selbstbestimmungsrecht**  
-
-Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendung seiner persönlichen Daten zu bestimmen
+::: {.callout-note title="Definition: Informationelles Selbstbestimmungsrecht"}
+Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendung seiner
+persönlichen Daten zu bestimmen
 :::
  
 ---
 
-## Informationelles Selbstbestimmungsrecht {.two-column-slide}
+## Informationelles Selbstbestimmungsrecht {.two-column-slide .pdf-slide}
 
 ### Grundlagen
+<br>
 
 :::: {.columns}
 ::: {.column width="50%"}
-### Art. 1 Abs. 1 GG
+#### Art. 1 Abs. 1 GG
 - Die Würde des Menschen ist unantastbar. Sie  zu achten und zu schützen ist Verpflichtung aller staatlichen Gewalt.
 :::
 
 ::: {.column width="50%"}
-### Art. 2 Abs. 1 GG
+#### Art. 2 Abs. 1 GG
 - Jeder hat das Recht auf die freie Entfaltung seiner Persönlichkeit, soweit er nicht die Rechte anderer verletzt und nicht gegen die verfassungsmäßige Ordnung oder das Sittengesetz verstößt.
 :::
 ::::
-    
+<br>
+
 ⇒ viel höher geht in unserer Verfassung nicht
 
 
@@ -339,6 +358,7 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Grundsatz 
+<br>
 
 - Die Verarbeitung personenbezogener Daten ist grundsätzlich **verboten**.
 
@@ -350,6 +370,7 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Anforderungen an die Einwilligung (Art. 7 EU-DSGVO) 
+<br>
 
 - der Betroffene muss frei entscheiden können (Art. 4 Nr. 11 EU-DSGVO) dem Betroffenen muss vorher der Zweck der geplanten Verarbeitung und ggf. Empfänger, etwaige verfolgte berechtigte Interessen & geplante Drittstattenübermittlung mitgeteilt werden (Art. 13 Abs. 1 EU-DSGVO)
 - Einwilligung schriftlich oder konkludent abzugeben (Art. 4 Nr. 11 EU-DSGVO) die Einwilligung ist jederzeit widerrufbar (Art. 7 Abs. 3 EU-DSGVO)
@@ -360,6 +381,7 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Öffentliche Quellen 
+<br>
 
 - Öffentlich zugängliche Daten dürfen verarbeitet werden 
 - Beispiele:
@@ -379,6 +401,7 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Gesetzliche Erlaubnis 
+<br>
 
 - Erlaubnis durch: 
     - EU-DSGVO selbst 
@@ -390,6 +413,7 @@ Grundrecht des Einzelnen, grundsätzlich selbst über die Preisgabe und Verwendu
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Verarbeitung auf rechtmäßige Weise und nach Treu und Glauben 
+<br>
 
 Nach Art. 5 Abs. 1 lit. a EU-DSGVO müssen personenbezogene Daten auf rechtmäßige Weise und nach Treu und Glauben verarbeitet werden  
 
@@ -409,6 +433,7 @@ Nach Art. 5 Abs. 1 lit. a EU-DSGVO müssen personenbezogene Daten auf rechtmäß
 ## Verbot mit Erlaubnisvorbehalt {.content-slide .pdf-slide}
 
 ### Besondere personenbezogene Daten 
+<br>
 
 Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenbezogener Daten verboten, soweit nicht die Ausnahmen aus Art. 9 Abs. 2 EU-DSGVO greifen    
 
@@ -427,6 +452,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 
 ## Verbot mit Erlaubnisvorbehalt {.two-column-slide}
 ### Zulässige Ausnahmen nach Art. 9 Abs. 2 EU-DSGVO I  
+<br>
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -449,6 +475,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Prinzip der Zweckbindung {.content-slide .pdf-slide}
+<br>
 
 - Nach Art. 5 Abs. 1 lit. b EU-DSGVO müssen personenbezogene Daten für festgelegte, eindeutige und legitime Zwecke erhoben werden und dürfen nicht in einer mit diesen Zwecken nicht mehr zu vereinbarenden Weise weiterverarbeitet werden!
 - Erfordernis zur Zweckfestlegung (Haupt- und Nebenzwecke) bei der Erhebung 
@@ -462,6 +489,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Prinzip der Transparenz {.content-slide .pdf-slide}
+<br>
 
 - Nach Art. 5 Abs. 1 lit. a EU-DSGVO müssen personenbezogene Daten in einer für die betroffene Person nachvollziehbare Weise verarbeitet werden!
 - Betroffener muss folglich ihn betreffende Verfahren kennen 
@@ -476,6 +504,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Verzeichnis von Verarbeitungstätigkeiten {.content-slide .pdf-slide}
+<br>
 
  1. Angaben zur verantwortlichen Stelle und der zugehörigen Kontaktdaten (inkl. Datenschutzbeauftragter)
  2. Zwecke der Verarbeitung
@@ -491,6 +520,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Prinzip der Datenminimierung {.content-slide .pdf-slide}
+<br>
 
 - Nach Art. 5 Abs. 1 lit. c EU-DSGVO müssen personenbezogene Daten dem Zweck angemessen und erheblich sowie auf das für die Zwecke der Verarbeitung notwendige Maß beschränkt sein 
 - Anforderung zur Gestaltung der eingesetzten IT-Systeme (maßgeblich für privacy by design)
@@ -504,6 +534,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Prinzip der begrenzten Speicherung {.content-slide .pdf-slide}
+<br>
 
 - Nach Art. 5 Abs. 1 lit. e EU-DSGVO müssen personenbezogene Daten in einer Form gespeichert werden, die die Identifikation der betroffenen Personen nur so lange ermöglicht, wie es für die Zwecke, für die sie verarbeitet werden, erforderlich ist 
 - An vielen Stellen der EU-DSGVO wird daher ausdrücklich eine Pseudonymisierung der Daten eingefordert:
@@ -517,6 +548,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Betroffenenrechte {.content-slide .pdf-slide}
+<br>
 
 - Recht auf Auskunft (Art 15. EU-DSGVO)
 - Recht auf Berichtigung (Art 16. EU-DSGVO)
@@ -528,6 +560,7 @@ Nach Art. 9 Abs. 1 EU-DSGVO ist die Verarbeitung besonderer Kategorien personenb
 ---
 
 ## Aufgaben (Art. 39 EU-DSGVO) {.content-slide .pdf-slide}
+<br>
 
 - Unterrichtung & Beratung des Verantwortlichen bzw. Auftragsverarbeiters und der Beschäftigten über datenschutzrechtliche Pflichten   
     → Schulung der Beschäftigten, die personenbezogene Daten verarbeiten   
@@ -544,6 +577,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Anforderungen {.content-slide .pdf-slide}
+<br>
 
 - Nach Art. 37 Abs. 5 EU-DSGVO wird der Datenschutzbeauftragte benannt auf der Grundlage seiner beruflichen Qualifikation und seines Fachwissens auf dem Gebiet des Datenschutzrechts und der Datenschutzpraxis 
 - Fachkunde: Datenschutzrecht, Datenverarbeitung, betriebliche Organisation, Didaktik, Psychologie [Beschluss des LG Ulm, 1990] 
@@ -553,6 +587,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Absicherung {.content-slide .pdf-slide}
+<br>
 
 - Frühzeitige Einbindung in alle mit dem Schutz personenbezogener Daten zusammenhängenden Fragen (Art. 38 Abs. 1 EU-DSGVO)
 - Unterstützung durch Unternehmen (Art. 38 Abs. 2 EU-DSGVO)
@@ -564,6 +599,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Typische Tätigkeiten {.content-slide .pdf-slide}
+<br>
 
 - Recherchen zur aktuellen Rechtslage (Auswertung aktueller Urteile)
 - Lesen & Auswerten zahlreicher & umfangreicher Fachartikel & Fachliteratur 
@@ -579,6 +615,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Unerfreuliche Erfahrungen {.content-slide .pdf-slide}
+<br>
 
 - komplexe Materie erfordert permanente Erneuerung der Informationsbasis 
 - verspätete Information (z.B. durch nachzuholende Vorabkontrolle) hat Mehrarbeit & Mehrkosten zur Folge 
@@ -593,6 +630,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Sanktionen bei Verstößen (Art. 83 EU-DSGVO) {.content-slide .pdf-slide}
+<br>
 
 **Kategorie 1:** Bis 10 Mio. € oder 2% des weltweiten Jahresumsatzes 
 
@@ -612,6 +650,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Bußgeldbeispiele {.content-slide .pdf-slide}
+<br>
 
 **2020** – H&M (35 Mio €)
 - Mitarbeiterüberwachung
@@ -630,6 +669,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Zusammenfassung {.content-slide .pdf-slide}
+<br>
 
 ✓ Datenschutz ist Grundrecht (Art. 7, 8 EU-Grundrechtecharta; Art. 1, 2 GG) 
 
@@ -650,6 +690,7 @@ Unter Berücksichtigung der mit den Verarbeitungsvorgängen verbundenen Risiken
 ---
 
 ## Literaturverzeichnis I {.content-slide .pdf-slide}
+<br>
 
 [1] BGH. Urteil vom 14.02.1958 - I ZR 151/56. 14. Feb. 1958. URL: [https://openjur.de/ u/190815.html](https://openjur.de/u/190815.html).  
 

