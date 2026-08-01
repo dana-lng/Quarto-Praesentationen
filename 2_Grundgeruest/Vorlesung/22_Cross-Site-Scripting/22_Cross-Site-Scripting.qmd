@@ -155,7 +155,7 @@ Injection.
 
 :::: {.columns}
 ::: {.column width="40%"}
-<img src="../../images/cross_site_meme.jpg" style="height: 600px; width: 450px">
+![](images/cross_site_meme.jpg)
 :::
 
 ::: {.column width="60%"}
@@ -286,7 +286,7 @@ app.get('/', (req, res) => {
 ## XSS immer noch eine der häufigsten Bedrohungen [1] {.image-slide}
 
 
-<img src="../../images/xss_diagramm.jpg">
+![](images/xss_diagramm.jpg)
 
 ---
 
@@ -846,7 +846,7 @@ alert(`Hi there, ${username}`)
 
 - Erhält den User-Input nicht 
 <br>
-<img src="../../images/user_input.jpg" style="height: 800px; width: 900px">
+![](images/user_input.jpg)
 
 
 ---
@@ -1156,7 +1156,7 @@ CSP ist eine zusätzliche Verteidigungsschicht, kein Ersatz für korrektes Escap
 
 ---
 
-<img src="../../images/moody_meme.jpg" style="height: 700px; width: 1100px">
+![](images/moody_meme.jpg)
 
 ---
 

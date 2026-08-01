@@ -159,7 +159,7 @@ Date: Tue, 24 Sep 2024 10:30:00 GMT
 ## Was sind Cookies? {.content-slide .image-slide}
 <br>
 
-<img src="../../images/cookie_monster.jpg" style="height: 600px; width: 800px">
+![](images/cookie_monster.jpg)
 
 ---
 
@@ -843,14 +843,14 @@ Der Server kann die beiden nicht unterscheiden und liefert die private Seite aus
 
 ## Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung {.content-slide .image-slide}
 
-<img src="../../images/firefox_erweiterung_1.jpg" style="height: 700px; width: 1100px">
+![](images/firefox_erweiterung_1.jpg)
 
 
 ---
 
 ## Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung {.content-slide .image-slide}
 
-<img src="../../images/firefox_erweiterung_2.jpg" style="height: 700px; width: 1100px">
+![](images/firefox_erweiterung_2.jpg)
 
 
 
@@ -858,7 +858,7 @@ Der Server kann die beiden nicht unterscheiden und liefert die private Seite aus
 
 ## Firesheep – 2010 gab es dafür sogar eine Firefox-Erweiterung {.content-slide .image-slide}
 
-<img src="../../images/firefox_erweiterung_3.jpg" style="height: 700px; width: 1100px">
+![](images/firefox_erweiterung_3.jpg)
 
 
 

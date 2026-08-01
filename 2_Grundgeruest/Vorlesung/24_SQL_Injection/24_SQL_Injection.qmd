@@ -67,7 +67,7 @@ Wie alle Command Injections ist SQL Injection möglich, wenn eine Anwendung unsi
 ## Beispiel: Bank Login {.image-slide .code-slide}
 <br>
 
-<img src="../../images/bankacc.jpg" style="height: 100px; width: 300px">
+![](images/bankacc.jpg)
 
 <br>
 
@@ -323,7 +323,7 @@ db.exec(`INSERT INTO logs VALUES ("Login attempt from ${username}")`)
 
 ## Bobby Tables {.image-slide}
 
-<img src="../../images/bobbytables.jpg">
+![](images/bobbytables.jpg)
 
 ---
 

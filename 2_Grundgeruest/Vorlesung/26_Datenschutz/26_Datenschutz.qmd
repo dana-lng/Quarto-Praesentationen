@@ -147,7 +147,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 ## Geschichte nach Schutzzielen {.image-slide}
 <br>
 
-<img src="../../images/Geschichte_nach_Schutzzielen.jpg">
+![](images/Geschichte_nach_Schutzzielen.jpg)
 
 ---
 
@@ -161,7 +161,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 :::
 
 ::: {.column width="40%"}
-<img src="../../images/Schutz_vor_Missbrauch.jpg" style="height: 400px; width: 600px">
+![](images/Schutz_vor_Missbrauch.jpg)
 :::
 ::::
 
@@ -206,7 +206,7 @@ Brief-, Post- und Fernmeldegeheimnis:
 :::
 
 ::: {.column width="40%"}
-<img src="../../images/informationelle_Gewaltenteilung.jpg" style="height: 400px; width: 600px">
+![](images/informationelle_Gewaltenteilung.jpg)
 
 Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
@@ -225,7 +225,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
 
 ::: {.column width="40%"}
-<img src="../../images/Kontextproblem.jpg" style="height: 500px; width: 600px">
+![](images/Kontextproblem.jpg)
 :::
 ::::
 
@@ -243,7 +243,7 @@ Ergebnis: Umfassendes Persönlichkeitsbild zu einer bereits bekannten Person
 :::
 
 ::: {.column width="40%"}
-<img src="../../images/Datenverarbeitungssystemen.jpg" style="height: 500px; width: 600px">
+![](images/Datenverarbeitungssystemen.jpg)
 :::
 ::::
 
