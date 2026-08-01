@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="17_Schluesselverwaltung_files/libs/clipboard/clipboard.min.js"></script>
+<script src="17_Schluesselverwaltung_files/libs/quarto-html/tabby.min.js"></script>
+<script src="17_Schluesselverwaltung_files/libs/quarto-html/popper.min.js"></script>
+<script src="17_Schluesselverwaltung_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="17_Schluesselverwaltung_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="17_Schluesselverwaltung_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="17_Schluesselverwaltung_files/libs/quarto-html/quarto-syntax-highlighting-da78e890a27eeff987ae7706034fb934.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <title>Schlüsselverwaltung und Zertifikate</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="17_Schluesselverwaltung_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="17_Schluesselverwaltung_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="17_Schluesselverwaltung_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="../../styles/theme.css">
+  <link href="17_Schluesselverwaltung_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="17_Schluesselverwaltung_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="17_Schluesselverwaltung_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="17_Schluesselverwaltung_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="schlüsselverwaltung" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Schlüsselverwaltung</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+01.08.2026</p>
+</section>
+<section id="agenda" class="slide level2 content-slide agenda-slide">
+<h2>Agenda</h2>
+<ul class="agenda">
+<li class="agenda-item">
+<strong>01</strong><span>Zertifikate</span>
+</li>
+<li class="agenda-item">
+<strong>02</strong><span>Public Key Infrastructure</span>
+</li>
+<li class="agenda-item">
+<strong>03</strong><span>Certification Authorities</span>
+</li>
+<li class="agenda-item">
+<strong>04</strong><span>TLS-Zertifikate</span>
+</li>
+<li class="agenda-item">
+<strong>05</strong><span>PGP und GPG</span>
+</li>
+<li class="agenda-item">
+<strong>06</strong><span>Schlüsselsicherheit</span>
+</li>
+</ul>
+</section>
+<section id="lernziele" class="slide level2 content-slide pdf-slide">
+<h2>Lernziele</h2>
+<p><br></p>
+<p>Nach dieser Einheit können Sie …</p>
+<ul>
+<li>X.509-Zertifikate lesen (Issuer/Subject, SAN, Laufzeit)</li>
+<li>Zertifikatsketten bis zur Root CA prüfen</li>
+<li>Widerrufsmechanismen (CRL, OCSP, Stapling) einordnen</li>
+<li>den TLS-Handshake skizzieren (TLS 1.2/1.3, (EC)DHE)</li>
+<li>PGP/GPG-Grundlagen anwenden (Signieren, Verifizieren, Export)</li>
+</ul>
+</section>
+<section id="management-öffentlicher-schlüssel" class="slide level2 content-slide pdf-slide">
+<h2>Management öffentlicher Schlüssel</h2>
+<p><br></p>
+<ul>
+<li><p>Problem: Übereinstimmung öffentlicher Schlüssel – Identität</p></li>
+<li><p>Lösung: <strong>Zertifikat</strong> = Nachricht, die</p>
+<ul>
+<li>Repräsentation der Identität,</li>
+<li>zugehörigen öffentlichen Schlüssel,</li>
+<li>Zeitstempel oder Geltungsdauer enthält und durch eine vertrauenswürdige Instanz (Trent, „Issuer“, Certification Authority) signiert wurde.</li>
+</ul></li>
+</ul>
+<div title="">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Def.: Ein Zertifikat ist eine Einheit, die einen kryptografischen Schlüssel an eine Identität bindet.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="zertifikate-für-öffentliche-schlüssel" class="slide level2 image-slide">
+<h2>Zertifikate für öffentliche Schlüssel</h2>
+
+<img data-src="images/certificate_principle.jpg" class="r-stretch"></section>
+<section id="management-öffentlicher-schlüssel-1" class="slide level2">
+<h2>Management öffentlicher Schlüssel</h2>
+<h3 class="content-slide pdf-slide" id="aufbau-eines-zertifikats-formal">Aufbau eines Zertifikats; formal</h3>
+<p><br></p>
+<p>Ein durch Zertifizierungsinstanz CA ausgestelltes Zertifikat für Nutzer A enthält:</p>
+<p><span class="math display">\[
+Cert(CA,A) = \{ID_{CA}, ID_A, e_A, T, Ext, sig_{CA}\}
+\]</span></p>
+<p>mit</p>
+<p><span class="math display">\[
+sig_{CA} = d_{CA}\{H(ID_{CA}, ID_A, e_A, T, Ext)\}
+\]</span></p>
+<p><strong>Legende:</strong></p>
+<ul>
+<li><span class="math inline">\(ID_A\)</span>: eindeutiger Name des Teilnehmers A</li>
+<li><span class="math inline">\(e_A\)</span>: öffentlicher Schlüssel des Teilnehmers A</li>
+<li><span class="math inline">\(d_{CA}\)</span>: privater Schlüssel der CA</li>
+<li><span class="math inline">\(T\)</span>: Gültigkeitszeitraum des Zertifikats</li>
+</ul>
+</section>
+<section id="verifikation-einer-digitalen-signatur" class="slide level2 content-slide pdf-slide">
+<h2>Verifikation einer digitalen Signatur</h2>
+<p><br></p>
+<p><strong>Schritt 1: Verifikation der Signatur</strong></p>
+<p>Bob möchte Alice’ Signatur eines Dokuments prüfen. Dazu muss er:</p>
+<ol type="1">
+<li>Alice’ Zertifikat besorgen (enthält den zur Unterschrift passenden öffentlichen Schlüssel <span class="math inline">\(e_A\)</span>),</li>
+<li>mit <span class="math inline">\(e_A\)</span> den ursprünglichen Hashwert des Dokuments <span class="math inline">\(H_1\)</span> entschlüsseln,</li>
+<li>den aktuellen Hashwert des Dokuments <span class="math inline">\(H_2\)</span> ermitteln,</li>
+<li>Die Signatur passt zum Dokument, wenn <span class="math inline">\(H_1 = H_2\)</span>.</li>
+</ol>
+</section>
+<section id="verifikation-einer-digitalen-signatur-1" class="slide level2 content-slide pdf-slide">
+<h2>Verifikation einer digitalen Signatur</h2>
+<p><br></p>
+<p><strong>Schritt 2: Verifikation des Zertifikates</strong></p>
+<p>Nun muss Bob prüfen, ob das Zertifikat stimmt:</p>
+<ol type="1">
+<li>den öffentlichen Schlüssel <span class="math inline">\(e_{CA}\)</span> der CA besorgen, die Alice’ Zertifikat ausgestellt hat,</li>
+<li>mit <span class="math inline">\(e_{CA}\)</span> den ursprünglichen Hashwert des Zertifikats <span class="math inline">\(H_3\)</span> entschlüsseln,</li>
+<li>den aktuellen Hashwert des Zertifikats <span class="math inline">\(H_4\)</span> ermitteln,</li>
+<li>das Zertifikat ist gültig, wenn <span class="math inline">\(H_3 = H_4\)</span>.</li>
+</ol>
+</section>
+<section id="bob-verifiziert-alice-signatur" class="slide level2 image-slide">
+<h2>Bob verifiziert Alice’ Signatur</h2>
+<h3 id="prinzipielle-struktur-einer-public-key-infrastructure-pki">Prinzipielle Struktur einer Public Key Infrastructure (PKI)</h3>
+
+<img data-src="images/pki_signature_structure.jpg" class="r-stretch"></section>
+<section id="aufbau-eines-zertifikats" class="slide level2 image-slide">
+<h2>Aufbau eines Zertifikats</h2>
+<h3 id="x.509-iso-authentication-framework">X.509 (ISO Authentication Framework)</h3>
+<div class="columns">
+<div class="column" style="width:44%;">
+<p><img data-src="images/Aufbau_Zertifikat.jpg"></p>
+</div><div class="column" style="width:56%;">
+<ul>
+<li>Version: des Protokolls (1, 2 oder 3)</li>
+<li>Seriennummer: eindeutig innerhalb der CA</li>
+<li>Algorithmus: der Signatur (zum Nachvollzug)</li>
+<li>Aussteller: eindeutiger Name der CA</li>
+<li>Subject (Inhaber): Identität, der der öffentliche Schlüssel zugeordnet ist</li>
+<li>Subject Alternative Name (SAN): Hostname/URI/E-Mail für Prüfungen</li>
+<li>Key Usage/EKU: erlaubte Verwendungen (z. B. TLS-Server)</li>
+<li>Signatur: ausgestellt durch CA</li>
+</ul>
+</div></div>
+</section>
+<section id="zertifikatseigenschaften" class="slide level2 image-slide">
+<h2>Zertifikatseigenschaften</h2>
+
+<img data-src="images/certificate_properties.jpg" class="r-stretch"></section>
+<section id="namen-im-x.509-zertifikat" class="slide level2 content-slide table-slide">
+<h2>Namen im X.509-Zertifikat</h2>
+<p><br></p>
+<p>Benennung von Issuer und Subject in X.509 erfolgt mittels hierarchischem Distinguished Naming des X.500-Protokolls mit den folgenden Feldern:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kürzel</th>
+<th>Bedeutung</th>
+<th>Beispiel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CN</td>
+<td>Common Name</td>
+<td><code>rtypo3p.rz.htw-dresden.de</code></td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td>E-Mail-Adresse</td>
+<td><code>certificate@trustcenter.de</code></td>
+</tr>
+<tr class="odd">
+<td>O</td>
+<td>Organization Name</td>
+<td>TC TrustCenter for Security</td>
+</tr>
+<tr class="even">
+<td>OU</td>
+<td>Organizational Unit (Organisationseinheit)</td>
+<td>TC TrustCenter Class 2 CA in Data Networks GmbH</td>
+</tr>
+<tr class="odd">
+<td>L</td>
+<td>Locality Name</td>
+<td>Hamburg</td>
+</tr>
+<tr class="even">
+<td>ST</td>
+<td>State Name</td>
+<td>Hamburg</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Country</td>
+<td>DE</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="certification-authorities" class="slide level2 content-slide image-slide">
+<h2>Certification Authorities</h2>
+<p><strong>Def.:</strong> Eine Einheit, die Zertifikate ausstellt, wird Certification Authority (CA) genannt.</p>
+<div class="columns">
+<div class="column" style="width:44%;">
+<p><img data-src="images/ca_hierarchy.jpg"></p>
+</div><div class="column" style="width:56%;">
+<ul>
+<li>Untergeordnete CAs besitzen Zertifikate, die von der jeweils übergeordneten CA signiert sind.</li>
+<li>Zuoberst: Root CA (hier: CAE) als Vertrauensanker.</li>
+<li>Es entsteht eine Zertifizierungshierarchie.</li>
+<li>CAs können sich gegenseitig zertifizieren (Cross Certification).</li>
+</ul>
+</div></div>
+</section>
+<section id="certification-authorities-1" class="slide level2 content-slide pdf-slide">
+<h2>Certification Authorities</h2>
+<p><br></p>
+<p>Einige Unternehmen bieten Zertifizierung als Dienstleister an, z. B. (historisch und aktuell):</p>
+<ul>
+<li>VeriSign (heute Teil von DigiCert), Thawte</li>
+<li>DigiCert, Sectigo (ehemals Comodo), GlobalSign, Entrust</li>
+</ul>
+<p>Darüber hinaus gibt es gemeinnützige oder akademische Organisationen:</p>
+<ul>
+<li>Internet Security Research Group (Let’s Encrypt)</li>
+<li>DFN e. V. (DFN-PKI für Hochschulen)</li>
+</ul>
+<p>Zertifikate der Root-CAs sind in typischer Software (Browser) eingebaut.</p>
+</section>
+<section id="problem-des-zentralisierten-modells" class="slide level2 content-slide pdf-slide">
+<h2>Problem des zentralisierten Modells</h2>
+<p><br></p>
+<div title="Problem">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Problem</strong></p>
+</div>
+<div class="callout-content">
+<p>Kann man der CA unbedingt vertrauen?</p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Antwort:</strong> Leider nein:</p>
+<ul>
+<li>Einbruch in (niederländische) Firma DigiNotar 2011, Angreifer stellten sich unberechtigte Zertifikate aus, diese wurden missbräuchlich zur Überwachung iranischer Bürger genutzt<sup>1</sup></li>
+<li>(türkische) CA Türktrust stellte im August 2011 irrtümlich 2 Zertifikate aus, mit denen sich beliebige Domains zertifizieren lassen</li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><a href="https://securitylab.disi.unitn.it/lib/exe/fetch.php?media=teaching:offtech:2014:black-tulip-update.pdf" class="uri">https://securitylab.disi.unitn.it/lib/exe/fetch.php?media=teaching:offtech:2014:black-tulip-update.pdf</a></p></li></ol></aside></section>
+<section id="widerruf-von-zertifikaten-certificate-revocation" class="slide level2 content-slide pdf-slide">
+<h2>Widerruf von Zertifikaten (Certificate Revocation)</h2>
+<p><br></p>
+<p>Problem: Schlüssel können vor ihrem “Verfallsdatum” ungültig werden, z. B. bei Kompromittierung eines privaten Schlüssels -&gt; zugehöriges Zertifikat muss zurückgezogen werden</p>
+<p><strong>a) Certificate Revocation List (CRL)</strong></p>
+<ul>
+<li>signierte Sperrliste der CA mit allen widerrufenen Zertifikaten</li>
+<li>beim Prüfen eines Zertifikates muss CRL durchsucht werden</li>
+<li>Voraussetzung: Teilnehmer sind permanent online</li>
+</ul>
+<p><strong>b) Kurzlebige Zertifikate (Short-Lived Certificates)</strong></p>
+<ul>
+<li>kurze Gültigkeitsdauer des Zertifikats (z. B. 24-72 h)</li>
+<li>nutzt Mechanismus der begrenzten Lebensdauer</li>
+<li>Voraussetzung: Teilnehmer sind permanent online</li>
+</ul>
+</section>
+<section id="exkurs-tls" class="slide level2 content-slide pdf-slide">
+<h2>Exkurs: TLS</h2>
+<p><br></p>
+<p><strong>Transport Layer Security</strong></p>
+<ul>
+<li>“S” in HTTPS</li>
+<li>primäre Motivation historisch: E-Payment im Netz</li>
+<li>© Netscape (SSL 2.0/3.0); heute: TLS 1.2/1.3</li>
+<li>komplexer Standard</li>
+</ul>
+<p>Sicherer Kanal zwischen Client und Server</p>
+<ul>
+<li>Vertraulichkeit: Verschlüsselte Kommunikation</li>
+<li>Authentisierung: Zertifikate und vertrauenswürdige CAs</li>
+</ul>
+</section>
+<section id="verbindungsaufbau-tls-handshake" class="slide level2 image-slide">
+<h2>Verbindungsaufbau: TLS-Handshake</h2>
+<div class="columns">
+<div class="column" style="width:44%;">
+<p><img data-src="images/tls_handshake.jpg"></p>
+</div><div class="column" style="width:56%;">
+<ol type="1">
+<li>ClientHello: Cipher Suites (Schlüsselaustausch, Verschlüsselung, MAC), TLS-Version</li>
+<li>ServerHello: gewählte Verfahren, Zertifikat des Servers, optional »Client Certificate Request«</li>
+<li>Schlüsselaustausch: (EC)DHE, gemeinsame Sitzungsschlüssel werden abgeleitet (in TLS 1.3 kein RSA-Keytransport)</li>
+</ol>
+</div></div>
+</section>
+<section id="prüfung-des-tls-zertifikats" class="slide level2 content-slide code-slide">
+<h2>Prüfung des TLS-Zertifikats</h2>
+<h3 id="beispiel-einer-zertifikatskette">Beispiel einer Zertifikatskette</h3>
+<p><br></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>$ openssl s_client -connect htw-dresden.de:443 -servername htw-dresden.de -showcerts \</span>
+<span id="cb1-2"><a href=""></a>    2&gt;/dev/null &lt;/dev/null</span>
+<span id="cb1-3"><a href=""></a>Certificate chain</span>
+<span id="cb1-4"><a href=""></a> 0 s:C=DE, ST=Sachsen, O=Hochschule für Technik und Wirtschaft Dresden,</span>
+<span id="cb1-5"><a href=""></a>   CN=rtypo3p.rz.htw-dresden.de</span>
+<span id="cb1-6"><a href=""></a>   i:C=NL, O=GEANT Vereniging, CN=GEANT OV RSA CA 4</span>
+<span id="cb1-7"><a href=""></a>   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA384</span>
+<span id="cb1-8"><a href=""></a>   v:NotBefore: Aug 2 00:00:00 2023 GMT; NotAfter: Aug 1 23:59:59 2024 GMT</span>
+<span id="cb1-9"><a href=""></a> 1 s:C=GB, ST=Greater Manchester, L=Salford, O=Comodo CA Limited, CN=AAA Certificate [...]</span>
+<span id="cb1-10"><a href=""></a>   i:C=GB, ST=Greater Manchester, L=Salford, O=Comodo CA Limited, CN=AAA Certificate [...]</span>
+<span id="cb1-11"><a href=""></a>   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA1</span>
+<span id="cb1-12"><a href=""></a>   v:NotBefore: Jan 1 00:00:00 2004 GMT; NotAfter: Dec 31 23:59:59 2028 GMT</span>
+<span id="cb1-13"><a href=""></a> 2 s:C=US, ST=New Jersey, L=Jersey City, O=The USERTRUST Network, CN=USERTrust RSA [...]</span>
+<span id="cb1-14"><a href=""></a>   i:C=GB, ST=Greater Manchester, L=Salford, O=Comodo CA Limited, CN=AAA Certificate [...]</span>
+<span id="cb1-15"><a href=""></a>   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA384</span>
+<span id="cb1-16"><a href=""></a>   v:NotBefore: Mar 12 00:00:00 2019 GMT; NotAfter: Dec 31 23:59:59 2028 GMT</span>
+<span id="cb1-17"><a href=""></a> 3 s:C=NL, O=GEANT Vereniging, CN=GEANT OV RSA CA 4</span>
+<span id="cb1-18"><a href=""></a>   i:C=US, ST=New Jersey, L=Jersey City, O=The USERTRUST Network, CN=USERTrust RSA [...]</span>
+<span id="cb1-19"><a href=""></a>   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA384</span>
+<span id="cb1-20"><a href=""></a>   v:NotBefore: Feb 18 00:00:00 2020 GMT; NotAfter: May 1 23:59:59 2033 GMT</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="prüfung-des-tls-zertifikats-1" class="slide level2 image-slide">
+<h2>Prüfung des TLS-Zertifikats</h2>
+
+<img data-src="images/tls_certificate_chain.jpg" class="r-stretch"></section>
+<section id="schlüsselzertifizierung-bei-pgp" class="slide level2 content-slide pdf-slide">
+<h2>Schlüsselzertifizierung bei PGP</h2>
+<p><br></p>
+<p><strong>“Web of Trust”</strong></p>
+<ul>
+<li>keine Zertifizierungsinstanzen</li>
+<li>Benutzer unterzeichnen öffentliche Schlüssel gegenseitig</li>
+<li>behalten Kopien der unterzeichneten Schlüssel</li>
+<li>Keysigning Party</li>
+<li>erlaubt individuelle Beurteilung:
+<ul>
+<li>Vertrauen in die Gültigkeit eines Schlüssels</li>
+<li>Zuverlässigkeit der Unterschrift eines Teilnehmers</li>
+<li>Zuverlässigkeit eines Teilnehmers, andere Schlüssel zu zertifizieren</li>
+</ul></li>
+<li>auch nicht vertrauenswürdige Schlüssel können benutzt werden</li>
+</ul>
+</section>
+<section id="beispiel-für-vertrauensmodell-im-pgp-1" class="slide level2 image-slide">
+<h2>Beispiel für Vertrauensmodell im PGP [1]</h2>
+
+<img data-src="images/pgp_trust_model.jpg" class="r-stretch"></section>
+<section id="schlüsselaufbewahrung" class="slide level2 content-slide pdf-slide">
+<h2>Schlüsselaufbewahrung</h2>
+<p><br></p>
+<ul>
+<li>öffentliche Schlüssel sind einfach aufzubewahren</li>
+<li>ihre Integrität muss gesichert sein</li>
+<li>Nutzung der Zertifikate</li>
+<li>geheime Schlüssel und Schlüssel für symmetrische Kryptografie?</li>
+<li>persistent in Datei; Nutzung von OS-Mechanismen zum Zugriffsschutz</li>
+<li>verschlüsselte Abspeicherung (hilft nicht gegen Keylogging)</li>
+<li>ROM oder Smartcard; Hardware-Token (HSM/TPM, FIDO2/YubiKey)</li>
+<li>Problem: Diebstahl der Smartcard</li>
+<li>Verbesserung: Verteilung auf mehrere Karten oder Karte und Lesegerät</li>
+</ul>
+</section>
+<section id="pretty-good-privacy-pgp" class="slide level2 content-slide image-slide">
+<h2>Pretty Good Privacy (PGP)</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:38%;">
+<p><img data-src="images/phil_zimmermann.png"></p>
+</div><div class="column" style="width:62%;">
+<ul>
+<li>ist eine Software zum Verschlüsseln und Signieren von E-Mails</li>
+<li>1991 durch Phil Zimmermann entwickelt</li>
+<li>erste Implementierung von Public-Key-Kryptografie für die Allgemeinheit</li>
+<li>unterlag restriktiven Exportbestimmungen (als Buch exportiert)</li>
+<li>nutzt hybride Kryptografie</li>
+</ul>
+</div></div>
+</section>
+<section id="pgp" class="slide level2 content-slide pdf-slide">
+<h2>PGP</h2>
+<p><br></p>
+<ul>
+<li>nutzte (ursprünglich) IDEA zur symmetrischen Verschlüsselung, MD5 als Hash und RSA zur Public-Key-Kryptografie (historisch)</li>
+<li>Web of Trust anstatt CAs</li>
+<li>wechselvolle Entwicklungsgeschichte</li>
+<li>zeitweise Eigentum von Network Associates (aka McAfee)</li>
+<li>in dieser Zeit Weiterentwicklung als Closed Source (Vertrauen verschwunden)</li>
+<li>wieder zurück an die PGP Corporation</li>
+<li>als kommerzielle Software entwickelt und vertrieben</li>
+<li>-&gt; OpenPGP-Standard als offene Alternative (heute üblich: AES, SHA-256/512)</li>
+</ul>
+</section>
+<section id="gnu-privacyguard-gpg" class="slide level2 content-slide pdf-slide">
+<h2>Gnu PrivacyGuard (GPG)</h2>
+<p><br></p>
+<ul>
+<li>freie und patentfreie Implementierung des OpenPGP-Standards (RFC 4880)</li>
+<li>unterstützt u. a. DSA, ElGamal; heute gängig: AES und SHA-2 (z. B. SHA-256)</li>
+<li>alle gängigen Desktop-Betriebssysteme (Unix-Systeme, Windows, macOS) unterstützt</li>
+<li>in Standardsoftware (MUA, Browser, Chatsoftware) bereits integriert, aber auch als Kommandozeilenprogramm nutzbar</li>
+<li>unterstützt Schlüsselverteilung, z. B. über Web Key Directory (WKD) und <a href="https://keys.openpgp.org" class="uri">https://keys.openpgp.org</a></li>
+</ul>
+</section>
+<section id="nutzung-von-gpg" class="slide level2 content-slide code-slide">
+<h2>Nutzung von GPG</h2>
+<h3 id="an-der-kommandozeile">… an der Kommandozeile</h3>
+<p><br></p>
+<ul>
+<li><code>gpg --full-generate-key</code> erzeugt den Schlüsselring (Key Ring) sowie das Schlüsselpaar</li>
+<li><code>gpg --export --armor</code> extrahiert den Public Key und schreibt diesen als 7-Bit-Zeichen nach stdout oder in eine Datei</li>
+<li><code>gpg --import [datei]</code> importiert einen Schlüssel in den Keyring</li>
+<li><code>gpg --sign &lt;datei&gt;</code> signiert die Datei</li>
+<li><code>gpg --verify &lt;sig&gt; [&lt;datei&gt;]</code> überprüft die Signatur, sofern der öffentliche Schlüssel vorliegt</li>
+<li><code>gpg -c &lt;datei&gt;</code> verschlüsselt symmetrisch</li>
+<li><code>gpg -e / -d</code> ver- bzw. entschlüsselt asymmetrisch</li>
+</ul>
+</section>
+<section id="schlüsselsicherheit" class="slide level2 content-slide pdf-slide">
+<h2>Schlüsselsicherheit</h2>
+<p><br></p>
+<p><strong>Der Word-Makro-Virus “Caligula” (W97M/Caligula.a)</strong></p>
+<blockquote>
+<p>Searches for PGP Secure Keyring using registry entry to get PGP installed path. […] If user name is not ‘Caligula’, runs PGP Secure Keyring find and send routine - user name retrieved from registry […] If file found, file is uploaded to the virus author’s ftp site using a script file written as <code>extttc:\cdbrk.vxd</code> and using <code>ftp.exe</code> in a hidden process (McAfee Virusdatenbank)</p>
+</blockquote>
+<ul>
+<li>Keyring lässt sich viel leichter knacken als eine verschlüsselte Nachricht, insbesondere bei kurzer/schlechter Passphrase (Wörterbuch-Angriff)</li>
+<li>Die beste Verschlüsselung nützt nichts, wenn andere Aspekte der Systemsicherheit vernachlässigt werden (z. B. Keylogger; Gegenmaßnahmen: PIN-Pad/Hardware-Token)!</li>
+</ul>
+</section>
+<section id="exkurs-schlangenöl" class="slide level2 content-slide pdf-slide">
+<h2>Exkurs: Schlangenöl</h2>
+<h3 id="woran-erkennt-man-schlechte-kryptografische-software">Woran erkennt man schlechte kryptografische Software?</h3>
+<p><br></p>
+<p>Warning Sign No.1: Pseudo-mathematical gobbledygook.</p>
+<ul>
+<li>“Encryptor 4.0 uses a unique in-house developed incremental base shift algorithm”</li>
+<li>“From a mathematical point of view, the TTM algorithm is intuitively natural and less cumbersome to use than methods that are number-theory based.” (<a href="http://www.usdsi.com/" class="uri">http://www.usdsi.com/</a>)</li>
+<li>“SuperKrypt products utilize the DNGT bulk encryption method”</li>
+<li>“Since key length and key structure vary and since the encryption engine does not use any mathematical algorithms, reverse engineering is impossible and guessing is not an option.”</li>
+</ul>
+<p><a href="http://www.schneier.com/crypto-gram-9902.html" class="uri">http://www.schneier.com/crypto-gram-9902.html</a></p>
+</section>
+<section id="literaturverzeichnis-i" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis I</h2>
+<p><br></p>
+<p>[1] Bruce Schneier. <em>Angewandte Kryptographie. Protokolle, Algorithmen und Sourcecode in C.</em> [Nachdr.] Informationssicherheit. Bonn [u.a.]: Addison-Wesley, 2002. 844 S. ISBN: 3893198547.</p>
+</section>
+<section id="vielen-dank" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Vielen Dank!</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+01.08.2026</p>
+
+</section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../../logos/htw-logo-small.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>01.08.2026 / Schlüsselverwaltung und Zertifikate / HTW Dresden / Prof.&nbsp;Dr.&nbsp;Lukas Iffländer</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="17_Schluesselverwaltung_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

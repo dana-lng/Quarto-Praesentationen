@@ -1,0 +1,20 @@
+project:
+  type: default
+
+format:
+  revealjs:
+    theme: default
+    css: styles/theme.css
+    width: 1280
+    height: 720
+    margin: 0
+    center: false
+    navigation-mode: linear
+    controls-layout: edges
+    controls-tutorial: false
+    hash: true
+    transition: slide 
+    background-transition: none
+    slide-number: true
+    logo: logos/htw-logo-small.jpg
+    footer: "{{< meta date >}} / {{< meta veranstaltung >}} / {{< meta studiengang >}} / {{< meta professor >}}"
