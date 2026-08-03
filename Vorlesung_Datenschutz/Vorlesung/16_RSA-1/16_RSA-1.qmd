@@ -1,0 +1,446 @@
+---
+pagetitle: "RSA (Rivest-Shamir-Adleman)"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "RSA (Rivest-Shamir-Adleman)"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+## RSA (Rivest-Shamir-Adleman) {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Überblick</span></li>
+<li class="agenda-item"><strong>02</strong><span>Schlüsselgenerierung</span></li>
+<li class="agenda-item"><strong>03</strong><span>Ver- und Entschlüsseln</span></li>
+<li class="agenda-item"><strong>04</strong><span>Sicherheit von RSA</span></li>
+<li class="agenda-item"><strong>05</strong><span>Factoring Challenge</span></li>
+<li class="agenda-item"><strong>06</strong><span>Signieren mit RSA</span></li>
+</ul>
+
+---
+
+## Public-Key-Kryptografie mit RSA {.content-slide .pdf-slide data-state="hide-footer"}
+<br>
+
+**Überblick**
+
+- Ron **R**ivest, Adi **S**hamir, Leonard **A**dleman (1977)
+- beruht auf Schwierigkeit, große Zahlen (100-200 Stellen oder mehr) zu faktorisieren[^faktorisieren]
+- (unbewiesene) Vermutung:
+
+> Die Entschlüsselung eines Chiffrates ohne Kenntnis des Schlüssels ist genauso schwierig wie die Faktorisierung der beiden beteiligten Zahlen
+
+- ⇒ Langzahlarithmetik erforderlich
+- eines der am leichtesten zu verstehenden Public-Key-Verfahren
+
+[^faktorisieren]: in Primfaktoren zu zerlegen
+
+---
+
+## RSA: Schlüsselgenerierung I {.content-slide .pdf-slide}
+<br>
+
+1. Wähle zwei verschiedene große Primzahlen $p, q$.
+
+2. Berechne den sog. RSA-Modul
+
+$$
+n = p \cdot q.
+$$
+
+3. Ermittle den Wert der Eulerschen $\phi$-Funktion für $n$:
+
+$$
+\phi(n) = (p - 1)(q - 1).
+$$
+
+4. Wähle $e$ für den öffentlichen Schlüssel zufällig, so dass $1 < e < \phi(n)$ gilt und $e$ und $\phi(n)$ teilerfremd sind $(ggT(\phi(n), e) = 1)$.
+
+---
+
+## RSA: Schlüsselgenerierung II {.content-slide .pdf-slide }
+<br>
+
+5. Es muss für den privaten Schlüssel $d$ gelten:
+
+$$
+e \cdot d \bmod \phi(n) = 1.
+$$
+
+Daher wird $d$ mittels des erweiterten euklidischen Algorithmus errechnet:
+
+$$
+d = e^{-1} \bmod (p - 1)(q - 1).
+$$
+
+6. Vernichte $p$ und $q$.
+
+7. Schlüssel wurden generiert:     
+   - der öffentliche Schlüssel ist $(e,n)$,      
+   - der private Schlüssel ist $d$.
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Beispiel zur Schlüsselgenerierung (Stark vereinfacht) 
+<br>
+
+1. $p = 47, q = 71$
+2. $n = 47 \cdot 71 = 3337$
+3. $\phi(3337) = (p - 1)(q - 1) = 46 \cdot 70 = 3220$
+4. $e$ muss teilerfremd sein zu $3220 \Rightarrow e = 79$
+5. $d = 79^{-1} \bmod 3220 = 1019$
+6. Schlüssel:
+
+$$
+(e,n) = (79,3337)
+$$
+
+$$
+d = 1019
+$$
+
+---
+
+## RSA: Vorgang des Ver- und Entschlüsselns {.content-slide .pdf-slide}
+<br>
+
+::: {.callout-tip title="Verschlüsselung"}
+- gegeben: Public Key $(e,n)$, Klartextnachricht $m$
+- $m$ in Blöcke $m_i$ zerlegen, für deren Größe $L < n$ gelten muss
+- blockweise modular exponieren:
+
+$$
+c_i = m_i^e \bmod n
+$$
+:::
+
+
+::: {.callout-tip title="Entschlüsselung"}
+- gegeben: Private Key $d$, Chiffrat $c_i$
+- blockweise modular exponieren
+
+$$
+m_i = c_i^d \bmod n
+$$
+:::
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Beispiel zum Verschlüsseln
+<br>
+
+Fortsetzung des Beispiels:
+
+- $(e,n) = (79,3337)$
+- $d = 1019$
+- $m = 6882326879666683$ ("DR DOBBS")
+- exemplarische Zerlegung in Blöcke von 3 Zeichen     
+
+-> $m_1 = 688, m_2 = 232, m_3 = 687, m_4 = 966, m_5 = 668, m_6 = 003$ (von links mit Nullen aufgefüllt!)
+
+#### Verschlüsselung:
+
+$$
+c_1 = m_1^e \bmod n = 688^{79} \bmod 3337 = 1570
+$$
+
+$$
+c_2 = m_2^e \bmod n = 232^{79} \bmod 3337 = 2756
+$$
+
+usw.
+
+Ergebnis: $c = 1570\ 2756\ 2091\ 2276\ 2423\ 158$
+
+---
+
+## RSA  {.content-slide .pdf-slide}
+### Beispiel zum Entschlüsseln
+<br>
+
+
+#### Entschlüsselung:
+
+$$
+m_1 = c_1^d \bmod n = 1570^{1019} \bmod 3337 = 688
+$$
+
+$$
+m_2 = c_2^d \bmod n = 2756^{1019} \bmod 3337 = 232
+$$
+
+usw.
+
+Ergebnis: $m = 688\ 232\ 687\ 966\ 668\ 3$
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Warum funktioniert das Ganze? I
+<br>
+
+- Nach den Regeln des Rechnens mit Restklassen gilt:
+
+$$
+c_i^d \bmod n = (m_i^e \bmod n)^d \bmod n = m_i^{e \cdot d} \bmod n = ...
+$$
+
+- da definitionsgemäß $e \cdot d \equiv 1 \bmod \phi(n)$, gilt $ed = 1 + k \cdot \phi(n), k \in \mathbb{Z}$, also:
+
+$$
+... = m_i^{1 + k \cdot \phi(n)} \bmod n = m_i m_i^{k\phi(n)} \bmod n = ...
+$$
+
+- per definitionem gilt weiterhin $n = p \cdot q$ und $\phi(n) = (p  1)(q - 1)$, also
+
+$$
+... = m_i m_i^{k(p-1)(q-1)} \bmod pq = m_i \left(m_i^{(p-1)(q-1)}\right)^k \bmod pq
+$$
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Warum funktioniert das Ganze? II
+<br>
+
+- Der Satz von Euler besagt:
+
+$$
+x^{(p-1)(q-1)} \bmod pq = 1,\quad \text{wenn } ggT(x,pq)=1.
+$$
+
+- bezugnehmend auf das letzte Ergebnis ergibt sich so:
+
+$$
+m_i \left(m_i^{(p-1)(q-1)}\right)^k \bmod pq = 1^k m_i \bmod pq = ...
+$$
+
+- und da schließlich $m_i < n = pq$, ergibt sich endlich
+
+$$
+... = m_i \bmod pq = m_i.
+$$
+
+**Fazit:** RSA funktioniert.
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Bemerkungen
+<br>
+
+- viel geringere Geschwindigkeit als symmetrische Verfahren (ca. Faktor 1000)
+- bis zum Jahr 2000 patentiert (RSA Security, Inc.)
+- kryptologisch bislang nicht gebrochen
+- als öffentlicher Schlüssel $e$ werden häufig die Werte $3$, $17$ und $2^{16}+1=65537$ gewählt, da sie wenig Aufwand beim Verschlüsseln (bzw. Verifizieren der Signatur) verursachen
+- entsprechend kleine Werte für $d$ sind unmöglich, da der Angreifer sonst (Brute-Force) alle möglichen Schlüsselwerte durchprobieren könnte.
+
+---
+
+## RSA {.content-slide .pdf-slide}
+### Probleme beim "schulbuchmäßigen" Einsatz
+<br>
+
+- gleiche Klartextblöcke erzeugen gleiche Chiffratblöcke (analog ECB)
+- Klartext-Werte $1$, $0$ und $-1$ erzeugen Chiffrate $1$, $0$ und $-1$
+- RSA ist verformbar (malleable): Angreifer kann das Chiffrat verändern, was zu einer Transformation des Klartextes führt, ohne zu entschlüsseln:
+  - Alice schickt Bob $y = x^e \bmod n$
+  - Mallory ersetzt $y$ durch $y' = s^e y$ $(s \in \mathbb{Z})$
+  - Bob entschlüsselt $y'$:
+
+$$
+y'^d \bmod n = (s^e y)^d \bmod n
+$$
+
+$$
+= (s^e x^e \bmod n)^d \bmod n
+$$
+
+$$
+= (sx)^{e \cdot d} \bmod n
+$$
+
+$$
+= sx \bmod n
+$$
+
+**Abhilfe:** Padding: zufällige Bits, Hashwerte, ...
+
+---
+
+## Sicherheit von RSA {.content-slide .pdf-slide}
+<br>
+
+- Ein Angreifer besitzt $e$ und $n$
+- um $d$ zu ermitteln, kann er $n$ faktorisieren (in $p \cdot q$).
+
+$$
+d \equiv e^{-1} \bmod ((p - 1)(q - 1))
+$$
+
+- bislang unbewiesen, ob die Faktorisierung zwingend notwendig ist, um $d$ zu errechnen
+- ebenso möglich: Brute-Force-Angriff auf $d$ (Durchprobieren) nur erfolgversprechend, wenn $d$ sehr klein
+- $p$ und $q$ müssen vernichtet werden, aus ihnen kann der geheime Schlüssel trivial ermittelt werden.
+- Seitenkanalangriffe, z. B. über die Leistungsaufnahme bei der Verschlüsselung (Simple Power Analysis)
+
+---
+
+## Exkurs: Seitenkanalangriff {.content-slide .pdf-slide}
+<br>
+
+**Side Channel Attack**
+
+- Angriffe richten sich nicht gegen den Algorithmus, sondern gegen eine bestimmte Implementierung
+- es werden bestimmte Parameter des den Algorithmus ausführenden Systems gemessen, z. B.
+  - Ausführungszeiten
+  - Cache-Hit- (bzw. -Miss-) Rate
+  - aufgenommene Leistung
+  - elektromagnetische Abstrahlung
+  - Geräuschemissionen
+- Aus den ermittelten Parametern werden Informationen über den Programmfluss extrahiert, die das Brechen des Verfahrens (oder eines bestimmten Schlüssels) vereinfachen.
+
+Beispiel: durch das "Belauschen" des Busprotokolls (CPU-RAM) und genauer Kenntnis der Implementierung kann man die Schlüssellänge ermitteln.
+
+---
+
+## Seitenkanalangriff {.content-slide .pdf-slide}
+<br>
+
+**Beispiel:**
+
+- verschiedene Tasten einer Computertastatur oder eines Geldautomaten produzieren verschiedene Geräusche (für den Menschen nicht unterscheidbar) [1]
+- Aufzeichnen und nachträgliches Auswerten kann Texte, PINs, Passworte ermitteln (z. B. mittels neuronaler Netze)
+
+**Gegenmaßnahmen:**
+
+- Reduktion oder Elimination der Emission
+- Vereinheitlichung (z. B. von Cache-Zugriffen oder Ausführungszeiten)
+- Einsatz asynchroner CPUs
+
+---
+
+## Faktorisierungsverfahren {.content-slide .pdf-slide}
+<br>
+
+- Es ist unbekannt, zu welcher Komplexitätsklasse das Problem "Faktorisierung" gehört
+- Einfachstes Verfahren: Versuchsweise Division bis $\sqrt{n}$
+- Stand der Technik sind die folgenden schwierigen Algorithmen:
+  - Kettenbruchmethode
+  - Quadratisches Sieb (QS): nur für Zahlen < 110 Dezimalstellen
+  - Zahlkörpersieb (Number Field Sieve; NFS): effizientester bislang bekannter Algorithmus
+  - Shor-Algorithmus: kann in P faktorisieren, erfordert aber Quantencomputer
+- Literatur: [2]
+
+---
+
+## RSA Factoring Challenge {.content-slide .code-slide}
+<br>
+
+- Wettbewerb "Wer faktorisiert als erster definierte Zahlen großer Länge?"
+- 1991-2007
+- Ziel: Nachweis bzw. Falsifizierung der Sicherheit des RSA-Kryptosystems
+- Preisgeld: $\sum 635.100\ \$$
+
+**Beispiel: RSA-100**
+
+```{.text}
+= 15226050279225333605356183781326374297180681149613
+  80688657908494580122963258952897654000350692006139
+= 37975227936943673922808872755445627854565536638199
+* 40094690950920881030683735292761468389214899724061
+```
+
+---
+
+## RSA Factoring Challenge {.content-slide .table-slide}
+### Ausgewählte Ergebnisse
+<br>
+
+
+
+| Zahl | Bits | Dez.-Stellen | Lösungsjahr | CPU-Jahre |
+|---|---:|---:|---:|---:|
+| RSA-100 | 330 | 100 | 1991 | |
+| RSA-140 | 463 | 140 | 1999 | 8.9 |
+| RSA-155 | 512 | 155 | 1999 | 35.7 |
+| RSA-160 | 530 | 160 | 2003 | |
+| RSA-576 | 576 | 174 | 2003 | |
+| RSA-640 | 640 | 193 | 2005 | 55 |
+| RSA-200 | 663 | 200 | 2005 | 30 |
+| RSA-768 | 768 | 232 | 2010 | ≈ 1500 |
+
+---
+
+## Signieren und Verifizieren mittels RSA {.content-slide .pdf-slide}
+<br>
+
+#### Voraussetzung
+
+Bob hat ein Schlüsselpaar $(K_{B,priv}=d, K_{B,pub}=(e,n))$ erzeugt.
+
+#### Ablauf
+
+1. Bob übermittelt Alice seinen öffentlichen Schlüssel $K_{B,pub}$.
+2. Bob signiert die Nachricht $M$, d. h., er verschlüsselt diese mit $K_{B,priv}$. Es entsteht Bobs Signatur über $M$: $sig_B(M) = M^d \bmod n$.
+3. Bob übermittelt $M$ und $sig_B(M)$ an Alice.
+4. Alice entschlüsselt die Signatur mit Bobs öffentlichem Schlüssel
+
+$$
+M' := (sig_B(M))^e \bmod n = (M^d)^e \bmod n = M^{d \cdot e} \bmod n
+$$
+
+5. Alice vergleicht das Dechiffrat $M'$ mit der empfangenen Nachricht $M$. Gilt $M'=M$, dann ist die Signatur gültig, ansonsten ungültig.
+
+---
+
+## Signieren und Verifizieren mittels RSA {.content-slide .pdf-slide}
+<br>
+
+#### Fazit
+
+Zwei Merkmale werden durch eine gültige Signatur bewiesen:
+
+1. Nachricht $M$ kommt von Bob (da nur er den für die Erzeugung der Signatur nötigen privaten Schlüssel besitzt) ⇒ Authentizität
+2. Die Nachricht $M$ wurde nicht verändert. ⇒ Integrität
+
+Bei ungültiger Signatur kann i. A. nicht unterschieden werden, welche der beiden Fakten nicht stimmen.
+
+Des Weiteren kann Bob die geleistete Unterschrift nicht abstreiten ("non-repudiation".)
+
+---
+
+## Literaturverzeichnis I {.content-slide .pdf-slide}
+<br>
+
+[1] D. Asonov und R. Agrawal. "Keyboard acoustic emanations". In: *IEEE Symposium on Security and Privacy, 2004. Proceedings.* 2004. IEEE, 2. Mai 2004. doi: 10.1109/secpri.2004.1301311.
+
+[2] Richard A. Mollin. "A Brief History of Factoring and Primality Testing B. C. (Before Computers)". In: *Mathematics Magazine* 75.1 (Feb. 2002), S. 18-29. issn: 1930-0980. doi: 10.1080/0025570x.2002.11953094.
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}

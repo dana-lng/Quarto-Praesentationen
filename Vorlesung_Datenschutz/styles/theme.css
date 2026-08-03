@@ -55,9 +55,9 @@
   left: calc(var(--slide-pad-x) + clamp(130px, 6.4vw, 160px)) !important;
   right: clamp(72px, 8vw, 130px) !important;
   bottom: clamp(26px, 3.6vh, 42px) !important;
-  font-size: clamp(9px, min(1vw, 1.9vh), 11px);
+  font-size: clamp(9px, 1.1vh, 11px) !important;
   line-height: 1.1;
-  color: var(--htw-blue-dark);
+  color: gray;
 }
 
 .reveal .slide-number {
@@ -364,11 +364,19 @@ body.hide-footer .reveal .slide-number,
 }
 
 .reveal .slides section.pdf-slide img {
-  display: block;
-  width: min(42vw, 520px);
-  max-height: 32vh;
-  object-fit: cover;
-  margin: clamp(14px, 2vh, 22px) 0 0;
+  display: block !important;
+  width: min(100%, 760px);
+  max-width: calc(100vw - var(--slide-pad-x) - var(--slide-pad-x));
+  height: auto !important;
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 190px);
+  object-fit: contain !important;
+  margin: clamp(10px, 1.5vh, 18px) 0 clamp(8px, 1.2vh, 14px);
+}
+
+.reveal .slides section.pdf-slide p:has(> img) {
+  max-width: calc(100vw - var(--slide-pad-x) - var(--slide-pad-x));
+  margin: clamp(10px, 1.5vh, 18px) 0 clamp(8px, 1.2vh, 14px);
+  line-height: 0;
 }
 
 /* Codefolien */
