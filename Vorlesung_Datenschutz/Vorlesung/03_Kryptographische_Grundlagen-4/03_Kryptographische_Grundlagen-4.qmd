@@ -1,0 +1,319 @@
+---
+pagetitle: "Kryptographische Grundlagen"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Kryptographische Grundlagen"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+## Kryptographische<br>Grundlagen {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide .agenda-slide}
+<br>
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Schlüssel und Kryptosysteme</span></li>
+<li class="agenda-item"><strong>02</strong><span>Verschlüsselungsverfahren</span></li>
+<li class="agenda-item"><strong>03</strong><span>Kerckhoffs’ Prinzip</span></li>
+<li class="agenda-item"><strong>04</strong><span>Krypt(o)analyse und Angriffe</span></li>
+<li class="agenda-item"><strong>05</strong><span>XOR-Verschlüsselung</span></li>
+<li class="agenda-item"><strong>06</strong><span>One-Time-Pads</span></li>
+</ul>
+
+---
+
+## Schlüssel {.content-slide .pdf-slide}
+<br>
+
+- Ver- und Entschlüsselung erfolgt bei modernen Algorithmen mit sogenannten Schlüsseln (k, key).
+  - Schlüssel haben in der Regel einen sehr großen Wertebereich, um gegen Brute-Force-Angriffe zu schützen
+  - Schlüssel sind für die Ver- und Entschlüsselung notwendig
+- Es gibt Verfahren, die den gleichen Schlüssel für Ver- und Entschlüsselung verwenden und solche, die unterschiedliche Schlüssel verwenden.     
+⇒ Sicherheit der Verfahren hängt maßgeblich von den Schlüsseln ab.
+
+---
+
+## Zwei Kategorien von Verschlüsselungsverfahren {.content-slide .two-column-slide}
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+#### Symmetrische Verfahren
+<br>
+
+- Chifrier- und Dechiffrierschlüssel meist identisch
+- auch bekannt als „secret key“ oder „private key“ Verfahren
+- Schlüssel muss zwischen Sender und Empfänger ausgetauscht werden
+- Schlüssel muss unbedingt geheim bleiben
+- blockbasierte und strombasierte Verfahren
+:::
+
+::: {.column width="50%"}
+#### Asymmetrische Verfahren
+<br>
+
+- zwei verschiedene Schlüssel
+- Chiffrierschlüssel ist öffentlich (public key)
+- Dechiffrierschlüssel ist geheim (private key)
+- jeder kann eine Nachricht verschlüsseln
+- nur der Besitzer des Dechiffrierschlüssels kann die Nachricht entschlüsseln
+:::
+::::
+
+---
+
+## Kryptosysteme {.content-slide .low-text-slide}
+<br>
+
+Ein Kryptosystem ist ein Verschlüsselungsalgorithmus sowie alle möglichen Klartexte, Chiffren und Schlüssel.
+
+---
+
+## Kerckhoffs’ Prinzip {.content-slide .pdf-slide}
+<br>
+
+Anforderungen an ein sicheres Kryptosystem [1]:
+
+- Das System muss im Wesentlichen, am besten mathematisch, unentschlüsselbar sein.
+- Das System darf keine Geheimhaltung erfordern und kann durch den Gegner gestohlen werden.
+- Es muss leicht übermittelbar sein und man muss sich die Schlüssel ohne schriftliche Aufzeichnung merken können, Schlüssel müssen leicht austauschbar sein.
+- Das System sollte mit telegraphischer Kommunikation kompatibel sein.
+- Das System muss transportabel sein und die Bedienung darf nicht mehr als eine Person erfordern.
+- Das System muss einfach anwendbar sein […].
+
+---
+
+## Blockbasierte und strombasierte Verschlüsselung {.content-slide .two-column-slide}
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+#### Blockbasierte Verschlüsselung
+<br>
+
+- Klartext wird in Blöcke gleicher Länge aufgeteilt
+- ggf. mit einem Padding-Schema aufgefüllt (z. B. PKCS#7)
+- jeder Block wird einzeln verschlüsselt
+- typische Blockgrößen: 64 Bit (DES), 128 Bit (AES)
+- die meisten modernen Verfahren
+:::
+
+::: {.column width="50%"}
+#### Strombasierte Verschlüsselung
+<br>
+
+- Strom von Bits, Bytes oder Zeichen
+- Verschlüsselung erfolgt bit-, byte- oder zeichenweise
+- Vigenère-Verfahren, XOR-Verfahren, RC4, A5/1 (GSM)
+- Vorteil: es muss nicht auf Komplettierung des ersten Blockes gewartet werden (niedrigere Latenz)
+:::
+::::
+
+---
+
+## Beschränkte Algorithmen {.content-slide .pdf-slide}
+<br>
+
+- nicht publiziert (geheimgehalten)
+- der breiten wissenschaftlichen Diskussion entzogen (kein Peer Review)
+- beziehen ihre „Sicherheit“ aus der Geheimhaltung des Algorithmus
+- ein Algorithmus kann immer aus dem Binärabbild disassembliert werden
+- auch „Security by Obscurity“
+- häufig inhärent unsicher (viele Beispiele)
+- Beispiel: RC4 (z. B. eingesetzt beim WPA-Vorgänger WEP), Stromchiffre, die 7 Jahre lang geheim war, bis 1994 jemand anonym den Quelltext publizierte
+
+*„Die besten Algorithmen sind diejenigen, die veröffentlicht, jahrelang von den weltbesten Kryptographen angegriffen und bislang nicht geknackt wurden.“*
+
+---
+
+## Krypt(o)analyse {.content-slide .pdf-slide}
+<br>
+
+Voraussetzung:
+
+- Gegner hat vollständigen Zugang zur verschlüsselten Nachricht
+- Gegner kennt das Verschlüsselungsverfahren
+
+**Ziel:** Ermittlung des Klartextes ohne Kenntnis des Schlüssels oder Ermittlung des Schlüssels
+
+Algorithmen, deren Sicherheit von der Geheimhaltung des Algorithmus abhängt, sind beschränkt und sollten nicht eingesetzt werden.
+
+Versuch der Kryptoanalyse wird **Angriff** genannt.
+
+---
+
+## Angriffe {.content-slide .pdf-slide}
+### Ciphertext-Only-Angriff
+<br>
+
+Gegeben:
+
+- Menge von chiffrierten Nachrichten
+- C<sub>1</sub> = E<sub>k</sub>(P<sub>1</sub>), C<sub>2</sub> = E<sub>k</sub>(P<sub>2</sub>), …, C<sub>i</sub> = E<sub>k</sub>(P<sub>i</sub>)
+- nichts weiter
+
+Gesucht:
+
+- P<sub>1</sub>, P<sub>2</sub>, …, P<sub>i</sub> und k
+- oder ein Algorithmus um P<sub>i+1</sub> aus C<sub>i+1</sub> = E<sub>k</sub>(P<sub>i+1</sub>) zu berechnen
+
+---
+
+## Angriffe {.content-slide .pdf-slide}
+### Known-Plaintext-Angriff
+<br>
+
+Gegeben:
+
+- Menge von Klartexten: P<sub>1</sub>, P<sub>2</sub>, …, P<sub>i</sub>
+- Menge von chiffrierten Nachrichten: C<sub>1</sub> = E<sub>k</sub>(P<sub>1</sub>), C<sub>2</sub> = E<sub>k</sub>(P<sub>2</sub>), …, C<sub>i</sub> = E<sub>k</sub>(P<sub>i</sub>)
+
+Gesucht:
+
+- k
+- oder ein Algorithmus um P<sub>i+1</sub> aus C<sub>i+1</sub> = E<sub>k</sub>(P<sub>i+1</sub>) zu berechnen
+
+---
+
+## Angriffe {.content-slide .pdf-slide}
+### Chosen-Plaintext-Angriff
+<br>
+
+Gegeben:
+
+- Menge von Klartexten: P<sub>1</sub>, P<sub>2</sub>, …, P<sub>i</sub>
+- Menge von chiffrierten Nachrichten: C<sub>1</sub> = E<sub>k</sub>(P<sub>1</sub>), C<sub>2</sub> = E<sub>k</sub>(P<sub>2</sub>), …, C<sub>i</sub> = E<sub>k</sub>(P<sub>i</sub>)
+- Möglichkeit, Klartexte zu verschlüsseln
+
+Gesucht:
+
+- k
+- oder ein Algorithmus um P<sub>i+1</sub> aus C<sub>i+1</sub> = E<sub>k</sub>(P<sub>i+1</sub>) zu berechnen
+
+Kann der Analytiker den zu verschlüsselnden Klartext in Abhängigkeit vorangehender Verschlüsselungen variieren, so spricht man von Adaptiver Chosen-Plaintext-Angriff.
+
+---
+
+## Angriffe {.content-slide .pdf-slide}
+### Gummischlauch-Kryptoanalyse
+<br>
+
+Der Analytiker bedroht, erpresst oder quält den Schlüsselbesitzer solange, bis dieser den Schlüssel verrät.
+
+„a process for key discovery that he describes as ‚can take a surprisingly short time and is quite computationally inexpensive‘.“
+
+⇒ so „gewonnene“ Erkenntnisse sind zumindest in Deutschland nicht gerichtsverwertbar („Früchte des vergifteten Baumes“).
+
+---
+
+## Schlechtes Verfahren: XOR-Verschlüsselung I {.content-slide .table-slide}
+<br>
+
+- symmetrisches Verfahren
+- Klartext wird bitweise mit einem Schlüssel bitweise verknüpft (XOR)
+- mit C = P ⊕ k
+
+| P | k | P ⊕ k |
+|---:|---:|---:|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+- Schlüssel wird immer wieder von vorn gelesen
+- Entschlüsselung mit gleichem Schlüssel, da P ⊕ k ⊕ k = P ⊕ 0 = P.
+- schnell, aber sehr unsicher
+
+---
+
+## Schlechtes Verfahren: XOR-Verschlüsselung II {.content-slide .pdf-slide}
+<br>
+
+- Problem: Known-Plaintext-Angriff      
+
+**Bewertung:**
+
+*„An XOR might keep your kid sister from reading your files, but it won’t stop a cryptanalyst for more than a few minutes.“*
+
+(Bruce Schneier: Applied Cryptography)
+
+---
+
+## Eine nützliche Eigenschaft von XOR {.content-slide .table-slide}
+<br>
+
+::: {.callout-note title="Satz 1.1"}
+Es sei A eine (beliebig verteilte) Zufallsvariable<sup>a</sup> über {0, 1}<sup>n</sup> und X eine gleichverteilte Zufallsvariable über {0, 1}<sup>n</sup>. Dann ist Y = A ⊕ X eine gleichverteilte Zufallsvariable über {0, 1}<sup>n</sup>.
+
+<sup>a</sup> {0, 1}<sup>n</sup> bezeichnet die Menge aller n-Bit-Wörter.
+:::
+
+::: {.callout-note title="Beweisidee"}
+Auftrittswahrscheinlichkeiten der Werte für A und X bei n = 1:
+
+| A | P(A) | X | P(X)<sup>a</sup> |
+|---:|---:|---:|---:|
+| 0 | p<sub>0</sub> | 0 | 0.5 |
+| 1 | p<sub>1</sub> | 1 | 0.5 |
+
+⇒ P(Y = 0) = p<sub>0</sub> · 0.5 + p<sub>1</sub> · 0.5 = 0.5  
+⇒ P(Y = 1) = 1 − P(Y = 0) = 0.5
+
+<sup>a</sup> da X gleichverteilt
+:::
+
+---
+
+## One-Time-Pads {.content-slide .pdf-slide}
+### Eigenschaften
+<br>
+
+- Schlüssel besteht aus zufälligen Zeichen und hat gleiche Länge wie Klartext
+- Verschlüsselung: jedes Zeichen des Klartextes wird mit dem entsprechenden Zeichen des Schlüssels verknüpft (XOR)
+- Entschlüsselung: wie Verschlüsselung mit gleichem Schlüssel
+- Symmetrisches Verfahren
+- Schlüssel/Keystream darf nur einmal verwendet werden; jedes Zeichen des Schlüssels darf nur ein einziges Mal verwendet werden
+- Informationstheoretisch sicher (Shannon), sofern der Schlüssel echt zufällig ist, die Länge der Nachricht hat und nie wiederverwendet wird
+- Werden diese Eigenschaften eingehalten, so ist eine Kryptoanalyse unmöglich
+
+---
+
+## One-Time-Pads {.content-slide .pdf-slide}
+### Angriffe
+<br>
+
+- Abfangen des Schlüssels
+- Schlüssel nicht zufällig (z.B. Pseudozufallszahlengenerator)
+- Schlüssel wird mehrfach verwendet
+
+---
+
+## Literaturverzeichnis I {.content-slide .pdf-slide}
+<br>
+
+[1] Auguste Kerckhoffs. La cryptographie militaire, Ou, Des chiffres usites en temps de guerre: Avec Un Nouveau procede de dechiffrement applicable aux Systemes a double cle. en. Charleston, SC: Nabu Press, Feb. 2014.
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}

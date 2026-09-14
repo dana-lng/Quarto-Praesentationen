@@ -68,6 +68,36 @@ Faustregeln zur Wahl:
 - Enthält ein zentrales Bild/Diagramm ohne viel Text → `image-slide`.
 - Bild **und** Code untereinander → `image-slide code-slide` kombinieren.
 
+### Zwischenüberschriften innerhalb von Folien
+
+Teilüberschriften innerhalb einer Folie (z. B. „Beispiele", „Anwendung",
+„Zweck", „Fazit", „Einwegfunktion mit Hintertür") werden als Markdown-Überschrift
+der Ebene 4 geschrieben:
+
+```markdown
+#### Beispiele
+```
+
+Nicht als fettgedruckter Absatz schreiben:
+
+```markdown
+**Beispiele:**
+```
+
+Nach dem Überschriftenblock jeder Folie kommt eine eigene Zeile mit `<br>`.
+Wenn eine Folie nur eine `##`-Überschrift hat, steht `<br>` direkt darunter.
+Wenn zusätzlich `###`- oder `####`-Überschriften folgen, steht `<br>` erst nach
+der letzten Überschrift und vor dem eigentlichen Inhalt:
+
+```markdown
+## Folientitel {.content-slide .pdf-slide}
+### Untertitel
+#### Teilüberschrift
+<br>
+
+- Inhalt der Folie
+```
+
 ---
 
 ## 3. Titelfolie (Muster)
@@ -348,6 +378,9 @@ einbinden.
    (Abschnitt 9).
 8. Kein `\n` als Abstandshalter, keine Inline-Styles außer der `title-image`.
 9. Kein Footer/Logo/Datum manuell eingefügt.
-10. Keine doppelten Folien (Beamer-Overlays, die als mehrere identische Seiten
+10. Teilüberschriften innerhalb von Folien mit `####` markieren, nicht als
+    `**fettgedruckten Absatz:**`.
+11. Nach jedem Überschriftenblock einer Folie eine eigene `<br>`-Zeile setzen.
+12. Keine doppelten Folien (Beamer-Overlays, die als mehrere identische Seiten
     exportiert wurden, zu **einer** Folie zusammenfassen — ggf. mit
     `code-line-numbers`/`.fragment` statt Kopien).
