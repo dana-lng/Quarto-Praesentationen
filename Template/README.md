@@ -37,9 +37,18 @@ Template/
 
 `slides.html` ist die gerenderte HTML-Ausgabe von `slides.qmd`. Diese Datei kann direkt im Browser geöffnet werden.
 
+`ppt-vorlage.qmd` ist die aus der PowerPoint-Datei `Präsentationsvorlage.ppt`
+nach Quarto übertragene HTW-Dresden-Präsentationsvorlage. Sie enthält die
+Layout-Beispiele aus der PPT-Vorlage als bearbeitbare Quarto-Folien.
+
+`ppt-vorlage.html` ist die gerenderte HTML-Ausgabe von `ppt-vorlage.qmd`.
+
 `styles/theme.css` ist die zentrale CSS-Datei. Hier stehen Farben, Schriftgrößen, Footer, Logo, Titelfolie, Agenda, Bildfolien, Tabellen, Codefolien und responsive Anpassungen.
 
 `images/` enthält allgemeine Beispielbilder und gemeinsame Bilder für das Design, zum Beispiel das Titelbild.
+
+`images/ppt-vorlage/` enthält die aus der PowerPoint-Vorlage übernommenen Bilder
+und Screenshots, die von `ppt-vorlage.qmd` verwendet werden.
 
 `logos/` enthält die HTW-Logos für Titelfolie, Inhaltsfolien und Footer.
 
@@ -61,10 +70,22 @@ Wenn `slides.qmd` geändert wurde, muss die HTML-Datei neu gerendert werden:
 quarto render Template\slides.qmd
 ```
 
+Die aus PowerPoint übertragene Vorlage wird so gerendert:
+
+```powershell
+quarto render Template\ppt-vorlage.qmd
+```
+
 Für eine Live-Vorschau kann Quarto Preview genutzt werden:
 
 ```powershell
 quarto preview Template\slides.qmd
+```
+
+Oder für die PowerPoint-Vorlage:
+
+```powershell
+quarto preview Template\ppt-vorlage.qmd
 ```
 
 ## Wichtige Folienklassen

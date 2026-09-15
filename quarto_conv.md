@@ -68,11 +68,18 @@ Faustregeln zur Wahl:
 - Enthält ein zentrales Bild/Diagramm ohne viel Text → `image-slide`.
 - Bild **und** Code untereinander → `image-slide code-slide` kombinieren.
 
-### Zwischenüberschriften innerhalb von Folien
+### Überschriften innerhalb von Folien
 
-Teilüberschriften innerhalb einer Folie (z. B. „Beispiele", „Anwendung",
-„Zweck", „Fazit", „Einwegfunktion mit Hintertür") werden als Markdown-Überschrift
-der Ebene 4 geschrieben:
+Die Überschriftenebenen richten sich nach der Position in der PDF:
+
+- `##` = große Folienüberschrift im orangefarbenen Kopfbereich der PDF.
+- `###` = zweite, kleinere Überschrift im orangefarbenen Kopfbereich der PDF,
+  direkt unter der großen Folienüberschrift.
+- `####` = Zwischenüberschrift im weißen Hauptteil der PDF-Folie.
+
+Zwischenüberschriften im Hauptteil einer Folie (z. B. „Beispiele",
+„Anwendung", „Zweck", „Fazit", „Einwegfunktion mit Hintertür") werden also als
+Markdown-Überschrift der Ebene 4 geschrieben:
 
 ```markdown
 #### Beispiele
@@ -84,15 +91,30 @@ Nicht als fettgedruckter Absatz schreiben:
 **Beispiele:**
 ```
 
-Nach dem Überschriftenblock jeder Folie kommt eine eigene Zeile mit `<br>`.
-Wenn eine Folie nur eine `##`-Überschrift hat, steht `<br>` direkt darunter.
-Wenn zusätzlich `###`- oder `####`-Überschriften folgen, steht `<br>` erst nach
-der letzten Überschrift und vor dem eigentlichen Inhalt:
+Nach Überschriften kommt eine eigene Zeile mit `<br>`, damit der Abstand
+konsistent bleibt. Wenn eine Folie nur eine `##`-Überschrift hat, steht `<br>`
+direkt darunter. Wenn eine zweite Kopf-Überschrift mit `###` folgt, steht `<br>`
+unter dieser `###`-Zeile. Wenn im Hauptteil später eine `####`-Überschrift folgt,
+bekommt auch diese `####`-Zeile direkt darunter ein eigenes `<br>`.
+
+Beispiel mit zweiter kleiner Überschrift im orangefarbenen Kopfbereich:
 
 ```markdown
 ## Folientitel {.content-slide .pdf-slide}
-### Untertitel
-#### Teilüberschrift
+### Untertitel aus dem orangefarbenen Kopfbereich
+<br>
+
+- Inhalt der Folie
+```
+
+Beispiel mit zusätzlicher Zwischenüberschrift im weißen Hauptteil:
+
+```markdown
+## Folientitel {.content-slide .pdf-slide}
+### Untertitel aus dem orangefarbenen Kopfbereich
+<br>
+
+#### Teilüberschrift im weißen Hauptteil
 <br>
 
 - Inhalt der Folie
@@ -252,7 +274,9 @@ Kurz: **Jedes `<script>` außerhalb eines Codeblocks → in Backticks.**
 
 ## 7. Callout-Boxen (farbige Problem/Lösung-Kästen)
 
-LaTeX-Beamer-Blöcke (farbige Titelbalken + heller Body) werden zu Quarto-Callouts:
+LaTeX-Beamer-Blöcke (farbige Titelbalken + heller Body) werden zu Quarto-Callouts.
+Solche PDF-Folien **nicht** als lose Überschrift plus Bulletliste nachbauen,
+sondern die Boxstruktur erhalten:
 
 ```markdown
 ::: {.callout-important title="Problem"}
@@ -271,6 +295,18 @@ Farbzuordnung:
 - `callout-note` → **blau** (Hinweis, neutrale Info, „inhaltsbasiert/zeitbasiert")
 - `callout-warning` → orange, `callout-caution` → gelb (seltener)
 
+Beispiel für Schutzziel-Folien:
+
+```markdown
+::: {.callout-important title="Vertraulichkeit kann verletzt werden durch:"}
+- Beispielpunkt
+:::
+
+::: {.callout-note title="Schutz möglich durch:"}
+- Beispielpunkt
+:::
+```
+
 **Falle:** Jeder Callout muss mit einem eigenen `:::` **geschlossen** werden.
 Ein fehlendes `:::` verschluckt den folgenden `---`-Trenner und zerschießt die
 Folienstruktur. Vor jedem `---` prüfen, ob alle offenen `:::` geschlossen sind.
@@ -283,8 +319,16 @@ dass Blöcke und der Callout jeweils sauber geschlossen sind.
 ## 8. Tabellen
 
 Normale Markdown-Tabellen verwenden, Folie als `table-slide` markieren. Der Stil
-(blaue Kopfzeile, Padding, Scroll) kommt global aus dem Theme — **keine**
-Inline-Styles pro Tabelle.
+(türkise Kopfzeile, hellblauer Tabellenkörper, weiße Zelllinien, responsive
+Schriftgröße und Padding) kommt global aus dem Theme — **keine** Inline-Styles pro
+Tabelle.
+
+Für den zweiten PowerPoint-Tabellenstil zusätzlich `table-style-2` setzen. Dieser
+Stil hat eine graue Kopfzeile, weißen Tabellenkörper und nur horizontale Linien:
+
+```markdown
+## Vergleich {.table-slide .table-style-2}
+```
 
 ```markdown
 ## CSP-Direktiven {.content-slide .table-slide}
@@ -378,9 +422,10 @@ einbinden.
    (Abschnitt 9).
 8. Kein `\n` als Abstandshalter, keine Inline-Styles außer der `title-image`.
 9. Kein Footer/Logo/Datum manuell eingefügt.
-10. Teilüberschriften innerhalb von Folien mit `####` markieren, nicht als
+10. Zweite kleine Überschriften im orangefarbenen PDF-Kopf mit `###` markieren.
+11. Zwischenüberschriften im weißen Hauptteil mit `####` markieren, nicht als
     `**fettgedruckten Absatz:**`.
-11. Nach jedem Überschriftenblock einer Folie eine eigene `<br>`-Zeile setzen.
-12. Keine doppelten Folien (Beamer-Overlays, die als mehrere identische Seiten
+12. Nach jedem Überschriftenblock einer Folie eine eigene `<br>`-Zeile setzen.
+13. Keine doppelten Folien (Beamer-Overlays, die als mehrere identische Seiten
     exportiert wurden, zu **einer** Folie zusammenfassen — ggf. mit
     `code-line-numbers`/`.fragment` statt Kopien).

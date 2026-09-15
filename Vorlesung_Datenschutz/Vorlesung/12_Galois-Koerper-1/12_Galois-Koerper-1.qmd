@@ -84,9 +84,8 @@ $$
 ---
 
 ## Einleitung zu endlichen Körpern {.image-slide}
-
-#### Grundlegende algebraische Strukturen
-
+### Grundlegende algebraische Strukturen
+<br>
 
 ![](images/galois_structures_group.jpg)
 
@@ -114,8 +113,8 @@ Ein Ring hat die folgenden Eigenschaften:
 ---
 
 ## Einleitung zu endlichen Körpern {.image-slide}
-
-#### Grundlegende algebraische Strukturen
+### Grundlegende algebraische Strukturen
+<br>
 
 ![](images/galois_structures_ring.jpg)
 
@@ -141,8 +140,8 @@ Ein Körper ist eine Menge von Zahlen, in denen addiert, subtrahiert, multiplizi
 ---
 
 ## Einleitung zu endlichen Körpern {.image-slide}
-
-#### Grundlegende algebraische Strukturen
+### Grundlegende algebraische Strukturen
+<br>
 
 ![](images/galois_structures_field.jpg)
 

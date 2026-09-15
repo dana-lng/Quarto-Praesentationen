@@ -146,7 +146,7 @@ body.hide-footer .reveal .slide-number,
   left: clamp(48px, 7.5vh, 72px);
   width: clamp(300px, 31vw, 400px);
   height: clamp(240px, 19vh, 290px);
-  background: url("../logos/htw-logo-large.jpg") left top / contain no-repeat;
+  background: url("../logos/htw-logo-transparent.png") left top / contain no-repeat;
   z-index: 3;
 }
 
@@ -209,7 +209,7 @@ body.hide-footer .reveal .slide-number,
   max-width: min(70vw, 920px);
   color: #000000;
   margin: 0 0 clamp(16px, 2.2vh, 26px);
-  font-size: clamp(20px, 1.6vw, 29px);
+  font-size: clamp(18px, 1.6vw, 24px);
   line-height: 1.28;
   font-weight: 400;
 }
@@ -329,7 +329,7 @@ body.hide-footer .reveal .slide-number,
 }
 
 .reveal .slides section.pdf-slide h4, .reveal .slides section.table-slide h4 {
-  font-size: clamp(20px, 1.7vw, 25px);
+  font-size: clamp(24px, 1.7vw, 28px);
   margin-top: clamp(20px, 1.6vh, 30px);
   margin-bottom: clamp(10px, 1.6vh, 12px);
 }
@@ -466,6 +466,251 @@ body.hide-footer .reveal .slide-number,
 .summary li {
   margin-bottom: 16px;
   font-size: 28px;
+}
+
+/* PowerPoint-Vorlage als Quarto-Layouts */
+.reveal .slides section.ppt-color-title {
+  background: var(--ppt-bg, #86d5d7);
+}
+
+.reveal .slides section.title-slide.ppt-color-title::before {
+  inset: 0;
+  width: 100%;
+  background: rgb(255 255 255 / 18%);
+  clip-path: polygon(80% 0, 100% 0, 100% 100%, 38% 100%);
+}
+
+.reveal .slides section.title-slide.ppt-color-title h2,
+.reveal .slides section.title-slide.ppt-color-title p {
+  color: #111;
+}
+
+.reveal .slides section.title-slide.ppt-corner-title {
+  background: #fff;
+}
+
+.reveal .slides section.title-slide.ppt-corner-title::before {
+  inset: auto 0 0 auto;
+  width: 60vw;
+  height: 100vh;
+  background: var(--ppt-bg, #ff6600);
+  clip-path: polygon(80% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.reveal .slides section.ppt-section-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--ppt-bg, #d7df00);
+  color: #111;
+}
+
+.reveal .slides section.ppt-section-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 60vw;
+  background: rgb(255 255 255 / 14%);
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+.reveal .slides section.ppt-section-slide h2,
+.reveal .slides section.ppt-section-slide p {
+  position: relative;
+  z-index: 1;
+  max-width: min(46vw, 680px);
+}
+
+.reveal .slides section.ppt-section-image-slide {
+  background: var(--ppt-bg, #ffd800);
+}
+
+.reveal .slides section.ppt-section-image-slide p:has(> img),
+.reveal .slides section.ppt-section-image-slide .ppt-section-image-wrap {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 60vw;
+  height: 100vh;
+  margin: 0;
+  line-height: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.reveal .slides section.ppt-section-image-slide .ppt-section-image-wrap p {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0 !important;
+  line-height: 0;
+}
+
+.reveal .slides section.ppt-section-image-slide p:has(> img) img,
+.reveal .slides section.ppt-section-image-slide .ppt-section-image-wrap img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+.reveal .slides section.ppt-section-image-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 58vw;
+  background: var(--ppt-bg, #ffd800);
+  clip-path: polygon(0 0, 100% 0, 68% 100%, 0 100%);
+  z-index: 1;
+}
+
+.reveal .slides section.ppt-section-image-slide h2 {
+  position: relative;
+  z-index: 2;
+  max-width: min(42vw, 560px);
+}
+
+.reveal .slides section.ppt-quote-slide {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  background: #c9ccd6;
+}
+
+.reveal .slides section.ppt-quote-slide blockquote {
+  max-width: min(62vw, 780px);
+  margin: 0;
+  border-left: 0;
+  padding: 0;
+  color: #222;
+  font-size: clamp(26px, min(2.7vw, 5.3vh), 46px);
+  line-height: 1.08;
+}
+
+.reveal .slides section.ppt-quote-slide cite {
+  display: block;
+  margin-top: 18px;
+  font-size: var(--slide-small-size);
+  font-style: normal;
+}
+
+.ppt-caption {
+  margin-top: 6px !important;
+  color: #777;
+  font-size: var(--slide-small-size) !important;
+}
+
+.ppt-image-grid {
+  display: grid;
+  gap: clamp(10px, 1.6vw, 18px);
+  width: 100%;
+}
+
+.ppt-image-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ppt-image-grid.four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ppt-image-grid img {
+  width: 100%;
+  height: clamp(180px, 30vh, 310px);
+  object-fit: cover;
+}
+
+.reveal .slides section.ppt-full-image-slide {
+  padding: 0 !important;
+  color: #fff;
+}
+
+.reveal .slides section.ppt-full-image-slide p:has(> img),
+.reveal .slides section.ppt-full-image-slide .ppt-full-image-wrap {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  line-height: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.reveal .slides section.ppt-full-image-slide .ppt-full-image-wrap p {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0 !important;
+  line-height: 0;
+}
+
+.reveal .slides section.ppt-full-image-slide p:has(> img) img,
+.reveal .slides section.ppt-full-image-slide .ppt-full-image-wrap img {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+}
+
+.reveal .slides section.ppt-full-image-slide h2 {
+  position: absolute;
+  z-index: 2;
+  top: var(--slide-pad-top);
+  left: var(--slide-pad-x);
+  max-width: min(50vw, 720px);
+  color: #fff;
+}
+
+.reveal .slides section.chart-slide {
+  overflow: hidden;
+}
+
+.reveal .slides section.chart-slide .ppt-chart {
+  width: min(100%, 1060px);
+  max-height: calc(100vh - var(--slide-pad-top) - var(--slide-pad-bottom) - 120px);
+  margin: 0 auto;
+}
+
+.ppt-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ppt-chart text {
+  font-family: inherit;
+  fill: var(--htw-blue-dark);
+  font-size: 20px;
+}
+
+.ppt-chart-legend text,
+.ppt-chart-labels text {
+  font-size: 18px;
+}
+
+.ppt-chart-grid line {
+  stroke: #e1e6ec;
+  stroke-width: 2;
+}
+
+.ppt-chart-axis {
+  stroke: #c4ccd6;
+  stroke-width: 3;
+}
+
+.ppt-donut-chart {
+  max-width: min(100%, 560px);
+  margin: 0 auto;
+}
+
+.ppt-video-placeholder {
+  display: grid;
+  place-items: center;
+  height: clamp(260px, 48vh, 430px);
+  border: 2px dashed #b8c0ca;
+  color: #8a95a3;
+  font-size: clamp(34px, min(4vw, 7vh), 72px);
 }
 
 /* Tabellen */
@@ -800,3 +1045,100 @@ body.hide-footer .reveal .slide-number,
 .c-name   { color: #d19a10; }   /* gelb/ocker */
 .c-value  { color: #c0392b; }   /* rot */
 .c-plain  { color: #333; }
+
+/* Tabellen im Stil der HTW-PowerPoint-Vorlage.
+   Dieser Block steht am Ende, damit er die aelteren Tabellenregeln ueberschreibt. */
+.reveal .slides section.table-slide {
+  overflow: auto !important;
+}
+
+.reveal table {
+  display: table !important;
+  width: auto;
+  max-width: 100%;
+  max-height: none;
+  margin: clamp(18px, 3vh, 34px) 0 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: visible;
+  color: #001f3f;
+  font-size: clamp(13px, min(0.95vw, 1.9vh), 18px);
+  line-height: 1.25;
+}
+
+.reveal table th,
+.reveal table td {
+  border: 1.5px solid #ffffff;
+  padding: clamp(4px, 0.65vh, 8px) clamp(7px, 0.75vw, 12px);
+  text-align: left;
+  vertical-align: top;
+}
+
+.reveal table th {
+  background: #8ed8df;
+  color: #001f3f;
+  font-size: clamp(13px, min(0.95vw, 1.9vh), 18px);
+  font-weight: 700;
+}
+
+.reveal table td {
+  background: #d6eef1;
+  font-weight: 400;
+}
+
+.reveal table tbody tr:nth-child(even) td {
+  background: #cbe8ec;
+}
+
+.reveal table code {
+  font-size: 0.9em;
+  background: transparent;
+}
+
+/* Zweiter Tabellenstil: graue Kopfzeile, weisser Tabellenkoerper und
+   horizontale Linien wie in der PowerPoint-Vorlage. */
+.reveal .slides section.table-style-2 table {
+  color: #111111;
+}
+
+.reveal .slides section.table-style-2 table th,
+.reveal .slides section.table-style-2 table td {
+  border: 0;
+  border-bottom: 1px solid #222222;
+  padding: clamp(3px, 0.45vh, 6px) clamp(6px, 0.6vw, 10px);
+  color: #111111;
+}
+
+.reveal .slides section.table-style-2 table th {
+  background: #b8bdcd;
+  border-right: 1.5px solid #ffffff;
+  font-weight: 700;
+}
+
+.reveal .slides section.table-style-2 table th:last-child {
+  border-right: 0;
+}
+
+.reveal .slides section.table-style-2 table td,
+.reveal .slides section.table-style-2 table tbody tr:nth-child(even) td {
+  background: #ffffff;
+}
+
+.reveal .slides section.table-style-2 table tbody tr:last-child td {
+  border-bottom: 1.5px solid #222222;
+}
+
+@media (max-width: 1280px), (max-height: 760px) {
+  .reveal table {
+    font-size: clamp(11px, min(0.9vw, 1.65vh), 15px);
+  }
+
+  .reveal table th {
+    font-size: clamp(11px, min(0.9vw, 1.65vh), 15px);
+  }
+
+  .reveal table th,
+  .reveal table td {
+    padding: clamp(3px, 0.45vh, 6px) clamp(5px, 0.6vw, 9px);
+  }
+}

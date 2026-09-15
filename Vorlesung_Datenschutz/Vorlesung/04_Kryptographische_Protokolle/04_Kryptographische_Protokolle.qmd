@@ -35,7 +35,7 @@ HTW Dresden
 ---
 
 ## Kryptografische Protokolle {.content-slide .pdf-slide}
-#### Begriff des Protokolls
+### Begriff des Protokolls
 <br>
 
 - beschreibt den dynamischen Aspekt einer Relation kommunizierender Komponenten

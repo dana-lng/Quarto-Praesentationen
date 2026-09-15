@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/tabby.min.js"></script>
+<script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/popper.min.js"></script>
+<script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/quarto-html/quarto-syntax-highlighting-da78e890a27eeff987ae7706034fb934.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <title>Einführung in die Informationssicherheit</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="../../styles/theme.css">
+  <link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="einführung-in-die-informationssicherheit" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Einführung in die<br>Informationssicherheit</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+15.09.2026</p>
+</section>
+<section id="agenda" class="slide level2 content-slide agenda-slide">
+<h2>Agenda</h2>
+<p><br></p>
+<ul class="agenda">
+<li class="agenda-item">
+<strong>01</strong><span>Motivation</span>
+</li>
+<li class="agenda-item">
+<strong>02</strong><span>Schutzziele</span>
+</li>
+<li class="agenda-item">
+<strong>03</strong><span>Begriffsdefinitionen und Gesetze</span>
+</li>
+<li class="agenda-item">
+<strong>04</strong><span>Literatur</span>
+</li>
+</ul>
+</section>
+<section id="vorkommnisse-der-letzten-zeit-i" class="slide level2 content-slide table-slide">
+<h2>Vorkommnisse der letzten Zeit I</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Angriff oder Ziel</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MOVEit</td>
+<td>Daten bei 2.600 Firmen und über 83 Millionen Einzelpersonen “herausgetragen”. [1]</td>
+</tr>
+<tr class="even">
+<td>UK Electoral Commission</td>
+<td>40 Millionen Wählerdaten abgegriffen. [2]</td>
+</tr>
+<tr class="odd">
+<td>Police Service of Northern Ireland</td>
+<td>Versehentlich über 10.000 Datensätze über Mitarbeiter herausgegeben, auch solche, die undercover waren. [3]</td>
+</tr>
+<tr class="even">
+<td>DarkBeam</td>
+<td>3,8 Milliarden Datensätze einer Firma, die auf “Digital Risk” spezialisiert ist, offen im Netz. [4]</td>
+</tr>
+<tr class="odd">
+<td>Indian Council of Medical Research</td>
+<td>815 Millionen Datensätze über COVID-19-Tests. [5]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vorkommnisse-der-letzten-zeit-ii" class="slide level2 content-slide table-slide">
+<h2>Vorkommnisse der letzten Zeit II</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Angriff oder Ziel</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>23andMe</td>
+<td>20 Millionen Datensätze mit genetischen Informationen gestohlen. [6]</td>
+</tr>
+<tr class="even">
+<td>Rapid Reset DDoS attacks</td>
+<td>DDoS-Angriff mit 398 Millionen Anfragen pro Sekunde im Vergleich zum bisherigen Rekord mit 46 Millionen. [7]</td>
+</tr>
+<tr class="odd">
+<td>T-Mobile</td>
+<td>37 Millionen Datensätze, 800-mal Zahlungsdaten. [8, 9]</td>
+</tr>
+<tr class="even">
+<td>MGM International/Caesars</td>
+<td>Angriff auf Casino-IT mit Einnahmeausfall von 100 Mio. USD. [10]</td>
+</tr>
+<tr class="odd">
+<td>The Pentagon Leaks</td>
+<td>Mitarbeiter hat, um anzugeben, geheime Informationen auf Discord veröffentlicht. [11]</td>
+</tr>
+<tr class="even">
+<td>Crowdstrike</td>
+<td>Security-Anbieter schießt seine eigenen Systeme beim Update ab. [12]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hackerangriff-auf-den-bundestag-2015-13-14" class="slide level2 content-slide pdf-slide">
+<h2>Hackerangriff auf den Bundestag 2015 [13, 14]</h2>
+<p><br></p>
+<ul>
+<li>Mai 2015: Gesamtes Netz des Bundestags Ziel eines Hackerangriffs</li>
+<li>Angriffsmittel: Phishingangriff via Mail (Absender: un.org), Link auf Website mit Schadsoftware</li>
+<li>Ein Rechner mit Trojaner infiziert, Adminpasswörter ausgelesen</li>
+<li>Folge: viertägige Abschaltung des gesamten Bundestagsnetzes</li>
+<li>Ziel: vermutlich Abgreifen aller möglichen Dokumente (Trojaner suchte nach .pdf, .xls, .xlsx, .doc, .docx)</li>
+</ul>
+</section>
+<section id="größter-bisherige-denial-of-service-angriff-15" class="slide level2 content-slide image-slide">
+<h2>Größter bisherige Denial of Service Angriff [15]</h2>
+<p><br></p>
+<ul>
+<li>Januar 2025: DDoS-Angriff mit 5,6 Tbps auf einen Kunden von Cloudflare</li>
+<li>Bisheriger Rekord: 3,47 Tbps (Microsoft Azure, März 2023)</li>
+</ul>
+
+<img data-src="images/ddos_distribution.png" class="r-stretch"></section>
+<section id="security-nur-um-security-zu-haben-i" class="slide level2 content-slide image-slide">
+<h2>Security-Nur um Security zu haben I</h2>
+<p><br></p>
+
+<img data-src="images/security-biztonsag.gif" class="r-stretch"></section>
+<section id="security-nur-um-security-zu-haben-ii" class="slide level2 content-slide image-slide">
+<h2>Security-Nur um Security zu haben II</h2>
+<p><br></p>
+
+<img data-src="images/security_gate.png" class="r-stretch"></section>
+<section id="falsche-einschätzungen-zu-security" class="slide level2 content-slide image-slide">
+<h2>Falsche Einschätzungen zu Security</h2>
+<p><br></p>
+
+<img data-src="images/xkcd_security.png" class="r-stretch"></section>
+<section id="überblick" class="slide level2 content-slide pdf-slide">
+<h2>Überblick</h2>
+<p><br></p>
+<div title="Die originalen Schutzziele aus der CIA Triade:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Die originalen Schutzziele aus der CIA Triade:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Vertraulichkeit (Confidentiality)</li>
+<li>Integrität (Integrity)</li>
+<li>Verfügbarkeit (Availability)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Über die Zeit sind hinzugekommen:">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Über die Zeit sind hinzugekommen:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Authentizität (Authenticity)</li>
+<li>Verbindlichkeit (Non-Repudiation)</li>
+<li>Anonymität (Anonymity)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="schutzziel-vertraulichkeit-confidentiality" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel Vertraulichkeit (Confidentiality)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Verbergen oder Geheimhalten von Informationen</p>
+<div title="sensitive Daten wie z. B.:">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>sensitive Daten wie z. B.:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>personenbezogen (insbesondere Gesundheitsdaten)</li>
+<li>militärische und geschäftliche Geheimnisse</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Unterschiedliche Mechanismen gewährleisten dieses Ziel">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Unterschiedliche Mechanismen gewährleisten dieses Ziel</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Ver- und Entschlüsselung (Kryptografie)</li>
+<li>Verbergen in “unverdächtigen” Daten (Steganografie)</li>
+<li>Zugriffssteuerung (Access Control)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Durchführung dieser Prozesse durch Menschen">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Durchführung dieser Prozesse durch Menschen</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>fehleranfällig, zu komplex - nötige Vereinfachungen schaffen Angriffsfläche</li>
+<li>Technische Unterstützung notwendig</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="schutzziel-integrität-integrity" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel: Integrität (Integrity)</h2>
+<p><br></p>
+<p><strong>Kernfrage:</strong> “Sind Daten vertrauenswürdig?”</p>
+<p><strong>Ziel:</strong> Verhinderung der Verfälschung von Daten</p>
+<div title="Integrität kann verletzt werden durch:">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Integrität kann verletzt werden durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>unautorisierte Personen (Angriff von außen)</li>
+<li>autorisierte Personen (Angriff von innen oder Versehen)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz möglich durch">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz möglich durch</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Verhinderung unautorisierter Schreibzugriffe (z. B. durch Dateisystemberechtigungen)</li>
+<li>Erkennung von Integritätsverletzungen (z. B. durch kryptografische Prüfsummen)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="schutzziel-verfügbarkeit-availability" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel: Verfügbarkeit (Availability)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Daten und Dienste müssen verfügbar sein</p>
+<div title="Verfügbarkeit kann verletzt werden durch:">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Verfügbarkeit kann verletzt werden durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>technische Probleme (z. B. Hardwareausfall)</li>
+<li>Angriffe (z. B. DDoS)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz möglich durch:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz möglich durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Redundanz (z. B. RAID-Systeme)</li>
+<li>Lastverteilung (z. B. Load Balancer)</li>
+<li>DDoS-Schutz (z. B. Cloudflare)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>(!) Safety und Security beide betroffen.</p>
+</section>
+<section id="schutzziel-authentizität-authenticity" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel: Authentizität (Authenticity)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Verifizierung der Identität von Kommunikationspartnern</p>
+<div title="Authentizität kann verletzt werden durch:">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Authentizität kann verletzt werden durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Identitätsdiebstahl</li>
+<li>Fälschung von Identitäten</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz möglich durch:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz möglich durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Authentifizierung (z. B. Passwörter, Zertifikate)</li>
+<li>Signatur von Nachrichten (z. B. kryptografische Signatur)</li>
+<li>Zwei-Faktor-Authentifizierung</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="schutzziel-verbindlichkeit-non-repudiation" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel: Verbindlichkeit (Non-Repudiation)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Verhinderung der Leugnung von Kommunikationsvorgängen</p>
+<div title="Verbindlichkeit kann verletzt werden durch:">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Verbindlichkeit kann verletzt werden durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Leugnung von Kommunikationsvorgängen</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz möglich durch:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz möglich durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Protokollierung von Kommunikationsvorgängen</li>
+<li>Signatur von Nachrichten (z. B. kryptografische Signatur)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="schutzziel-anonymität-anonymity" class="slide level2 content-slide pdf-slide">
+<h2>Schutzziel: Anonymität (Anonymity)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Verbergen der Identität von Kommunikationspartnern</p>
+<div title="Anonymität kann verletzt werden durch:">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Anonymität kann verletzt werden durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Lokales Tracking (z. B. durch Cookies)</li>
+<li>Nachverfolgung durch Logdaten</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div title="Schutz möglich durch:">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Schutz möglich durch:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Anonymisierungsdienste (z. B. Tor)</li>
+<li>Pseudonymisierung</li>
+<li>Eliminierung oder Einschränkung lokaler Trackingfunktionen</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="policy-und-mechanism-strategie-und-mechanismus" class="slide level2 content-slide pdf-slide">
+<h2>Policy und Mechanism (Strategie und Mechanismus)</h2>
+<p><br></p>
+<div title="Sicherheitsstrategie (Security Policy)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sicherheitsstrategie (Security Policy)</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Formulierung der Aktionen, welche Nutzer durchführen dürfen und welche nicht.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Sicherheitsmechanismus (Security Mechanism)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Sicherheitsmechanismus (Security Mechanism)</strong></p>
+</div>
+<div class="callout-content">
+<p>Die Methode oder Vorgehensweise zur Umsetzung der Sicherheitsstrategie.</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Beispiel">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Beispiel</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Strategie: Jeder Nutzer hat ausschließlich Zugriff auf sein Homeverzeichnis (Linux: /home/$USER, Windows: C:$USER)</li>
+<li>Mögliche Mechanismen:
+<ul>
+<li>Betriebssystem prüft jeden Zugriff auf Dateisystem und verwehrt Zugriffe außerhalb;</li>
+<li>Jeder Nutzer besitzt einen mobilen Datenträger mit seinem Homeverzeichnis;</li>
+<li>Jeder Nutzer hat ein verschlüsseltes Homeverzeichnis, für das nur er den Entschlüsselungsschlüssel hat.</li>
+</ul></li>
+<li>Mechanismen können kombiniert werden.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bedrohungen-threats" class="slide level2 content-slide pdf-slide">
+<h2>Bedrohungen (Threats)</h2>
+<p><br></p>
+<ul>
+<li><p>Eine Bedrohung ist eine potenzielle Verletzung der Sicherheitsstrategie.</p></li>
+<li><p>Klassifizierung (gibt auch andere Schemata):</p></li>
+</ul>
+<div title="Aufdeckung (Disclosure)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Aufdeckung (Disclosure)</strong></p>
+</div>
+<div class="callout-content">
+<p>unbefugter Zugriff auf Informationen (Abhören, Durchsuchen, Kopieren)</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Täuschung (Deception)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Täuschung (Deception)</strong></p>
+</div>
+<div class="callout-content">
+<p>Verfälschung von Informationen (Manipulation, Fälschung)</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Unterbrechung (Disruption)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Unterbrechung (Disruption)</strong></p>
+</div>
+<div class="callout-content">
+<p>Verhinderung des Zugriffs auf Informationen (Zerstörung, Blockierung)</p>
+</div>
+</div>
+</div>
+</div>
+<div title="Übernahme (Usurpation)">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Übernahme (Usurpation)</strong></p>
+</div>
+<div class="callout-content">
+<p>unbefugte Übernahme von Kontrolle (Einschleusen, Übernahme)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="strafgesetzbuch" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch</h2>
+<p><br></p>
+<ul>
+<li>§202a StGB: Ausspähen von Daten</li>
+<li>§202b StGB: Abfangen von Daten</li>
+<li>§202c StGB: Vorbereiten des Ausspähens und Abfangens von Daten</li>
+<li>§202d StGB: Datenhehlerei</li>
+<li>§303a StGB: Datenveränderung</li>
+<li>§303b StGB: Computersabotage</li>
+</ul>
+</section>
+<section id="strafgesetzbuch-1" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch</h2>
+<h3 id="a-ausspähen-von-daten">§202a “Ausspähen von Daten”</h3>
+<p><br></p>
+<ol type="1">
+<li>Wer unbefugt sich oder einem anderen Zugang zu Daten, die nicht für ihn bestimmt und die gegen unberechtigten Zugang besonders gesichert sind, unter Überwindung der Zugangssicherung verschafft, wird mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe bestraft.</li>
+<li>Daten im Sinne des Absatzes 1 sind nur solche, die elektronisch, magnetisch oder sonst nicht unmittelbar wahrnehmbar gespeichert sind oder übermittelt werden.</li>
+</ol>
+</section>
+<section id="strafgesetzbuch-2" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch</h2>
+<h3 id="b-abfangen-von-daten">§202b “Abfangen von Daten”</h3>
+<p><br></p>
+<p>Wer unbefugt sich oder einem anderen unter Anwendung von technischen Mitteln nicht für ihn bestimmte Daten (§ 202a Abs. 2) aus einer nichtöffentlichen Datenübermittlung oder aus der elektromagnetischen Abstrahlung einer Datenverarbeitungsanlage verschafft, wird mit Freiheitsstrafe bis zu zwei Jahren oder mit Geldstrafe bestraft, wenn die Tat nicht in anderen Vorschriften mit schwererer Strafe bedroht ist.</p>
+</section>
+<section id="strafgesetzbuch-3" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch</h2>
+<h3 id="c-vorbereiten-des-ausspähens-und-abfangens-von-daten">§202c “Vorbereiten des Ausspähens und Abfangens von Daten”</h3>
+<p><br></p>
+<ol type="1">
+<li>Wer eine Straftat nach § 202a oder § 202b vorbereitet, indem er
+<ol type="1">
+<li>Passwörter oder sonstige Sicherungscodes, die den Zugang zu Daten (§ 202a Abs. 2) ermöglichen, oder</li>
+<li>Computerprogramme, deren Zweck die Begehung einer solchen Tat ist,</li>
+</ol>
+herstellt, sich oder einem anderen verschafft, verkauft, einem anderen überlässt, verbreitet oder sonst zugänglich macht, wird mit Freiheitsstrafe bis zu zwei Jahren oder mit Geldstrafe bestraft.</li>
+<li>§149 Abs. 2 und 3 gilt entsprechend.</li>
+</ol>
+</section>
+<section id="strafgesetzbuch-i" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch I</h2>
+<h3 id="d-datenhehlerei">§202d “Datenhehlerei”</h3>
+<p><br></p>
+<ol type="1">
+<li>Wer Daten (§ 202a Absatz 2), die nicht allgemein zugänglich sind und die ein anderer durch eine rechtswidrige Tat erlangt hat, sich oder einem anderen verschafft, einem anderen überlässt, verbreitet oder sonst zugänglich macht, um sich oder einen Dritten zu bereichern oder einen anderen zu schädigen, wird mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe bestraft.</li>
+<li>Die Strafe darf nicht schwerer sein als die für die Vortat angedrohte Strafe.</li>
+<li>Absatz 1 gilt nicht für Handlungen, die ausschließlich der Erfüllung rechtmäßiger dienstlicher oder beruflicher Pflichten dienen. Dazu gehören insbesondere
+<ol type="1">
+<li>solche Handlungen von Amtsträgern oder deren Beauftragten, mit denen Daten ausschließlich der Verwertung in einem Besteuerungsverfahren, einem Strafverfahren oder einem Ordnungswidrigkeitenverfahren zugeführt werden sollen, sowie</li>
+<li>solche beruflichen Handlungen der in § 53 Absatz 1 Satz 1 Nummer 5 der Strafprozessordnung genannten Personen, mit denen Daten entgegengenommen, ausgewertet oder veröffentlicht werden.</li>
+</ol></li>
+</ol>
+</section>
+<section id="strafgesetzbuch-4" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch</h2>
+<h3 id="a-datenveränderung">§303a “Datenveränderung”</h3>
+<p><br></p>
+<ol type="1">
+<li>Wer rechtswidrig Daten (§ 202a Abs. 2) löscht, unterdrückt, unbrauchbar macht oder verändert, wird mit Freiheitsstrafe bis zu zwei Jahren oder mit Geldstrafe bestraft.</li>
+<li>Der Versuch ist strafbar.</li>
+<li>Für die Vorbereitung einer Straftat nach Absatz 1 gilt § 202c entsprechend.</li>
+</ol>
+</section>
+<section id="strafgesetzbuch-i-1" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch I</h2>
+<h3 id="b-computersabotage">§303b “Computersabotage”</h3>
+<p><br></p>
+<ol type="1">
+<li>Wer eine Datenverarbeitung, die für einen anderen von wesentlicher Bedeutung ist, dadurch erheblich stört, dass er
+<ol type="1">
+<li>eine Tat nach § 303a Abs. 1 begeht,</li>
+<li>Daten (§ 202a Abs. 2) in der Absicht, einem anderen Nachteil zuzufügen, eingibt oder übermittelt oder</li>
+<li>eine Datenverarbeitungsanlage oder einen Datenträger zerstört, beschädigt, unbrauchbar macht, beseitigt oder verändert,</li>
+</ol>
+wird mit Freiheitsstrafe bis zu drei Jahren oder mit Geldstrafe bestraft.</li>
+<li>Handelt es sich um eine Datenverarbeitung, die für einen fremden Betrieb, ein fremdes Unternehmen oder eine Behörde von wesentlicher Bedeutung ist, ist die Strafe Freiheitsstrafe bis zu fünf Jahren oder Geldstrafe.</li>
+<li>Der Versuch ist strafbar.</li>
+</ol>
+</section>
+<section id="strafgesetzbuch-ii" class="slide level2 content-slide pdf-slide">
+<h2>Strafgesetzbuch II</h2>
+<h3 id="b-computersabotage-1">§303b “Computersabotage”</h3>
+<p><br></p>
+<ol start="4" type="1">
+<li>In besonders schweren Fällen des Absatzes 2 ist die Strafe Freiheitsstrafe von sechs Monaten bis zu zehn Jahren. Ein besonders schwerer Fall liegt in der Regel vor, wenn der Täter
+<ol type="1">
+<li>einen Vermögensverlust großen Ausmaßes herbeiführt,</li>
+<li>gewerbsmäßig oder als Mitglied einer Bande handelt, die sich zur fortgesetzten Begehung von Computersabotage verbunden hat,</li>
+<li>durch die Tat die Versorgung der Bevölkerung mit lebenswichtigen Gütern oder Dienstleistungen oder die Sicherheit der Bundesrepublik Deutschland beeinträchtigt.</li>
+</ol></li>
+<li>Für die Vorbereitung einer Straftat nach Absatz 1 gilt § 202c entsprechend.</li>
+</ol>
+</section>
+<section id="zusammenfassung" class="slide level2 content-slide pdf-slide">
+<h2>Zusammenfassung</h2>
+<p><br></p>
+<ul>
+<li>Früher: Bloßes Eindringen nicht strafbar.</li>
+<li>Heute: Unbefugter Zugang unter Überwindung von Sicherheitsvorkehrungen strafbar.</li>
+<li>Hauptmangel: fehlende präzise Definition strafrechtlich relevanter Werkzeuge (“Hackertools”).</li>
+<li>Werkzeuge nach § 202b sind auch viele Sicherheitstools, deren Einsatz zur Sicherung von Systemen notwendig ist.</li>
+<li>Gerichte kommen oft zu “merkwürdigen” Entscheidungen.</li>
+</ul>
+</section>
+<section id="literaturverzeichnis-i" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis I</h2>
+<p><br></p>
+<p>[1] Zach Simas. “Unpacking the MOVEit Breach: Statistics and Analysis”. In: Emsisoft | Cybersecurity Blog (Feb.&nbsp;2024). url: https://www.emsisoft.com/en/blog/44123/unpacking-the-moveit-breach-statistics-and-analysis.</p>
+<p>[2] Public notification of cyber-attack on Electoral Commission systems. [Online; accessed 19. Feb.&nbsp;2024]. Feb.&nbsp;2024. url: https://www.electoralcommission.org.uk/privacy-policy/public-notification-cyber-attack-electoral-commission-systems.</p>
+<p>[3] Police Service of Northern Ireland statement on data breach. [Online; accessed 19. Feb.&nbsp;2024]. Feb.&nbsp;2024. url: https://www.psni.police.uk/latest-news/police-service-northern-ireland-statement-data-breach.</p>
+<p>[4] Damien Fisher. “DarkBeam’s Alarming Data Breach Exposes 3.8 Billion Records”. In: Tech Report (Sep.&nbsp;2023). url: https://techreport.com/news/darkbeams-alarming-data-breach-exposes-3-8-billion-records.</p>
+</section>
+<section id="literaturverzeichnis-ii" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis II</h2>
+<p><br></p>
+<p>[5] PII Belonging to Indian Citizens, Including their Aadhaar IDs, Offered for Sale on the Dark Web. [Online; accessed 19. Feb.&nbsp;2024]. Feb.&nbsp;2024. url: https://www.resecurity.com/blog/article/pii-belonging-to-indian-citizens-including-their-aadhaar-ids-offered-for-sale-on-the-dark-web.</p>
+<p>[6] A. J. Vicens. “DNA testing service 23andMe investigating theft of user data”. In: CyberScoop (Okt. 2023). url: https://cyberscoop.com/23andme-user-data-theft.</p>
+<p>[7] Google Cloud mitigated largest DDoS attack, peaking above 398 million rps. [Online; accessed 19. Feb.&nbsp;2024]. Feb.&nbsp;2024. url: https://cloud.google.com/blog/products/identity-security/google-cloud-mitigated-largest-ddos-attack-peaking-above-398-million-rps/?hl=en.</p>
+</section>
+<section id="literaturverzeichnis-iii" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis III</h2>
+<p><br></p>
+<p>[8] T-Mobile. United States Securities and Exchange Commission - Form 8-K. [Online; accessed 19. Feb.&nbsp;2024]. 19. Jan.&nbsp;2023. url: https://www.sec.gov/ixviewer/ix.html?doc=/Archives/edgar/data/0001283699/000119312523010949/d641142d8k.htm.</p>
+<p>[9] T-Mobile Consumer Sample - February-March data breach. [Online; accessed 19. Feb.&nbsp;2024]. 8. Apr.&nbsp;2023. url: https://www.documentcloud.org/documents/23793945-t-mobile-consumer-sample-february-march-data-breach.</p>
+<p>[10] MGM Ressorts International. United States Securities and Exchange Commission - Form 8-K. [Online; accessed 19. Feb.&nbsp;2024]. 5. Okt. 2023.</p>
+<p>[11] Phil Muncaster. “The Pentagon Leaks: An Insider Horror Story • Assured”. In: Assured (Mai 2023). url: https://assured.co.uk/2023/the-pentagon-leaks-an-insider-horror-story.</p>
+</section>
+<section id="literaturverzeichnis-iv" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis IV</h2>
+<p><br></p>
+<p>[12] Aditi Uberoi. Blue Screen of Death: Live Timeline of the Microsoft Outage &amp; Impact. [Online; accessed 9. Oct.&nbsp;2025]. Okt. 2025. url: https://www.cm-alliance.com/cybersecurity-blog/blue-screen-of-death-live-timeline-of-the-microsoft-outage-impact.</p>
+<p>[13] Digital Attack on German Parliament: Investigative Report on the Hack of the Left Party Infrastructure in Bundestag. [Online; accessed 12. Mar.&nbsp;2024]. Juni 2015. url: https://netzpolitik.org/2015/digital-attack-on-german-parliament-investigative-report-on-the-hack-of-the-left-party-infrastructure-in-bundestag.</p>
+<p>[14] Wir veröffentlichen Dokumente zum Bundestagshack: Wie man die Abgeordneten im Unklaren ließ. [Online; accessed 12. Mar.&nbsp;2024]. März 2016. url: https://netzpolitik.org/2016/wir-veroeffentlichen-dokumente-zum-bundestagshack-wie-man-die-abgeordneten-im-unklaren-liess.</p>
+</section>
+<section id="literaturverzeichnis-v" class="slide level2 content-slide pdf-slide">
+<h2>Literaturverzeichnis V</h2>
+<p><br></p>
+<p>[15] Record-breaking 5.6 Tbps DDoS attack and global DDoS trends for 2024 Q4. [Online; accessed 9. Oct.&nbsp;2025]. Feb.&nbsp;2025. url: https://blog.cloudflare.com/ddos-threat-report-for-2024-q4.</p>
+</section>
+<section id="vielen-dank" class="slide level2 title-slide center" data-state="hide-footer">
+<h2>Vielen Dank!</h2>
+<p><img class="title-image" src="../../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;"></p>
+<p>Prof.&nbsp;Dr.&nbsp;Lukas Iffländer<br>
+HTW Dresden<br>
+15.09.2026</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../../logos/htw-logo-small.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>15.09.2026 / Einführung in die Informationssicherheit / HTW Dresden / Prof.&nbsp;Dr.&nbsp;Lukas Iffländer</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="01_Einfuehrung_in_die_Informationssicherheit_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
