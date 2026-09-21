@@ -1,0 +1,238 @@
+---
+pagetitle: "Signaturen"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Signaturen"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+## Signaturen {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Eigenschaften von Signaturen</span></li>
+<li class="agenda-item"><strong>02</strong><span>Digitale Signaturen</span></li>
+<li class="agenda-item"><strong>03</strong><span>Public-Key und Hashfunktion</span></li>
+<li class="agenda-item"><strong>04</strong><span>Zeitstempel und Mehrfachsignatur</span></li>
+<li class="agenda-item"><strong>05</strong><span>Signatur mit Verschlüsselung</span></li>
+<li class="agenda-item"><strong>06</strong><span>Rücksendeangriff</span></li>
+</ul>
+
+---
+
+## Signaturen (Unterschriften) {.content-slide .pdf-slide}
+<br>
+
+Signaturen dienen dem Beweis der Echtheit, der Urheberschaft oder dem Einverständnis mit dem
+Inhalt eines Dokumentes.
+
+#### Eigenschaften:
+
+- **authentisch:** überzeugt den Empfänger, dass der Unterzeichner willentlich unterschrieben hat
+- **fälschungssicher:** beweist, dass der Unterzeichner (und kein anderer) das Dokument unterzeichnete
+- **nicht wiederverwendbar:** kann auf kein anderes Dokument "übertragen" werden
+- **unveränderbar:** Unterschriebenes Dokument kann nicht mehr unbemerkt verändert werden.
+- **nicht rücknehmbar:** Unterzeichner kann Unterschrift nicht leugnen.
+
+---
+
+## Digitale Signaturen {.content-slide .pdf-slide}
+<br>
+
+Verschlüsselung von Dokumenten weist viele dieser Anforderungen auf -> Nutzung kryptografischer
+Techniken zur Signierung digitaler Dokumente
+
+#### Verschiedene Verfahren:
+
+- symmetrische Verschlüsselung und Vermittlung
+- mittels Public-Key-Kryptographie
+- mittels Public-Key-Kryptographie und Einweg-Hashfunktion
+
+---
+
+## Signieren mit symmetrischen Kryptosystemen und Vermittler {.content-slide .pdf-slide}
+<br>
+
+#### Voraussetzungen:
+
+- Vermittler (Trent), dem vertraut wird
+- Schlüssel K<sub>A</sub> für Komm. Alice <-> Trent und K<sub>B</sub> für Bob <-> Trent
+
+#### Protokoll:
+
+1. Alice verschlüsselt M an Bob mit K<sub>A</sub> und schickt sie an Trent.
+2. Trent entschlüsselt M mittels K<sub>A</sub>.
+3. Trent verschlüsselt M zusammen mit einer Nachricht, dass M von Alice stammt, mit K<sub>B</sub>.
+4. Trent sendet C = K<sub>B</sub>(M) an Bob.
+5. Bob entschlüsselt C mit K<sub>B</sub>. Er kann M lesen und ist sicher, dass diese von Alice stammt.
+
+---
+
+## Signieren mit Public-Key-Kryptographie {.content-slide .pdf-slide}
+<br>
+
+1. Alice verschlüsselt M mit ihrem privaten (!) Schlüssel D<sub>KA</sub> (unterzeichnet): C = D<sub>KA</sub>(M)
+2. Alice schickt Chiffrat C an Bob
+3. Bob entschlüsselt C mit Alice' öffentlichen Schlüssel E<sub>KA</sub>, was die Echtheit von M beweist
+
+#### Vorteil im Vergleich zum symmetrischen Verfahren:
+
+- kein Vermittler erforderlich
+- auch nicht im Streitfall
+
+#### Probleme:
+
+- Sicherung der Authentizität des öffentlichen Schlüssels von Alice E<sub>KA</sub>
+- Zeitbedarf bei langen Dokumenten
+
+---
+
+## Signieren mit Public-Key-Kryptographie und Einweg-Hashfunktion {.content-slide .pdf-slide}
+<br>
+
+**Idee:** Signierung eines Einweg-Hashes über das Dokument anstatt des Dokumentes selbst (-> effizient).
+
+#### Protokoll:
+
+1. Alice berechnet den Einweg-Hash W<sub>1</sub> zum entsprechenden Dokument M: W<sub>1</sub> = H(M).
+2. Alice verschlüsselt W<sub>1</sub> mit ihrem privaten Schlüssel D<sub>KA</sub>: C = D<sub>KA</sub>(W<sub>1</sub>) = D<sub>KA</sub>(H(M)) (Signatur).
+3. Alice sendet C und M an Bob.
+4. Bob ermittelt den Einweg-Hash W<sub>2</sub> zum empfangenen Dokument M.
+5. Bob entschlüsselt W<sub>1</sub> = E<sub>KA</sub>(C) mit Alice' öffentlichem Schlüssel
+6. Bob prüft, ob W<sub>1</sub> = W<sub>2</sub> gilt. Wenn ja, dann ist die Unterschrift von Alice unter M gültig.
+
+---
+
+## Vorteile des Signierens mit Public-Key-Kryptographie und Einweg-Hashfunktion {.content-slide .pdf-slide}
+<br>
+
+1. großer Geschwindigkeitsgewinn bei gleicher Sicherheit (Voraussetzung: sichere Hashfunktion)
+2. Unterschrift und Dokument können getrennt gespeichert werden.
+3. Möglichkeit, das Dokument selbst (noch) geheim zu halten; Offenlegung erst bei Prüfung der Unterschrift nötig -> urheberrechtliches Schützen
+
+---
+
+## Nutzung von Zeitstempeln {.content-slide}
+<br>
+
+- Wenn signiertes Dokument nur einmal genutzt werden darf (Scheck, Gutschein, ...) muss Mehrfachverwendung unterbunden werden
+- Lösung: Datum und Zeit der Unterschrift an Dokument anhängen, gemeinsam unterschreiben
+
+---
+
+## Mehrfachsignatur {.content-slide .pdf-slide}
+<br>
+
+**Problem:** Alice und Bob wollen beide ein- und dasselbe Dokument signieren (z. B. einen Vertrag)
+
+#### Möglichkeiten:
+
+a) Alice und Bob unterschreiben verschiedene Kopien des Dokuments (unhandlich)
+
+b) Erst unterzeichnet Alice, dann unterzeichnet Bob das von Alice unterzeichnete Dokument.
+(-> Signaturprüfung von Alice muss immer erst Signaturprüfung von Bob vorangehen - unelegant)
+
+c) Alice und Bob unterschreiben separat den Hashwert des Dokuments (-> Unterschriften einzeln prüfbar)
+
+---
+
+## Digitale Signaturen mit Verschlüsselung {.content-slide .pdf-slide}
+<br>
+
+Kombination von Signierung und Verschlüsselung:
+
+1. Alice unterschreibt ihre Nachricht M mit ihrem privaten Schlüssel: S<sub>A</sub>(M) mit S<sub>A</sub> = D<sub>KA</sub>
+2. Alice verschlüsselt die unterzeichnete Nachricht mit Bobs öffentlichem Schlüssel:
+   C = E<sub>KB</sub>(S<sub>A</sub>(M))
+3. Alice schickt C an Bob
+4. Bob entschlüsselt C mit seinem privaten Schlüssel D<sub>KB</sub>: D<sub>KB</sub>(E<sub>KB</sub>(S<sub>A</sub>(M)))
+5. Bob prüft die Gültigkeit mit Alice' öffentlichen Schlüssel und erhält die Klartextnachricht:
+   V<sub>A</sub>(D<sub>KB</sub>(E<sub>KB</sub>(S<sub>A</sub>(M)))) = M mit V<sub>A</sub> = E<sub>KA</sub>
+
+---
+
+## Anmerkungen {.content-slide}
+<br>
+
+Günstig, vor der Verschlüsselung zu signieren:
+
+- Unterschrift kann nicht durch einen Gegner entfernt werden.
+- Man sieht, was man unterschreibt!
+- Keine kryptanalytischen Angriffe möglich.
+
+Es **müssen** für Signierung und Verschlüsselung unterschiedliche Schlüsselpaare verwendet werden, sonst ...
+
+---
+
+## Erneutes Senden als Empfangsbestätigung {.content-slide .pdf-slide}
+<br>
+
+1. Alice unterschreibt M mit ihrem privaten Schlüssel, verschlüsselt anschließend mit Bobs öffentlichem Schlüssel und sendet das Chiffrat an Bob:
+   C = E<sub>KB</sub>(S<sub>A</sub>(M))
+2. Bob entschlüsselt mit seinem privaten Schlüssel, überprüft Alice' Signatur mit deren öffentlichen Schlüssel und stellt M damit wieder her:
+   V<sub>A</sub>(D<sub>KB</sub>(E<sub>KB</sub>(S<sub>A</sub>(M)))) = M.
+3. Bob unterschreibt seinerseits M mit seinem privaten Schlüssel S<sub>B</sub>, chiffriert anschließend mit Alice' öffentlichen Schlüssel und schickt die Nachricht als Empfangsbestätigung zurück:
+   C<sub>2</sub> = E<sub>KA</sub>(S<sub>B</sub>(M))
+4. Alice entschlüsselt mit Ihrem privaten Schlüssel und prüft wiederum Bobs Signatur mit seinem öffentlichen Schlüssel. Stimmt die entschlüsselte mit der ursprünglichen Nachricht überein, weiß sie, dass Bob die Nachricht erhalten hat.
+
+---
+
+## Erneutes Senden als Empfangsbestätigung {.content-slide .pdf-slide}
+### Rücksendeangriff
+
+Protokoll ist unsicher, wenn für Verschlüsselung und Signierung der gleiche Algorithmus eingesetzt
+wird (V<sub>x</sub> = E<sub>x</sub>, S<sub>x</sub> = D<sub>x</sub>)!
+
+1. Alice signiert und verschlüsselt (wie gehabt):
+   C = E<sub>KB</sub>(D<sub>KA</sub>(M))
+2. Mallory zeichnet C auf, sendet sie (etwas später) an Bob und behauptet, C sei von ihm.
+3. Bob dechiffriert die Nachricht mit seinem privaten Schlüssel und versucht anschließend, mit Mallorys öffentlichem Schlüssel die (von Alice stammende) Unterschrift zu prüfen.
+   E<sub>KM</sub>(D<sub>KB</sub>(E<sub>KB</sub>(D<sub>KA</sub>(M)))) = E<sub>KM</sub>(D<sub>KA</sub>(M))
+
+---
+
+## Erneutes Senden als Empfangsbestätigung {.content-slide .pdf-slide}
+### Rücksendeangriff und dessen Abwehr
+
+4. Obwohl die Unterschrift nicht verifiziert werden kann, schickt Bob (automatisiert?) gemäß dem Protokoll eine Empfangsbestätigung an Mallory
+
+C<sub>2</sub> = E<sub>KM</sub>(D<sub>KB</sub>(E<sub>KM</sub>(D<sub>KA</sub>(M))))
+
+5. Mallory muß nun:
+
+- mit seinem privaten Schlüssel D<sub>KM</sub> entschlüsseln
+- mit Bobs öffentlichen Schlüssel E<sub>KB</sub> entschlüsseln
+- erneut mit seinem privaten Schlüssel entschlüsseln
+- mit Alice' öffentlichen Schlüssel E<sub>KA</sub> entschlüsseln
+
+**...und schon kann er M lesen!**
+
+#### Lehre:
+
+Verschiedene Schlüssel oder verschiedene Algorithmen für Signierung und Verschlüsselung einsetzen! Nicht automatisch bestätigen und signieren!
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}

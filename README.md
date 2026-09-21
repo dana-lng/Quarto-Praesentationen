@@ -1,374 +1,120 @@
-# Quarto-Vorlesungsfolien
+# HTW Quarto Vorlesungsfolien
 
-Dieser Ordner enthaelt ein Reveal.js/Quarto-Grundgeruest fuer Vorlesungsfolien im HTW-Stil.
+Dieses Projekt enthält ein Quarto/Reveal.js-System für Vorlesungsfolien im Design der HTW Dresden.
 
-Es gibt zwei wichtige Praesentationen:
+Die Struktur ist bewusst getrennt:
 
-- `slides.qmd`: allgemeines Grundgeruest mit Beispiel-Folientypen
-- `templates/26_Datenschutz.qmd`: Datenschutz-Vorlesung auf Basis des Grundgeruests
-
-Die Gestaltung liegt in `styles/theme.css`.
-
-## HTML-Seiten Starten
-
-### Variante 1: HTML direkt oeffnen
-
-Nach dem Rendern kann die HTML-Datei direkt im Browser geoeffnet werden:
-
-- `slides.html`
-- `templates/26_Datenschutz.html`
-
-Wenn Bilder oder CSS nicht aktuell wirken, den Browser hart neu laden:
-
-```powershell
-Strg + F5
-```
-
-### Variante 2: Mit Quarto rendern
-
-Wenn du eine `.qmd`-Datei geaendert hast, muss sie neu gerendert werden.
-
-Fuer das Grundgeruest:
-
-```powershell
-quarto render slides.qmd --no-cache
-```
-
-Fuer die Datenschutz-Folien:
-
-```powershell
-quarto render templates\26_Datenschutz.qmd --no-cache
-```
-
-Danach die passende HTML-Datei im Browser neu laden.
-
-### Variante 3: Mit Quarto Preview
-
-In VS Code kann man auch die Quarto Preview benutzen. Alternativ im Terminal:
-
-```powershell
-quarto preview slides.qmd
-```
-
-oder:
-
-```powershell
-quarto preview templates\26_Datenschutz.qmd
-```
-
-## Wichtig: Pfade Zu Bildern
-
-Der Bildpfad ist immer relativ zur `.qmd`-Datei.
-
-In `slides.qmd`:
-
-```qmd
-![](images/bild1.jpg)
-```
-
-In `templates/26_Datenschutz.qmd`, weil die Datei einen Ordner tiefer liegt:
-
-```qmd
-![](../images/bild1.jpg)
-```
-
-Wenn ein Bild nicht angezeigt wird, zuerst diese drei Dinge pruefen:
-
-- Liegt die Bilddatei wirklich im Ordner `images/`?
-- Stimmt der relative Pfad?
-- Wurde die passende `.qmd` neu gerendert?
+- `Template/` enthält das allgemeine Design und ein Grundgerüst.
+- `Vorlesung_Datenschutz/` enthält konkrete Vorlesungen aus dem Modul Datenschutz & Informationssicherheit.
+- `quarto_conv.md` enthält die zentralen Regeln für neue PDF-zu-Quarto-Konvertierungen.
 
 ## Ordnerstruktur
 
 ```text
-2_Grundgeruest/
-├─ _quarto.yml
-├─ slides.qmd
-├─ slides.html
-├─ styles/
-│  └─ theme.css
-├─ images/
-│  ├─ bild1.jpg
-│  ├─ datenschutz.jpg
-│  ├─ Geschichte_nach_Schutzzielen.jpg
-│  └─ title-hero.jpg
-├─ logos/
-│  ├─ htw-logo-large.jpg
-│  └─ htw-logo-small.jpg
-├─ templates/
-│  ├─ 26_Datenschutz.qmd
-│  ├─ 26_Datenschutz.html
-│  └─ 26_Datenschutz_files/
-├─ slides_files/
-├─ partials/
-└─ README.md
+vorlesungsfolien_html/
+|-- README.md
+|-- quarto_conv.md
+|-- Agend.md
+|-- Template/
+|   |-- _quarto.yml
+|   |-- slides.qmd
+|   |-- slides.html
+|   |-- images/
+|   |-- logos/
+|   |-- partials/
+|   |-- styles/
+|   `-- templates/
+`-- Vorlesung_Datenschutz/
+    |-- _quarto.yml
+    |-- slides.qmd
+    |-- images/
+    |-- logos/
+    |-- partials/
+    |-- styles/
+    `-- Vorlesung/
+        |-- 18_Angriffstechniken/
+        |-- 19_Heartbleed/
+        |-- 20_Hackertools/
+        |-- 21_Cookie_und_Session_Security/
+        |-- 22_Cross-Site-Scripting/
+        |-- 23_Command_Injection/
+        |-- 24_SQL_Injection/
+        `-- 26_Datenschutz/
 ```
 
-### `_quarto.yml`
+## Wichtige Dateien
 
-Zentrale Quarto-Konfiguration:
+`quarto_conv.md` ist die verbindliche Anleitung für neue Vorlesungskonvertierungen. Dort stehen die erlaubten Folienklassen, Titel-/Abschlussfolien, Codeblock-Regeln, Bildpfade und typische Quarto-Fallen.
 
-- Reveal.js als Ausgabeformat
-- Foliengroesse
-- Footer
-- kleines Logo
-- verwendete CSS-Datei
+`Template/README.md` erklärt das allgemeine HTW-Design und das Grundgerüst.
 
-### `slides.qmd`
+`Vorlesung_Datenschutz/README.md` erklärt die fertigen Datenschutz-Vorlesungen, ihre Ordnerstruktur und wie man sie startet oder neu rendert.
 
-Beispiel-Praesentation mit den wichtigsten Folientypen.
+`_quarto.yml` liegt jeweils in `Template/` und `Vorlesung_Datenschutz/`. Diese Datei steuert Reveal.js, Foliengröße, Logo, Footer, CSS und globale Optionen.
 
-### `templates/26_Datenschutz.qmd`
+`styles/theme.css` enthält das Design: Farben, Typografie, Footer, Logo, Titelfolie und Folienlayouts.
 
-Eigene Vorlesungsdatei fuer Datenschutz. Diese Datei benutzt dasselbe Design wie `slides.qmd`.
+## Arbeiten mit dem Projekt
 
-### `styles/theme.css`
+Neue allgemeine Layouts oder Beispiel-Folien gehören in `Template/`.
 
-Zentrale CSS-Datei fuer Layout, Farben, Logo, Footer und Folienklassen.
-
-### `images/`
-
-Bilder fuer Folien. Bilder werden normalerweise direkt in der `.qmd` eingebunden.
-
-### `logos/`
-
-HTW-Logos fuer Titelfolie und Inhaltsfolien.
-
-### `*_files/`
-
-Von Quarto erzeugte Hilfsordner. Diese entstehen automatisch beim Rendern.
-
-## Folienklassen
-
-Folienklassen stehen direkt an der Ueberschrift:
-
-```qmd
-## Titel {.content-slide}
-```
-
-Mehrere Klassen sind moeglich:
-
-```qmd
-## Text links, Bild rechts {.two-column-slide .text-image-slide}
-```
-
-## Verwendete Folientypen
-
-### `.title-slide`
-
-Titelfolie mit grossem Logo, diagonaler weisser Flaeche und optionalem Titelbild.
-
-Beispiel:
-
-```qmd
-## Datenschutz {.title-slide data-state="hide-footer"}
-```
-
-Mit `data-state="hide-footer"` werden kleines Logo, Footer und Foliennummer auf dieser Folie ausgeblendet.
-
-In `slides.qmd` wird das Titelbild als CSS-Hintergrund gesetzt:
-
-```qmd
-## Titel {.title-slide data-state="hide-footer" style="--title-image: url('images/title-hero.jpg'); --title-image-size: cover; --title-image-position: right center;"}
-```
-
-In `templates/26_Datenschutz.qmd` wird das Titelbild als echtes Bild gesetzt:
-
-```html
-<img class="title-image" src="../images/datenschutz.jpg" alt="" style="--title-image-width: 120vw; --title-image-right: -500px; --title-image-top: 0px; --title-image-height: 100vh; --title-image-object-position: right right;">
-```
-
-Wichtige Variablen fuer das echte Titelbild:
-
-- `--title-image-width`: Bildbreite
-- `--title-image-height`: Bildhoehe
-- `--title-image-right`: Bild nach rechts/links schieben
-- `--title-image-top`: Bild nach oben/unten schieben
-- `--title-image-object-position`: Bildausschnitt innerhalb der Bildbox
-
-### `.content-slide`
-
-Normale Inhaltsfolie mit weissem Hintergrund.
-
-Beispiel:
-
-```qmd
-## Lernziele {.content-slide}
-```
-
-Diese Klasse ist die Basis fuer einfache Textfolien.
-
-### `.agenda-slide`
-
-Agenda-Folie. Wird zusammen mit `.content-slide` verwendet.
-
-Beispiel:
-
-```qmd
-## Agenda {.content-slide .agenda-slide}
-
-<ul class="agenda">
-<li class="agenda-item"><strong>01</strong><span>Einleitung</span></li>
-<li class="agenda-item"><strong>02</strong><span>Grundlagen</span></li>
-</ul>
-```
-
-Dazugehoerige Klassen:
-
-- `.agenda`: Container der Agenda
-- `.agenda-item`: einzelner Agenda-Punkt
-
-### `.low-text-slide`
-
-Folie mit wenig Text, viel Weissraum und grosser ruhiger Typografie.
-
-Beispiel:
-
-```qmd
-## Beispiel mit wenig Text {.content-slide .low-text-slide}
-
-Kurzer Text ...
-```
-
-### `.two-column-slide`
-
-Zweispaltige Folie.
-
-Beispiel:
-
-```qmd
-## Zweispaltiger Text {.two-column-slide}
-
-:::: {.columns}
-::: {.column width="50%"}
-### Links
-
-- Punkt 1
-- Punkt 2
-:::
-
-::: {.column width="50%"}
-### Rechts
-
-- Punkt 1
-- Punkt 2
-:::
-::::
-```
-
-Die Klassen `.columns` und `.column` kommen von Quarto.
-
-### `.text-image-slide`
-
-Zweispaltige Folie mit Text links und Bild rechts.
-
-Immer zusammen mit `.two-column-slide` benutzen:
-
-```qmd
-## Text links, Bild rechts {.two-column-slide .text-image-slide}
-```
-
-Beispiel:
-
-```qmd
-:::: {.columns}
-::: {.column width="60%"}
-- Textpunkt
-- Noch ein Punkt
-:::
-
-::: {.column width="40%"}
-<img src="../images/bild1.jpg" alt="Beschreibung">
-:::
-::::
-```
-
-### `.image-text-slide`
-
-Zweispaltige Folie mit Bild links und Text rechts.
-
-Immer zusammen mit `.two-column-slide` benutzen:
-
-```qmd
-## Bild links, Text rechts {.two-column-slide .image-text-slide}
-```
-
-### `.table-slide`
-
-Folie fuer Tabellen.
-
-Beispiel:
-
-```qmd
-## Tabelle {.table-slide}
-
-| Kategorie | Beschreibung |
-|---|---|
-| A | Beispiel |
-```
-
-Tabellen bekommen automatisch passende Zellabstaende und einen farbigen Kopf.
-
-### `.image-slide`
-
-Folie fuer ein grosses Bild.
-
-Beispiel:
-
-```qmd
-## Geschichte nach Schutzzielen {.image-slide}
-
-<img src="../images/Geschichte_nach_Schutzzielen.jpg" alt="Geschichte nach Schutzzielen">
-```
-
-Fuer Bildfolien ist `<img src="...">` oft robuster als Markdown-Bilder, weil Quarto Markdown-Bilder manchmal automatisch mit Reveal-Stretch-Klassen versieht.
-
-### `.pdf-slide`
-
-Inhaltsfolie fuer aus PDF uebernommene Folien. Diese Folien enthalten oft mehr Text als normale Folien.
-
-Beispiel:
-
-```qmd
-## Lernziele {.content-slide .pdf-slide}
-```
-
-Die CSS macht Text etwas kompakter und erlaubt Scrollen, falls eine Folie zu voll wird.
-
-### `.pdf-summary`
-
-Variante fuer die Zusammenfassungsfolie der PDF-Folien.
-
-Beispiel:
-
-```qmd
-## Zusammenfassung {.content-slide .pdf-slide .pdf-summary}
-```
-
-### `.summary`
-
-Box fuer Zusammenfassungen oder hervorgehobene Textbereiche.
-
-Beispiel:
-
-```qmd
-::: {.summary}
-- Wichtigster Punkt
-- Zweiter Punkt
-:::
-```
-
-## Typische Arbeitsweise
-
-1. Inhalt in der passenden `.qmd` aendern.
-2. Bilder in `images/` ablegen.
-3. Bildpfade relativ zur `.qmd` schreiben.
-4. Datei rendern:
+Neue Datenschutz-Vorlesungen gehören in einen eigenen Unterordner unter:
 
 ```powershell
-quarto render templates\26_Datenschutz.qmd --no-cache
+Vorlesung_Datenschutz\Vorlesung\
 ```
 
-5. HTML im Browser neu laden.
+Jede Vorlesung ist eine eigene `.qmd`-Datei mit eigener gerenderter `.html`-Datei.
 
-Wenn nur `styles/theme.css` geaendert wurde, reicht oft ein harter Browser-Reload. Wenn sich aber `.qmd` oder `_quarto.yml` geaendert haben, muss neu gerendert werden.
+Beispiel:
+
+```text
+Vorlesung_Datenschutz/Vorlesung/24_SQL_Injection/
+|-- 24_SQL_Injection.qmd
+|-- 24_SQL_Injection.html
+|-- 24_SQL_Injection_files/
+`-- images/
+```
+
+## Quarto Rendern
+
+Eine einzelne Präsentation rendert man direkt über ihre `.qmd`:
+
+```powershell
+quarto render Vorlesung_Datenschutz\Vorlesung\24_SQL_Injection\24_SQL_Injection.qmd
+```
+
+Das erzeugt oder aktualisiert die passende HTML-Datei im selben Ordner.
+
+Das Template-Grundgerüst rendert man so:
+
+```powershell
+quarto render Template\slides.qmd
+```
+
+## Automatisch erzeugte Dateien
+
+Quarto erzeugt beim Rendern zusätzliche Dateien und Ordner, zum Beispiel:
+
+- `.quarto/`
+- `*_files/`
+- `.gitignore`
+- `slides.html` oder `<Vorlesung>.html`
+
+Die HTML-Dateien sind die fertigen Präsentationen. Die `*_files/`-Ordner enthalten Hilfsdateien, die zur jeweiligen HTML-Datei gehören.
+
+## Hinweis zu Pfaden
+
+Bildpfade sind immer relativ zur jeweiligen `.qmd`-Datei.
+
+In einer Vorlesung unter `Vorlesung_Datenschutz/Vorlesung/<Name>/` sieht ein lokales Bild so aus:
+
+```qmd
+![](images/beispiel.png)
+```
+
+Ein gemeinsames Bild aus `Vorlesung_Datenschutz/images/` wird zwei Ebenen nach oben referenziert:
+
+```qmd
+![](../../images/datenschutz.jpg)
+```

@@ -1,0 +1,142 @@
+---
+pagetitle: "Diffie-Hellman"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Diffie-Hellman"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+## Diffie-Hellman {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Agenda {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Motivation</span></li>
+<li class="agenda-item"><strong>02</strong><span>Diffie-Hellman-Protokoll</span></li>
+<li class="agenda-item"><strong>03</strong><span>Anmerkungen</span></li>
+<li class="agenda-item"><strong>04</strong><span>Man-in-the-Middle-Angriff</span></li>
+<li class="agenda-item"><strong>05</strong><span>Beispiel</span></li>
+</ul>
+
+---
+
+## Motivation {.content-slide .pdf-slide}
+<br>
+
+- Symmetrische Verschlüsselung ist schnell und effizient
+- Problem: Wie tauscht man sicher einen gemeinsamen Schlüssel aus?
+- Asymmetrische Verschlüsselung ist zu langsam für große Datenmengen
+- Lösung: Diffie-Hellman-Protokoll zum sicheren Austausch eines symmetrischen Sitzungsschlüssels über einen unsicheren Kanal
+
+---
+
+## Diffie-Hellman-Protokoll {.content-slide .pdf-slide}
+<br>
+
+Anwendung des diskreten Logarithmus: Schlüsselgenerierung und -austausch mittels Diffie-Hellman-Protokoll:
+
+1. Alice und Bob einigen sich auf eine große Primzahl $p$ und eine primitive Wurzel $g \bmod p$.
+
+2. Alice wählt eine (große) zufällige Zahl $i$ (Alices privater Exponent) und berechnet
+
+$$
+A = g^i \bmod p
+$$
+
+(Alices öffentlicher Wert).
+
+3. Bob wählt eine (große) zufällige Zahl $j$ (Bobs privater Exponent) und berechnet
+
+$$
+B = g^j \bmod p
+$$
+
+(Bobs öffentlicher Wert).
+
+---
+
+## Diffie-Hellman-Protokoll {.content-slide .pdf-slide}
+<br>
+
+4. Alice und Bob tauschen gleichzeitig ihre öffentlichen Werte aus: Alice sendet $A$ an Bob, Bob sendet $B$ an Alice.
+
+5. Alice berechnet
+
+$$
+K = B^i \bmod p = (g^j \bmod p)^i \bmod p = g^{ij} \bmod p
+$$
+
+den gemeinsamen Sitzungsschlüssel.
+
+6. Bob berechnet
+
+$$
+K = A^j \bmod p = (g^i \bmod p)^j \bmod p = g^{ij} \bmod p.
+$$
+
+---
+
+## Anmerkungen zum Diffie-Hellman-Protokoll {.content-slide .pdf-slide}
+<br>
+
+- $g$ muss primitiv modulo $p$ sein, d.h. die Ordnung von $g$ ist $p - 1$, bzw. $g$ erzeugt die multiplikative Gruppe $\mathbb{Z}_p^*$.
+- Formal: $g^l \equiv b \bmod p$ hat für jedes $b \in \{1, 2, ..., p - 1\}$ eine Lösung $l$.
+- Eve kann $A$ und $B$ abfangen, es nützt ihr aber nichts: Sie kann $g^{ij} \bmod p$ nicht effizient aus $g^i \bmod p$ und $g^j \bmod p$ berechnen, denn dazu müsste sie $i$ oder $j$ ermitteln (den diskreten Logarithmus modulo $p$ von $A$ bzw. $B$ zur Basis $g$).
+- Dies ist das Computational Diffie-Hellman Problem.
+
+---
+
+## Schwachstelle: Man-in-the-Middle-Angriff {.content-slide .pdf-slide}
+<br>
+
+::: {.callout-important title="Schwachstelle"}
+Das Protokoll authentifiziert die Kommunikationspartner nicht!
+:::
+
+Angreifer Mallory kann sich in die Mitte setzen:
+
+1. Mallory fängt $A$ von Alice ab und sendet eigenes $M_1 = g^m \bmod p$ an Bob
+2. Mallory fängt $B$ von Bob ab und sendet eigenes $M_2 = g^n \bmod p$ an Alice
+3. Mallory teilt nun zwei Schlüssel: $K_A = A^m$ mit Alice, $K_B = B^n$ mit Bob
+4. Mallory kann alle Nachrichten entschlüsseln und neu verschlüsseln
+
+**Gegenmaßnahme:** Authentifizierung z.B. durch digitale Signaturen
+
+---
+
+## Diffie-Hellman-Protokoll: Beispiel {.content-slide .table-slide}
+<br>
+
+| Alice | Bob |
+|---|---|
+|$g = 2,\quad p = 11\quad \text{(2 ist primitiv mod 11)}$ |   
+| $i = 3$ | $j = 4$ |
+| $A = 2^3 \bmod 11 = 8$ | $B = 2^4 \bmod 11 = 5$ |
+| $A = 8 \to$ Bob | Alice $\gets B = 5$ |
+| $K = B^i \bmod p$ | $K = A^j \bmod p$ |
+| $= 5^3 \bmod 11 = 4$ | $= 8^4 \bmod 11 = 4$ |
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}

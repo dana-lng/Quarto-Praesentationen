@@ -1,0 +1,206 @@
+---
+pagetitle: "Schlüsselaustausch"
+date: today
+date-format: "DD.MM.YYYY"
+veranstaltung: "Schlüsselaustausch"
+studiengang: "HTW Dresden"
+professor: "Prof. Dr. Lukas Iffländer"
+---
+
+## Schlüsselaustausch {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
+
+---
+
+## Protokolle zum Schlüsselaustausch {.content-slide .agenda-slide}
+
+<ul class="agenda">
+<li class="agenda-item"><strong>01</strong><span>Austausch mittels symmetrischer Kryptografie</span></li>
+<li class="agenda-item"><strong>02</strong><span>Austausch mittels Public-Key-Kryptografie</span></li>
+<li class="agenda-item"><strong>03</strong><span>Man-in-the-Middle-Angriff</span></li>
+<li class="agenda-item"><strong>04</strong><span>Interlock-Protokoll</span></li>
+<li class="agenda-item"><strong>05</strong><span>Digitale Signatur</span></li>
+<li class="agenda-item"><strong>06</strong><span>Diffie-Hellman-Protokoll</span></li>
+</ul>
+
+---
+
+## Protokolle zum Schlüsselaustausch {.pdf-slide}
+### Überblick
+<br>
+
+#### Varianten
+
+- Austausch mittels symmetrischer Kryptografie
+- Austausch mittels Public-Key-Kryptografie
+
+#### Beispiel
+
+- Diffie-Hellman-Protokoll
+
+--- 
+
+## Schlüsselaustausch mit symmetrischer Kryptografie {.content-slide .pdf-slide}
+<br>
+
+#### Voraussetzungen
+
+Vertrauenswürdige Instanz (Key Distribution Center - KDC, aka Trent), sowohl Alice als auch
+Bob besitzen Schlüssel zur Kommunikation mit Trent.
+
+#### Protokoll
+
+1. Alice bittet Trent um Generierung eines Sitzungsschlüssels.
+2. Trent generiert zufälligen Sitzungsschlüssel, generiert zwei Kopien, verschlüsselt eine mit Alice' und eine mit Bobs Schlüssel.
+3. Trent schickt beide (verschlüsselte) Kopien an Alice.
+4. Alice dechiffriert ihre Kopie des Sitzungsschlüssels.
+5. Alice schickt Bob dessen (verschlüsselte) Kopie.
+6. Bob dechiffriert seine Kopie des Sitzungsschlüssels.
+7. Alice und Bob kommunizieren mittels des Sitzungsschlüssels.
+
+---
+
+## Schlüsselaustausch mittels Public-Key-Kryptografie {.content-slide .pdf-slide}
+<br>
+
+...wie bereits unter "hybride Kryptosysteme" diskutiert:
+
+**Protokoll**
+
+1. Alice bezieht Bobs öffentlichen Schlüssel aus einer PKI (z. B. Zertifikatsverzeichnis/CA).
+2. Alice generiert einen zufälligen Sitzungsschlüssel und verschlüsselt diesen mit Bobs öffentlichem Schlüssel.
+3. Alice sendet das Chiffrat an Bob.
+4. Bob dechiffriert die empfangene Nachricht mit seinem privaten Schlüssel.
+5. Beide kommunizieren mit Hilfe des Sitzungsschlüssels.
+
+---
+
+## Man-in-the-Middle-Angriff {.content-slide .pdf-slide}
+### Ablauf
+
+1. Alice sendet Bob ihren öffentlichen Schlüssel.
+2. Mallory fängt diesen Schlüssel ab und schickt stattdessen seinen eigenen öffentlichen Schlüssel an Bob.
+3. Bob sendet seinen öffentlichen Schlüssel an Alice.
+4. Mallory fängt auch diesen ab und schickt stattdessen seinen öffentlichen Schlüssel an Alice.
+5. Sendet Alice eine mit Bobs vermeintlichem öffentlichen Schlüssel verschlüsselte Nachricht an Bob, fängt Mallory diese ab und
+   entschlüsselt sie mit seinem privaten Schlüssel,
+   liest sie,
+   chiffriert sie mit Bobs öffentlichem Schlüssel und
+   schickt sie weiter an Bob.
+
+    - entschlüsselt sie mit seinem privaten Schlüssel,
+liest sie,
+    - chiffriert sie mit Bobs öffentlichem Schlüssel und
+    - schickt sie weiter an Bob.
+
+- Analog geht Mallory in der Rückrichtung (Bob -> Alice) vor.
+
+- Weder Alice noch Bob können diesen Angriff entdecken.
+
+---
+
+## Das Interlock-Protokoll (Rivest/Shamir, 1984) {.content-slide .pdf-slide}
+### ...erschwert oder vereitelt den Man-in-the-Middle-Angriff
+<br>
+
+1. Alice sendet Bob ihren öffentlichen Schlüssel K<sub>A</sub>.
+2. Bob sendet Alice seinen öffentlichen Schlüssel K<sub>B</sub>.
+3. Alice chiffriert ihre Nachricht M<sub>1</sub> mit K<sub>B</sub> und schickt die Hälfte der verschlüsselten Nachricht an Bob.
+4. Bob chiffriert seine Nachricht M<sub>2</sub> mit K<sub>A</sub> und schickt die Hälfte der verschlüsselten Nachricht an Alice.
+5. Alice schickt die zweite Hälfte an Bob.
+6. Bob fügt beide Hälften zusammen und dechiffriert. Danach schickt er Alice seine zweite Hälfte.
+7. Alice setzt Bobs zweite Nachricht zusammen und dechiffriert.
+
+---
+
+## Das Interlock-Protokoll (Rivest/Shamir, 1984) {.image-slide}
+### ...erschwert oder vereitelt den Man-in-the-Middle-Attack
+
+![](images/interlock_protocol.png)
+
+---
+
+## Analyse des Interlock-Protokolls {.content-slide .pdf-slide data-state="hide-footer"}
+<br>
+
+- Mallory kann nicht dechiffrieren, weil er nur das halbe Chiffrat C<sub>1</sub> hat; die Entschlüsselung
+  erfordert in der Regel das vollständige Chiffrat C = C<sub>1</sub> || C<sub>2</sub>.
+- Im Allgemeinen gilt zudem
+
+E<sub>K</sub>(m) != E<sub>K</sub>(m<sub>1</sub>) || E<sub>K</sub>(m<sub>2</sub>).
+
+- Er muss aber mit seinem privaten Schlüssel dechiffrieren, um anschließend mit Bobs öffentlichem Schlüssel zu chiffrieren.
+- Er muss eine andere Nachricht erfinden und die Hälfte davon an Bob schicken (und zurück an Alice).
+
+::: {.summary}
+Wenn Alice und Bob ihre Nachrichten vorher absprechen[^kanal], können sie mit dem Interlock-Protokoll
+die Authentizität ihrer jeweiligen öffentlichen Schlüssel prüfen und Mallory entlarven.
+:::
+
+
+
+[^kanal]: Dafür ist aber ein sicherer Kanal notwendig.
+
+---
+
+## Analyse des Interlock-Protokolls {.image-slide}
+
+![](images/interlock_analysis.png)
+
+---
+
+## Schlüsselaustausch mit digitaler Signatur {.content-slide}
+<br>
+
+**Idee**
+
+- Trent signiert die öffentlichen Schlüssel von Bob und Alice.
+- Beim Schlüsselerhalt prüfen Alice und Bob Trents Signatur.
+
+-> Mallory kann nicht mehr in deren jeweilige Rolle schlüpfen!
+
+---
+
+## Schlüsselaustausch mittels Diffie-Hellman-Protokoll {.content-slide .pdf-slide}
+<br>
+
+1. Bob und Alice einigen sich auf eine große Primzahl n und eine Zahl g.
+2. Alice wählt eine (große) zufällige Zahl x (Alice' geheimer Schlüssel) und berechnet X = g<sup>x</sup> mod n (Alice' öffentlicher Schlüssel).
+3. Alice sendet X an Bob.
+4. Bob wählt eine (große) zufällige Zahl y (Bobs geheimer Schlüssel) und berechnet Y = g<sup>y</sup> mod n (Bobs öffentlicher Schlüssel).
+5. Bob sendet Y an Alice.
+6. Alice berechnet k = Y<sup>x</sup> mod n = (g<sup>y</sup> mod n)<sup>x</sup> mod n = g<sup>xy</sup> mod n, den geheimen Sitzungsschlüssel.
+7. Bob berechnet k = X<sup>y</sup> mod n = (g<sup>x</sup> mod n)<sup>y</sup> mod n = g<sup>xy</sup> mod n.
+
+---
+
+## Anmerkungen zum Diffie-Hellman-Protokoll {.content-slide .image-slide}
+<br>
+
+- g sollte ein Erzeuger von Z_n* sein; für n prim bedeutet das, dass g Ordnung n - 1 hat.
+- Eve kann X und Y abfangen, es nützt ihr aber nichts; sie kann g<sup>xy</sup> mod n nicht aus g<sup>x</sup> mod n und g<sup>y</sup> mod n berechnen.
+
+**Beispiel:**
+
+![](images/diffie_hellman_example.png)
+
+---
+
+## Vielen Dank! {.title-slide data-state="hide-footer"}
+
+<img class="title-image" src="../../images/datenschutz.jpg" alt=""
+     style="--title-image-width: 120vw; --title-image-right: -500px;
+            --title-image-top: 0px; --title-image-height: 100vh;
+            --title-image-object-position: right right;">
+
+Prof. Dr. Lukas Iffländer   
+HTW Dresden  
+{{< meta date >}}
