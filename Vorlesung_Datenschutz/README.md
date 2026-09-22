@@ -1,8 +1,8 @@
 # Vorlesung Datenschutz & Informationssicherheit
 
-Hier liegen alle Vorlesungen aus dem Modul Datenschutz & Informationssicherheit von Prof. Dr. Lukas Iffländer in HTML/Quarto.
+Hier liegen die Vorlesungen aus dem Modul Datenschutz & Informationssicherheit von Prof. Dr. Lukas Iffländer als Quarto-/Reveal.js-Präsentationen.
 
-Jede Vorlesung ist eine eigene Quarto-Reveal.js-Präsentation. Die `.qmd`-Datei ist die bearbeitbare Quelle, die `.html`-Datei ist die gerenderte Präsentation für den Browser.
+Jede Vorlesung ist eine eigene Präsentation. Die `.qmd`-Datei ist die bearbeitbare Quelle, die `.html`-Datei ist die gerenderte Präsentation für den Browser.
 
 ## Ordnerstruktur
 
@@ -10,12 +10,27 @@ Jede Vorlesung ist eine eigene Quarto-Reveal.js-Präsentation. Die `.qmd`-Datei 
 Vorlesung_Datenschutz/
 |-- README.md
 |-- _quarto.yml
-|-- slides.qmd
 |-- images/
 |-- logos/
-|-- partials/
 |-- styles/
 `-- Vorlesung/
+    |-- 01_Einfuehrung_in_die_Informationssicherheit/
+    |-- 02_Historische_Kryptosysteme-1/
+    |-- 03_Kryptographische_Grundlagen-4/
+    |-- 04_Kryptographische_Protokolle/
+    |-- 05_Zufallszahlen-2/
+    |-- 06_Einwegfunktionen-2/
+    |-- 07_Signaturen/
+    |-- 08_Authentifizierung-1/
+    |-- 09_Schluesselaustausch-1/
+    |-- 10_DES/
+    |-- 11_Betriebsmodi/
+    |-- 12_Galois-Koerper-1/
+    |-- 13_AES-1/
+    |-- 14_Zahlentheorie/
+    |-- 15_Diffie-Hellman-2/
+    |-- 16_RSA-1/
+    |-- 17_Schluesselverwaltung/
     |-- 18_Angriffstechniken/
     |-- 19_Heartbleed/
     |-- 20_Hackertools/
@@ -30,13 +45,11 @@ Vorlesung_Datenschutz/
 
 `_quarto.yml` ist die zentrale Konfiguration für alle Präsentationen in diesem Ordner. Quarto findet diese Datei automatisch, wenn eine Vorlesung darunter gerendert wird. Darin stehen unter anderem Reveal.js, Foliengröße, Logo, Footer und CSS.
 
-`styles/theme.css` enthält das gemeinsame Design: Farben, Schriftgrößen, Titelfolie, Footer, kleines Logo, Agenda, Tabellen, Codeblöcke, Bildfolien und responsive Anpassungen.
+`styles/theme.css` enthält das gemeinsame Design: Farben, Schriftgrößen, Titelfolie, Footer, kleines Logo, Agenda, Tabellen, Codeblöcke, Bildfolien, Callout-Boxen und responsive Anpassungen.
 
-`images/` enthält gemeinsame Bilder, die von mehreren Vorlesungen genutzt werden können, zum Beispiel das Titelbild `datenschutz.jpg`.
+`images/` enthält gemeinsame Bilder, die von mehreren Vorlesungen genutzt werden können, zum Beispiel Titelbilder oder allgemeine Grafiken.
 
 `logos/` enthält die HTW-Logos. Das kleine Logo im Footer/Inhaltsfolien wird über `_quarto.yml` eingebunden.
-
-`partials/` enthält zusätzliche Quarto-/HTML-Bausteine, falls sie vom Projekt gebraucht werden.
 
 `Vorlesung/` enthält die fertigen Vorlesungen. Jede Vorlesung hat einen eigenen Unterordner.
 
@@ -50,15 +63,15 @@ Vorlesung/24_SQL_Injection/
 `-- images/
 ```
 
-`<Vorlesung>.qmd` ist die Datei, die du bearbeitest.
+`<Vorlesung>.qmd` ist die Datei, die bearbeitet wird.
 
-`<Vorlesung>.html` ist die fertige Präsentation.
+`<Vorlesung>.html` ist die fertige Präsentation für den Browser.
 
 `<Vorlesung>_files/` wird von Quarto erzeugt und enthält Hilfsdateien für die HTML-Präsentation.
 
-`images/` im Vorlesungsordner enthält Bilder, die nur zu dieser einen Vorlesung gehören.
+`images/` im jeweiligen Vorlesungsordner enthält Bilder, die nur zu dieser einen Vorlesung gehören.
 
-## Präsentationen Starten
+## Präsentationen Öffnen
 
 Eine bereits gerenderte Präsentation kann direkt im Browser geöffnet werden, zum Beispiel:
 
@@ -79,7 +92,7 @@ Wenn eine `.qmd`-Datei geändert wurde, muss sie neu gerendert werden.
 Beispiele:
 
 ```powershell
-quarto render Vorlesung_Datenschutz\Vorlesung\18_Angriffstechniken\18_Angriffstechniken.qmd
+quarto render Vorlesung_Datenschutz\Vorlesung\01_Einfuehrung_in_die_Informationssicherheit\01_Einfuehrung_in_die_Informationssicherheit.qmd
 ```
 
 ```powershell
@@ -109,7 +122,7 @@ Bildpfade sind immer relativ zur jeweiligen `.qmd`-Datei.
 Ein Bild aus dem lokalen Vorlesungsordner:
 
 ```qmd
-![](images/bankacc.jpg)
+![](images/beispiel.png)
 ```
 
 Ein gemeinsames Bild aus `Vorlesung_Datenschutz/images/`:
@@ -137,7 +150,7 @@ Beispiel:
 
 Wichtige Klassen:
 
-- `.title-slide`: Titelfolie und Abschlussfolie. Mit `data-state="hide-footer"` werden Footer, kleines Logo und Foliennummer ausgeblendet.
+- `.title-slide`: Titelfolie und Abschlussfolie.
 - `.content-slide`: normale Inhaltsfolie.
 - `.agenda-slide`: Agenda-Folie mit nummerierten Punkten.
 - `.pdf-slide`: textreichere Folien aus PDF-Konvertierungen.
@@ -148,6 +161,7 @@ Wichtige Klassen:
 - `.image-slide`: große Bild- oder Diagrammfolie.
 - `.table-slide`: Tabellenfolie.
 - `.low-text-slide`: Folie mit wenig Text.
+- `.section-divider-slide`: Kapiteltrenner mit farbiger Fläche und Bild.
 
 ## Neue Vorlesung Anlegen
 
@@ -160,7 +174,7 @@ Neue Vorlesungen lassen sich am einfachsten mit einer KI erstellen:
 Konvertiere diese PDF zu quarto nach den Regeln in quarto_conv.md
 ```
 
-Die Datei `../quarto_conv.md` ist dabei wichtig, weil dort das gewünschte Quarto-Format, die Folienklassen, Bildregeln, Codeblöcke und typische Fehler beschrieben sind.
+Die Datei `../quarto_conv.md` ist dabei wichtig, weil dort das gewünschte Quarto-Format, die Folienklassen, Bildregeln, Codeblöcke, Callout-Boxen, Tabellen und typische Fehler beschrieben sind.
 
 Wenn die Vorlesung manuell angelegt wird:
 
@@ -175,3 +189,13 @@ quarto render Vorlesung_Datenschutz\Vorlesung\<Ordner>\<Datei>.qmd
 ```
 
 Für neue PDF-Konvertierungen gelten zusätzlich die Regeln aus `../quarto_conv.md`.
+
+## Automatisch erzeugte Dateien
+
+Quarto erzeugt beim Rendern zusätzliche Dateien und Ordner, zum Beispiel:
+
+- `.quarto/`
+- `<Vorlesung>_files/`
+- `<Vorlesung>.html`
+
+Diese Dateien gehören zur gerenderten Präsentation. Bearbeitet wird normalerweise nur die `.qmd`-Datei und bei Designänderungen `styles/theme.css`.

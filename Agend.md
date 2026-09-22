@@ -124,10 +124,10 @@ HTML nur verwenden für:
 ```text
 projekt/
 
-├── slides.qmd
+├── praesentation.qmd
 ├── _quarto.yml
 ├── styles/
-│   └── theme.scss
+│   └── theme.css
 ├── images/
 ├── logos/
 ├── partials/

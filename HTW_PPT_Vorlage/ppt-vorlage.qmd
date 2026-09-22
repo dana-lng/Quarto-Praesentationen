@@ -8,7 +8,7 @@ professor: "Maxi Mustermann"
 ---
 ## Titelfolie mit Bild<br>mit bis zu maximal drei<br>Zeilen langem Text {.title-slide data-state="hide-footer"}
 
-<img class="title-image" src="images/ppt-vorlage/image1.png" alt="" style="--title-image-width: 78vw; --title-image-right: 0; --title-image-top: 0; --title-image-height: 100vh; --title-image-object-position: right center;">
+<img class="title-image" src="images/image1.png" alt="" style="--title-image-width: 78vw; --title-image-right: 0; --title-image-top: 0; --title-image-height: 100vh; --title-image-object-position: right center;">
 
 Titel (Erste Listenebene)  
 Namen (Zweite Listenebene)  
@@ -261,7 +261,7 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 ## Kapiteltrenner<br>mit Bild {.ppt-section-image-slide data-state="hide-footer" style="--ppt-bg: #ffd800;"}
 
 <div class="ppt-section-image-wrap">
-  <img src="images/ppt-vorlage/image1.png" alt="">
+  <img src="images/image1.png" alt="">
 </div>
 
 ---
@@ -278,7 +278,7 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 :::
 
 ::: {.column width="50%"}
-![](images/ppt-vorlage/image4.jpeg)
+![](images/image4.jpeg)
 
 <p class="ppt-caption">Hier ist Platz für eine Bildunterschrift oder eine Quelle</p>
 :::
@@ -291,7 +291,7 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/ppt-vorlage/image4.jpeg)
+![](images/image4.jpeg)
 
 <p class="ppt-caption">Hier ist Platz für eine Bildunterschrift oder eine Quelle</p>
 :::
@@ -312,11 +312,11 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 
 <div class="ppt-image-grid two">
 <figure>
-<img src="images/ppt-vorlage/image5.jpeg" alt="">
+<img src="images/image5.jpeg" alt="">
 <figcaption class="ppt-caption">Hier ist Platz für eine Bildunterschrift oder eine Quelle</figcaption>
 </figure>
 <figure>
-<img src="images/ppt-vorlage/image6.jpeg" alt="">
+<img src="images/image6.jpeg" alt="">
 <figcaption class="ppt-caption">Hier ist Platz für eine Bildunterschrift oder eine Quelle</figcaption>
 </figure>
 </div>
@@ -330,15 +330,15 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 
 ::: {.column width="50%"}
 
-![](images/ppt-vorlage/image5.jpeg){width=50%}
-![](images/ppt-vorlage/image8.jpeg){width=50%}
+![](images/image5.jpeg){width=50%}
+![](images/image8.jpeg){width=50%}
 
 :::
 
 ::: {.column width="50%"}
 
-![](images/ppt-vorlage/image6.jpeg){width=50%} 
-![](images/ppt-vorlage/image7.jpeg){width=50%}
+![](images/image6.jpeg){width=50%} 
+![](images/image7.jpeg){width=50%}
 
 :::
 ::::
@@ -350,8 +350,39 @@ Erste Listenebene, 18 pt. Bulletpoint weggeklickt lorem ipsum dolor sit amet, co
 ## Folie mit großem Bild<br>Headline ggf. mit zweiter Zeile {.ppt-full-image-slide data-state="hide-footer"}
 
 <div class="ppt-full-image-wrap">
-  <img src="images/ppt-vorlage/image9.jpeg" alt="">
+  <img src="images/image9.jpeg" alt="">
 </div>
+
+---
+
+## Callout-Varianten {.content-slide .callout-demo-slide}
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.callout-note title="callout-note"}
+Neutrale Information oder kurzer Hinweis.
+:::
+
+::: {.callout-tip title="callout-tip"}
+Empfehlung, Best Practice oder hilfreicher Tipp.
+:::
+
+::: {.callout-important title="callout-important"}
+Besonders wichtige Aussage oder zentrale Warnung.
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-warning title="callout-warning"}
+Risiko, Einschränkung oder mögliche Fehlerquelle.
+:::
+
+::: {.callout-caution title="callout-caution"}
+Vorsicht bei Sonderfällen oder unsicheren Annahmen.
+:::
+:::
+::::
 
 ---
 
@@ -372,4 +403,5 @@ Berta Beispiel-Müllermeier
 Fakultät Wirtschaftswissenschaften  
 T +49 351 462 1234    M +49 171 123 4567  
 berta.beispiel-muellermeier@htw-dresden.de
+
 

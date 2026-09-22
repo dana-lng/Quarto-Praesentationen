@@ -1,41 +1,35 @@
-# Template
+# HTW PPT Vorlage
 
-Hier liegt das allgemeine Design der HTW Dresden in HTML/Quarto.
+Hier liegt die HTW-Dresden-PowerPoint-Vorlage als HTML/Quarto-Präsentation.
 
-Dieser Ordner ist als Grundgerüst gedacht. Er enthält Beispiel-Folien, das zentrale Theme, Logos, Bilder und technische Vorlagen. Fertige Vorlesungen sollen nicht hier abgelegt werden, sondern in einem eigenen Vorlesungsordner.
+Dieser Ordner ist nur für die aus `Präsentationsvorlage.ppt` übertragene HTW-PPT-Vorlage gedacht. Fertige Vorlesungen sollen nicht hier abgelegt werden, sondern in einem eigenen Vorlesungsordner.
 
 ## Zweck
 
-`Template/` dient als Vorlage für neue Präsentationen:
+`HTW_PPT_Vorlage/` dient als Referenz für das HTW-PPT-Design:
 
 - einheitliches HTW-Dresden-Design
 - Reveal.js-Konfiguration über Quarto
-- Beispiel für Titel-, Agenda-, Text-, Bild-, Tabellen-, Code- und Abschlussfolien
+- Beispiel für Titel-, Text-, Bild-, Tabellen-, Diagramm- und Abschlussfolien
 - zentrale CSS-Datei für Layout und Responsivität
 - gemeinsame Logos und Beispielbilder
 
 ## Ordnerstruktur
 
 ```text
-Template/
+HTW_PPT_Vorlage/
 |-- README.md
 |-- _quarto.yml
-|-- slides.qmd
-|-- slides.html
+|-- ppt-vorlage.qmd
+|-- ppt-vorlage.html
 |-- images/
 |-- logos/
-|-- partials/
-|-- styles/
-`-- templates/
+`-- styles/
 ```
 
 ## Dateien und Ordner
 
-`_quarto.yml` enthält die globale Quarto-Konfiguration für dieses Template. Dort werden Reveal.js, Foliengröße, Theme-CSS, Logo, Footer und weitere Ausgabeoptionen gesetzt.
-
-`slides.qmd` ist die Beispiel-Präsentation. Dort sieht man, wie die verschiedenen Folienklassen verwendet werden.
-
-`slides.html` ist die gerenderte HTML-Ausgabe von `slides.qmd`. Diese Datei kann direkt im Browser geöffnet werden.
+`_quarto.yml` enthält die globale Quarto-Konfiguration für diese Vorlage. Dort werden Reveal.js, Foliengröße, Theme-CSS, Logo, Footer und weitere Ausgabeoptionen gesetzt.
 
 `ppt-vorlage.qmd` ist die aus der PowerPoint-Datei `Präsentationsvorlage.ppt`
 nach Quarto übertragene HTW-Dresden-Präsentationsvorlage. Sie enthält die
@@ -45,47 +39,28 @@ Layout-Beispiele aus der PPT-Vorlage als bearbeitbare Quarto-Folien.
 
 `styles/theme.css` ist die zentrale CSS-Datei. Hier stehen Farben, Schriftgrößen, Footer, Logo, Titelfolie, Agenda, Bildfolien, Tabellen, Codefolien und responsive Anpassungen.
 
-`images/` enthält allgemeine Beispielbilder und gemeinsame Bilder für das Design, zum Beispiel das Titelbild.
-
-`images/ppt-vorlage/` enthält die aus der PowerPoint-Vorlage übernommenen Bilder
-und Screenshots, die von `ppt-vorlage.qmd` verwendet werden.
+`images/` enthält die aus der PowerPoint-Vorlage übernommenen Bilder und Screenshots, die von `ppt-vorlage.qmd` verwendet werden.
 
 `logos/` enthält die HTW-Logos für Titelfolie, Inhaltsfolien und Footer.
 
-`partials/` enthält zusätzliche Quarto-/HTML-Bausteine, falls sie vom Projekt gebraucht werden.
-
-`templates/` ist für technische Quarto- oder Pandoc-Vorlagen gedacht, nicht für fertige Vorlesungsfolien.
-
-## Template Starten
+## Vorlage Starten
 
 Die fertige HTML-Datei kann direkt im Browser geöffnet werden:
 
 ```powershell
-Template\slides.html
-```
-
-Wenn `slides.qmd` geändert wurde, muss die HTML-Datei neu gerendert werden:
-
-```powershell
-quarto render Template\slides.qmd
+HTW_PPT_Vorlage\ppt-vorlage.html
 ```
 
 Die aus PowerPoint übertragene Vorlage wird so gerendert:
 
 ```powershell
-quarto render Template\ppt-vorlage.qmd
+quarto render HTW_PPT_Vorlage\ppt-vorlage.qmd
 ```
 
 Für eine Live-Vorschau kann Quarto Preview genutzt werden:
 
 ```powershell
-quarto preview Template\slides.qmd
-```
-
-Oder für die PowerPoint-Vorlage:
-
-```powershell
-quarto preview Template\ppt-vorlage.qmd
+quarto preview HTW_PPT_Vorlage\ppt-vorlage.qmd
 ```
 
 ## Wichtige Folienklassen
@@ -120,23 +95,23 @@ Die wichtigsten Klassen:
 
 Bildpfade sind relativ zur `.qmd`-Datei.
 
-In `Template/slides.qmd` kann ein Bild aus `Template/images/` so eingebunden werden:
+In `HTW_PPT_Vorlage/ppt-vorlage.qmd` kann ein Bild aus `HTW_PPT_Vorlage/images/` so eingebunden werden:
 
 ```qmd
-![](images/bild1.jpg)
+![](images/image1.png)
 ```
 
 Das Titelbild wird bei `title-slide` üblicherweise als echtes Bild eingebunden:
 
 ```html
-<img class="title-image" src="images/datenschutz.jpg" alt="">
+<img class="title-image" src="images/image1.png" alt="">
 ```
 
 Die genaue Position und Größe der Titelfolie kann über die dafür vorgesehenen CSS-Variablen am Bild angepasst werden.
 
 ## Typische Arbeitsweise
 
-1. `slides.qmd` als Beispiel ansehen.
+1. `ppt-vorlage.qmd` als Beispiel ansehen.
 2. Für neue Vorlesungen die Struktur und Klassen übernehmen.
 3. Eigene Inhalte in einem separaten Vorlesungsordner anlegen.
 4. Präsentation mit `quarto render` neu erzeugen.
